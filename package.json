@@ -1,0 +1,26 @@
+{
+  "name": "hacked-resources",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nsbernstein52/hacked-resources.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nsbernstein52/hacked-resources/issues"
+  },
+  "homepage": "https://github.com/nsbernstein52/hacked-resources#readme",
+  "dependencies": {
+    "expres": "0.0.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3",
+    "react": "^16.13.1",
+    "webpack": "^4.42.1"
+  }
+}
