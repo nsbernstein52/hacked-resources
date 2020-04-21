@@ -2,3 +2,4 @@ node_modules
 *.svg
 *.env
 package-lock.json
+dist
