@@ -14,7 +14,47 @@ import './App.css';
 // import ResourceInfo from '../ResourceInfo';
 // import ChangeHandler from '../ChangeHandler';
 
-// import legacyData from './data/legacy_data.json';
+let dataPath = '/data';
+console.log("App: dataPath: ", dataPath);
+// let legacyData =require('./data/legacy_data.json');
+
+const initialData = [
+  {
+    "Topic": "Accessibility",
+    "Level": "All",
+    "Link": "https://shoptalkshow.com/367/",
+    "Description": "Podcast about accessibility",
+    "Contributor": ""
+  },
+  {
+    "Topic": "Accessibility",
+    "Level": "All",
+    "Link": "https://a11yproject.com/checklist/",
+    "Description": "Accessiblity checklist to  determine how accessible your site is",
+    "Contributor": ""
+  },
+  {
+    "Topic": "Accessibility",
+    "Level": "All",
+    "Link": "https://webaim.org/techniques/alttext/#basics",
+    "Description": "Alternative Text basics",
+    "Contributor": ""
+  },
+  {
+    "Topic": "Accessibility",
+    "Level": "All",
+    "Link": "https://webaim.org/techniques/images/",
+    "Description": "Image accessibility",
+    "Contributor": ""
+  },
+  {
+    "Topic": "Accessibility",
+    "Level": "All",
+    "Link": "https://www.deque.com/blog/dont-screen-readers-read-whats-screen-part-1-punctuation-typographic-symbols/",
+    "Description": "Good info about how screen readers read the web",
+    "Contributor": ""
+  }
+];
 
 class App extends React.Component {
   constructor(props) {
@@ -30,16 +70,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // console.log("App: cDM: r(s): ", resourcesArr)
+    console.log("App: cDM: t.s.r(s): ", this.state.resourcesArr)
     // this.loadResourcesLandingPage();
-    this.loadImportedResources();
+    this.loadImportedResources(initialData);
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    // console.log("App: cDU: t.p: ", prevState, this.state);
+    console.log("App: cDU: t.p: ", prevState, this.state);
     if (this.state.resourcesChanged) {
       this.setState.resourcesChanged = false;
-      this.loadImportedResources();
+      this.loadImportedResources(initialData);
     }
   }
 
@@ -47,8 +87,9 @@ class App extends React.Component {
 
   }
 
-  loadImportedResources = (legacyData) => {
-    this.setState({ resourcesArr: legacyData.slice() })
+  loadImportedResources = (initialData) => {
+    // this.setState({ resourcesArr: data })
+    this.setState({ resourcesArr: initialData.slice() })
   };
 
   clickHandler = (index) => {
@@ -129,12 +170,15 @@ class App extends React.Component {
 
   render() {
 
+    console.log("App: iD: ", initialData)
+
     console.log("App: render: rA: ", this.state.resourcesArr);
     console.log("App: render: cRA: ", this.state.currentResourceArr);
 
-    if (!this.isReadytoRender()) return null;
+    // if (!this.isReadytoRender()) return null;
 
     const { resourcesArr, resourcesChanged, currentResourceArr } = this.state;
+
     return (
       <Container-fluid className="layout">
         <Col className="layout header">
@@ -143,7 +187,7 @@ class App extends React.Component {
               <img
                 // src={require("./logo.svg")}
                 // src={require("./public/favicon.ico")}
-                alt="Hacked Resourcse logo: HACK-mask"
+                alt="logo: HACK-mask"
                 id="logo"
               />{" "}
               Hacked Resources
