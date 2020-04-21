@@ -1,11 +1,22 @@
 // require('newrelic');
 require('dotenv').config();
+const path = require('path');
 
 // const bodyParser = require('body-parser');
 
 const express = require('express');
 const app = express();
 const pg = require("../db/query.js");
+
+// // get/ test that running this file
+app.get('/', (req, res) => {
+  res.send("hello")
+});
+
+// app.use(express.static(__dirname + '/public'));
+let pathname = path.join(__dirname, '../public/index.html');
+console.log("app: pathname: ", pathname);
+app.use(express.static(pathname));
 
 const cors = require('cors');
 app.use(cors());
