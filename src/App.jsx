@@ -3,6 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Table from "react-bootstrap/Table";
 import "react-bootstrap/Container";
+// import "react-scripts"
 // import FormControl from "react-bootstrap/FormControl";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,7 +14,7 @@ import './App.css';
 // import ResourceInfo from '../ResourceInfo';
 // import ChangeHandler from '../ChangeHandler';
 
-import legacyData from './data/legacy_data.json';
+// import legacyData from './data/legacy_data.json';
 
 class App extends React.Component {
   constructor(props) {
