@@ -1,9 +1,11 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import React from 'react';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Table from "react-bootstrap/Table";
 import "react-bootstrap/Container";
 // import FormControl from "react-bootstrap/FormControl";
+
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 import './App.css';
 
@@ -11,7 +13,7 @@ import './App.css';
 // import ResourceInfo from '../ResourceInfo';
 // import ChangeHandler from '../ChangeHandler';
 
-import legacyData from '../data/legacyData.js';
+import legacyData from './data/legacy_data.json';
 
 class App extends React.Component {
   constructor(props) {
@@ -53,7 +55,7 @@ class App extends React.Component {
   }
   
   addResource = (abbrev, contributor, description, level, link, topic) => {
-    event.preventDefault();
+    this.event.preventDefault();
 
     const resourceObj = {
       abbrev: abbrev,
@@ -126,8 +128,8 @@ class App extends React.Component {
 
   render() {
 
-    console.log("App: render: rA: ", resourcesArr);
-    console.log("App: render: cRA: ", currentResourceArr);
+    console.log("App: render: rA: ", this.state.resourcesArr);
+    console.log("App: render: cRA: ", this.state.currentResourceArr);
 
     if (!this.isReadytoRender()) return null;
 
@@ -138,7 +140,8 @@ class App extends React.Component {
           <Row className="layout">
             <Col className="layout bold" sm={2}>
               <img
-                src={require("./logo.svg")}
+                // src={require("./logo.svg")}
+                src={require("./public/favicon.ico")}
                 alt="Hacked Resourcse logo: HACK-mask"
                 id="logo"
               />{" "}
