@@ -39,7 +39,7 @@ CREATE TABLE resources_topics (
 );
 
 // INSERT seeding
-INSERT INTO resources VALUES ("a test description", "All");
+INSERT INTO resources VALUES ("a test description", "All", "http://www.tbd.com");
 
 INSERT INTO users VALUES ("Neil", "Snail", "thesnail@tbd.com");
 INSERT INTO resources_users VALUES (1, 1);
@@ -48,9 +48,9 @@ INSERT INTO topics VALUES ("aaaTestTopic", "aTT");
 INSERT INTO resources_topics VALUES (1, 1);
 
 // SELECT QUERY seeding
-SELECT * FROM resources;
-SELECT * FROM users;
-SELECT * from topics;
+// SELECT * FROM resources;
+// SELECT * FROM users;
+// SELECT * from topics;
 
 // SELECT topics.topic, topics.abbrev, resources.level, resources.link, resources.description, users.first_name, users.lastname, users.email
 // FROM resources
