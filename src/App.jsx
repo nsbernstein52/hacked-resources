@@ -141,7 +141,7 @@ class App extends React.Component {
             <Col className="layout bold" sm={2}>
               <img
                 // src={require("./logo.svg")}
-                src={require("./public/favicon.ico")}
+                // src={require("./public/favicon.ico")}
                 alt="Hacked Resourcse logo: HACK-mask"
                 id="logo"
               />{" "}
