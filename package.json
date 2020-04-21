@@ -2,12 +2,13 @@
   "name": "hacked-resources",
   "version": "1.0.0",
   "description": "",
-  "main": "./server/index.js",
+  "main": "./src/App.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "react-scripts start",
-    "webpack": "webpack -d --watch",
-    "nodemon": "nodemon .server/index.js"
+    "webpack-dev": "webpack -d --watch",
+    "webpack-build": "webpack --mode production",
+    "nodemon": "nodemon ./server/app.js"
   },
   "repository": {
     "type": "git",
@@ -30,8 +31,7 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1",
-    "webpack": "^4.42.1"
+    "react-scripts": "^3.4.1"
   },
   "browserslist": {
     "production": [
@@ -46,6 +46,12 @@
     ]
   },
   "devDependencies": {
-    "webpack-cli": "^3.3.11"
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   }
 }
