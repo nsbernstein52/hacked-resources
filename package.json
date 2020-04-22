@@ -8,7 +8,9 @@
     "start": "react-scripts start",
     "webpack-dev": "webpack -d --watch",
     "webpack-build": "webpack --mode production",
-    "nodemon": "nodemon ./server/app.js"
+    "nodemon": "nodemon ./server/app.js",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "repository": {
     "type": "git",
@@ -47,10 +49,15 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/preset-create-react-app": "^2.1.1",
+    "@storybook/react": "^5.3.18",
     "babel-loader": "^8.0.6",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   }
