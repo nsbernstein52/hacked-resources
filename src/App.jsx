@@ -70,26 +70,34 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("App: cDM: t.s.r(s): ", this.state.resourcesArr)
+    console.log("App: PRE cDM: t.s.r(s): ", this.state.resourcesArr)
+    console.log("App: PRE cDM: iD: ", initialData)
     // this.loadResourcesLandingPage();
     this.loadImportedResources(initialData);
+    console.log("App: POST cDM: t.s.r(s): ", this.state.resourcesArr)
   }
 
-  componentDidUpdate = (prevProps, prevState) => {
-    console.log("App: cDU: t.p: ", prevState, this.state);
-    if (this.state.resourcesChanged) {
-      this.setState.resourcesChanged = false;
-      this.loadImportedResources(initialData);
-    }
-  }
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   console.log("App: cDU: t.p: ", prevState, this.state);
+  //   if (this.prevState.resourcesArr.length !== this.state.resourcesArr.length) {
+  //     // this.setState.resourcesChanged = false;
+  //     this.loadImportedResources(initialData);
+  //   }
+  // }
 
   loadResourcesLandingPage = () => {
 
   }
 
   loadImportedResources = (initialData) => {
-    // this.setState({ resourcesArr: data })
-    this.setState({ resourcesArr: initialData.slice() })
+    console.log("App: PRE: lIR: iD:  ", initialData);
+    this.setState({
+      resourcesArr: initialData
+    })
+  // this.setState({ resourcesArr: data })
+    // this.setState({ resourcesArr: initialData.slice() })
+    console.log("App: POST: lIRs: iD:  ", initialData);
+    // console.log("App: POST: lIRs: rA:  ", resourcesArr);
   };
 
   clickHandler = (index) => {
@@ -170,20 +178,26 @@ class App extends React.Component {
 
   render() {
 
-    console.log("App: iD: ", initialData)
-
-    console.log("App: render: rA: ", this.state.resourcesArr);
-    console.log("App: render: cRA: ", this.state.currentResourceArr);
-
-    // if (!this.isReadytoRender()) return null;
+    // console.log("App: iD: ", initialData)
 
     const { resourcesArr, resourcesChanged, currentResourceArr } = this.state;
 
+    // console.log("App: PRE: render: rA: ", this.state.resourcesArr);
+    // console.log("App: PRE: render: cRA: ", this.state.currentResourceArr);
+
+    if (!this.isReadytoRenderResources()) return null;
+
+    console.log("App: POST: iD: ", initialData)
+    console.log("App: POST: render: rA: ", this.state.resourcesArr);
+    console.log("App: POST: render: cRA: ", this.state.currentResourceArr);
+
     return (
-      <Container-fluid className="layout">
+      // <Container-fluid className="layout">
+      <div className="container-fluid">
         <Col className="layout header">
           <Row className="layout">
-            <Col className="layout bold" sm={2}>
+            {/* <Col className="layout bold" sm={2}> */}
+            <Col className="layout bold">
               <img
                 // src={require("./logo.svg")}
                 // src={require("./public/favicon.ico")}
@@ -201,38 +215,57 @@ class App extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Table responsive>
-              <thead className="resources-header">
-                <tr>
-                  <th>Topic</th>
-                  <th>Abbrev</th>
-                  <th>Link</th>
-                  <th>Level</th>
-                  <th>Description</th>
-                  <th>Contributor</th>
-                </tr>
-              </thead>
-              <tbody className="resources-body"> 
-                {
-                  resourcesArr.map((resource, index) => {
-                    // console.log("PComp: render: allRs: ", resource)
-                    return (
-                      <tr className="cols layout resources-body rows" key={index}>
-                        <td>{resourcesArr[index].topic}</td>
-                        <td>{resourcesArr[index].abbrev}</td>
-                        <td>{resourcesArr[index].link}</td>
-                        <td>{resourcesArr[index].level}</td>
-                        <td>{resourcesArr[index].description}</td>
-                        <td>{resourcesArr[index].contributor}</td>
-                      </tr>
-                      )
-                    })
-                  }
-              </tbody>
-            </Table>
+              <Table id="resources-table" responsive striped bordered hover border-style="solid">
+                <thead className="resources-header">
+                  <tr>
+                    <th className="col-sm-2 topic_col" >Topic</th>
+                    <th className="col-sm-1">Abbrev</th>
+                    <th className="col-sm-1">Link</th>
+                    <th className="col-sm-1">Level</th>
+                    <th className="col-sm-2">Contributor</th>
+                    <th className="col-sm-5">Description</th>
+                  </tr>
+                </thead>
+                <tbody className="resources-body"> 
+                  <tr>
+                    <td className="col-sm-2">A topic</td>
+                    <td className="col-sm-1">An abbrev</td>
+                    <td className="col-sm-1">A link</td>
+                    <td className="col-sm-1">A level</td>
+                    <td className="col-sm-2">A contributor</td>
+                    <td className="col-sm-5">A description</td>
+                  </tr>
+                  <tr>
+                    <td className="col-sm-2">A topic but longer than the first one</td>
+                    <td className="col-sm-1">An abbrev</td>
+                    <td className="col-sm-1">A link</td>
+                    <td className="col-sm-1">A level</td>
+                    <td className="col-sm-2">A contributor</td>
+                    <td className="col-sm-5">A description that is much longer than the other stuff in many ways. See Spot. See Spot run.</td>
+                  </tr>
+                  {
+                    resourcesArr.map((resource, index) => {
+                      console.log("App: render: rA: ", resourcesArr)
+                      // initialData.map((resource, index) => {
+                      // console.log("App: render: iD: ", initialData)
+                      return (
+                        <tr className="cols layout resources-body rows" key={index}>
+                          <td>{resourcesArr[index].topic}</td>
+                          <td>{resourcesArr[index].abbrev}</td>
+                          <td>{resourcesArr[index].link}</td>
+                          <td>{resourcesArr[index].level}</td>
+                          <td>{resourcesArr[index].description}</td>
+                          <td>{resourcesArr[index].contributor}</td>
+                        </tr>
+                        )
+                      })
+                    }
+                </tbody>
+              </Table>
           </Row>
         </Col>
-      </Container-fluid>
+      </div>
+      // </Container-fluid>
     );
   }
 }
