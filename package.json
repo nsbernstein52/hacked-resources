@@ -58,6 +58,8 @@
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.18",
     "babel-loader": "^8.0.6",
+    "file-loader": "^6.0.0",
+    "json-loader": "^0.5.7",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   }
