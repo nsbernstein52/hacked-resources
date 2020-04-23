@@ -10,15 +10,28 @@ import "react-bootstrap/Container";
 
 import './App.css';
 
+// const path = require('path');
+// console.log("PATH.BNS: :", path.basename('/Users/nsb52/Box Sync/galvanize/mvp/hacked-resources/src/legacyData.data'));
+
 // import ResourceRow from '../ResourceRow';
 // import ResourceInfo from '../ResourceInfo';
 // import ChangeHandler from '../ChangeHandler';
 
-let dataPath = '/data';
-console.log("App: dataPath: ", dataPath);
+// let dataPath = '/data';
+// console.log("App: dataPath: ", dataPath);
 // let legacyData = require('./data/legacy_data.json');
+// let dataPath= '/Users/nsb52/Box\ Sync/galvanize/mvp/hacked-resources/src/data/'
+// console.log("App: dataPath: ", dataPath);
+// import legacyDataJSON from dataPath + 'legacy_data.json';
+import legacyDataJSON from './legacyData.js';
+// const fs = require('fs');
+// const legacyDataJSON = JSON.parse(fs.readFileSync('./legacyData.json', 'utf8'));
+// const json = require('json-loader!/legacyData.json');
+console.log("App: lDJ: ", legacyDataJSON);
 
-const initialData = [
+
+
+const initialDataJSON = [
   {
     "Topic": "Accessibility",
     "Level": "All",
@@ -71,9 +84,9 @@ class App extends React.Component {
 
   componentDidMount() {
     console.log("App: PRE cDM: t.s.r(s): ", this.state.resourcesArr)
-    console.log("App: PRE cDM: iD: ", initialData)
+    console.log("App: PRE cDM: iD: ", initialDataJSON)
     // this.loadResourcesLandingPage();
-    this.loadImportedResources(initialData);
+    this.loadImportedResources(initialDataJSON);
     console.log("App: POST cDM: t.s.r(s): ", this.state.resourcesArr)
   }
 
@@ -81,7 +94,7 @@ class App extends React.Component {
   //   console.log("App: cDU: t.p: ", prevState, this.state);
   //   if (this.prevState.resourcesArr.length !== this.state.resourcesArr.length) {
   //     // this.setState.resourcesChanged = false;
-  //     this.loadImportedResources(initialData);
+  //     this.loadImportedResources(initialDataJSON);
   //   }
   // }
 
@@ -89,14 +102,14 @@ class App extends React.Component {
 
   }
 
-  loadImportedResources = (initialData) => {
-    // console.log("App: PRE: lIR: iD:  ", initialData);
+  loadImportedResources = (initialDataJSON) => {
+    // console.log("App: PRE: lIR: iD:  ", initialDataJSON);
     this.setState({
-      resourcesArr: initialData
+      resourcesArr: initialDataJSON
     })
   // this.setState({ resourcesArr: data })
-    // this.setState({ resourcesArr: initialData.slice() })
-    // console.log("App: POST: lIRs: iD:  ", initialData);  
+    // this.setState({ resourcesArr: initialDataJSON.slice() })
+    // console.log("App: POST: lIRs: iD:  ", initialDataJSON);  
     // console.log("App: POST: lIRs: rA:  ", resourcesArr);
   };
 
@@ -178,7 +191,7 @@ class App extends React.Component {
 
   render() {
 
-    // console.log("App: iD: ", initialData)
+    // console.log("App: iD: ", initialDataJSON)
 
     const { resourcesArr, resourcesChanged, currentResourceArr } = this.state;
 
@@ -187,7 +200,7 @@ class App extends React.Component {
 
     if (!this.isReadytoRenderResources()) return null;
 
-    // console.log("App: POST: iD: ", initialData)
+    // console.log("App: POST: iD: ", initialDataJSON)
     console.log("App: POST: render: rA: ", this.state.resourcesArr);
     // console.log("App: POST: render: cRA: ", this.state.currentResourceArr);
 
@@ -245,10 +258,12 @@ class App extends React.Component {
                     <td className="col-sm-5">A description that is much longer than the other stuff in many ways. See Spot. See Spot run.</td>
                   </tr>
                   {
-                    resourcesArr.map((resource, index) => {
-                      console.log("App: render: rA: ", resourcesArr)
-                      // initialData.map((resource, index) => {
-                      // console.log("App: render: iD: ", initialData)
+                    // legacyDataJSON.map((resource, index) => {
+                    //   console.log("App: render: rA: ", legacyDataJSON)
+                      resourcesArr.map((resource, index) => {
+                        console.log("App: render: rA: ", resourcesArr)
+                        // initialDataJSON.map((resource, index) => {
+                      // console.log("App: render: iD: ", initialDataJSON)
                       return (
                         <tr className="cols layout resources-body dynamic-rows" key={index}>
                           <td>{resourcesArr[index].Topic}</td>
