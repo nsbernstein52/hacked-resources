@@ -23,7 +23,12 @@ module.exports = {
       },
       {
         test: /\.(scss|css)$/,
-        loaders: ['style-loader', 'css-loader'],
+        loader: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.data$/,
+        loader: 'file-loader',
+        type: 'javascript/auto'
       }
     ],
   },
