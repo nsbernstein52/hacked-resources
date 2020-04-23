@@ -16,7 +16,7 @@ import './App.css';
 
 let dataPath = '/data';
 console.log("App: dataPath: ", dataPath);
-// let legacyData =require('./data/legacy_data.json');
+// let legacyData = require('./data/legacy_data.json');
 
 const initialData = [
   {
@@ -90,13 +90,13 @@ class App extends React.Component {
   }
 
   loadImportedResources = (initialData) => {
-    console.log("App: PRE: lIR: iD:  ", initialData);
+    // console.log("App: PRE: lIR: iD:  ", initialData);
     this.setState({
       resourcesArr: initialData
     })
   // this.setState({ resourcesArr: data })
     // this.setState({ resourcesArr: initialData.slice() })
-    console.log("App: POST: lIRs: iD:  ", initialData);
+    // console.log("App: POST: lIRs: iD:  ", initialData);  
     // console.log("App: POST: lIRs: rA:  ", resourcesArr);
   };
 
@@ -187,9 +187,9 @@ class App extends React.Component {
 
     if (!this.isReadytoRenderResources()) return null;
 
-    console.log("App: POST: iD: ", initialData)
+    // console.log("App: POST: iD: ", initialData)
     console.log("App: POST: render: rA: ", this.state.resourcesArr);
-    console.log("App: POST: render: cRA: ", this.state.currentResourceArr);
+    // console.log("App: POST: render: cRA: ", this.state.currentResourceArr);
 
     return (
       // <Container-fluid className="layout">
@@ -212,6 +212,7 @@ class App extends React.Component {
               <i>HACK YOUR RESOURCES</i> &mdash;{" "}
               <b>BEFORE THEY HACK YOU</b> &mdash;{" "}
               <u>FIND THEM HERE</u>
+              <br /> &nbsp; <br />
             </Col>
           </Row>
           <Row>
@@ -249,17 +250,25 @@ class App extends React.Component {
                       // initialData.map((resource, index) => {
                       // console.log("App: render: iD: ", initialData)
                       return (
-                        <tr className="cols layout resources-body rows" key={index}>
-                          <td>{resourcesArr[index].topic}</td>
-                          <td>{resourcesArr[index].abbrev}</td>
-                          <td>{resourcesArr[index].link}</td>
-                          <td>{resourcesArr[index].level}</td>
-                          <td>{resourcesArr[index].description}</td>
-                          <td>{resourcesArr[index].contributor}</td>
+                        <tr className="cols layout resources-body dynamic-rows" key={index}>
+                          <td>{resourcesArr[index].Topic}</td>
+                          <td>{resourcesArr[index].Abbrev}</td>
+                          <td>{resourcesArr[index].Link}</td>
+                          <td>{resourcesArr[index].Level}</td>
+                          <td>{resourcesArr[index].Contributor}</td>
+                          <td>{resourcesArr[index].Description}</td>
                         </tr>
-                        )
-                      })
-                    }
+                      )
+                    })
+                  }
+                  <tr>
+                    <td className="col-sm-2">A topic but longer than the first one</td>
+                    <td className="col-sm-1">An abbrev</td>
+                    <td className="col-sm-1">A link</td>
+                    <td className="col-sm-1">A level</td>
+                    <td className="col-sm-2">A contributor</td>
+                    <td className="col-sm-5">A description that is much longer than the other stuff in many ways. See Spot. See Spot run.</td>
+                  </tr>
                 </tbody>
               </Table>
           </Row>
