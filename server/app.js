@@ -26,18 +26,21 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 let entryTime = new Date();
-console.log(new Date());
-// console.log("a.js: ENTERING");
+// console.log(new Date());
+console.log("a.js: ENTERING", new Date());
 
 // getAllResources
 app.get('/resources_db/resourcesflat', (req, res) => {
   console.log("a:: gARs: ENTERED");
   pg.getAllResources()
   .then((results) => {
-    console.log("a:: gARs: r.r.[0]: COMPLETED", results[0]);
-    res.send(results);
+    let resultsJSON = JSON.stringify({data: results})
+    console.log("a:: gARs: r.r.[0]: COMPLETED", resultsJSON[4]);
+    // let resObj = {key: results};
+    // res.send(results);
+    res.send(resultsJSON);
   })
-  .catch(err => console.log(err));
+  .catch(err => console.log("app.js: gAR: err: ", err));
 });
 
 // getOneResource
