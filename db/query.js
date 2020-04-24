@@ -27,9 +27,9 @@ pool.connect((err, client, done) => {
   client.query('SELECT * FROM resourcesflat WHERE resourceflat_id = $1', [1], (err, res) => {
     done()
     if (err) {
-      console.log(err.stack)
+      console.log("q: p.c: err: ", err.stack)
     } else {
-      console.log(res.rows[0])
+      console.log("q: p.c res.rows[000]: ", res.rows[0])
     }
   })
 })
