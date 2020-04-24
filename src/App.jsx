@@ -73,8 +73,8 @@ class App extends React.Component {
     // console.log("App: PRE cDM: iD: ", initialDataJSON)
     // this.loadResourcesLandingPage();
     // this.loadImportedResources(initialDataJSON);
-    this.loadImportedResources(importedDataJSON);
-    // this.getAllResources();
+    // this.loadImportedResources(importedDataJSON);
+    this.getAllResources();
     // console.log("App: POST cDM: t.s.r(s): ", this.state.resourcesArr)
   }
 
@@ -82,7 +82,7 @@ class App extends React.Component {
   //   console.log("App: cDU: t.p: ", prevState, this.state);
   //   if (this.prevState.resourcesArr.length !== this.state.resourcesArr.length) {
   //     // this.setState.resourcesChanged = false;
-  //     this.loadImportedResources(initialDataJSON);
+  //     this.getAllResources();
   //   }
   // }
 
@@ -147,7 +147,7 @@ class App extends React.Component {
       .then(( res ) => {
         console.log("App: gARs: .then.then res: ", res)
         this.setState({
-          resourcesArr:  res
+          resourcesArr:  res.data
         });
 
       })
@@ -215,6 +215,7 @@ class App extends React.Component {
 
     if (!this.isReadytoRenderResources()) return null;
 
+    // console.log("App: POST: render: rA.d: ", resourcesArr.data);
     console.log("App: POST: render: rA: ", resourcesArr);
     // console.log("App: POST: iD: ", initialDataJSON)
     // console.log("App: POST: render: rA: ", this.state.resourcesArr);
@@ -271,17 +272,18 @@ class App extends React.Component {
                   {
                     // importedDataJSON.map((resource, index) => {
                       resourcesArr.map((resource, index) => {
-                        // console.log("App: render: rA: ", resourcesArr)
+                        // console.log("App: render: map: rA.data[5]: ", resourcesArr.data)
+                        // console.log("App: render: map: rA: ", resourcesArr)
                         // initialDataJSON.map((resource, index) => {
                       // console.log("App: render: iD: ", initialDataJSON)
                       return (
                         <tr className="cols layout resources-body dynamic-rows" key={index}>
-                          <td>{resourcesArr[index].Topic}</td>
+                          <td>{resourcesArr[index].topic}</td>
                           {/* <td>{resourcesArr[index].Abbrev}</td> */}
-                          <td>{resourcesArr[index].Level}</td>
-                          <td>{resourcesArr[index].Link}</td>
-                          <td>{resourcesArr[index].Contributor}</td>
-                          <td>{resourcesArr[index].Description}</td>
+                          <td>{resourcesArr[index].level}</td>
+                          <td>{resourcesArr[index].link}</td>
+                          <td>{resourcesArr[index].contributor}</td>
+                          <td>{resourcesArr[index].description}</td>
                         </tr>
                       )
                     })
