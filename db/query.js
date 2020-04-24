@@ -10,9 +10,29 @@ const pool = new Pool({
   // security group allow ot access each other
   // ipAddress: 3.16.68.230/32,
   // password: 'PW',
-  port: 5432 // GOOD?  BAD?
+  // port: 5432 // GOOD?  BAD?
   // port: 4000 // GOOD?  BAD?
 });
+
+// the pool will emit an error on behalf of any idle clients
+// it contains if a backend error or network partition happens
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err)
+  process.exit(-1)
+})
+
+// callback - checkout a client
+pool.connect((err, client, done) => {
+  if (err) throw err
+  client.query('SELECT * FROM resourcesflat WHERE resourceflat_id = $1', [1], (err, res) => {
+    done()
+    if (err) {
+      console.log(err.stack)
+    } else {
+      console.log(res.rows[0])
+    }
+  })
+})
 
 // console.log( new Date());
 // console.log("q.js: ENTERING");
@@ -21,24 +41,31 @@ const pool = new Pool({
 //   console.log(err, res)
 //   pool.end()
 // });
+console.log("q: process.env.DB_HOST: ", process.env.DB_HOST);
+console.log("q: process.env.DB_USER: ", process.env.DB_USER);
 
 // getAllResources
 const getAllResources = () => {
   // let values = [];
-  // console.log("q: gRs: id ENTERED");
-  return pool.query("SELECT * FROM resources")
+  console.log("q: gARs: ENTERED");
+  return pool.query("SELECT * FROM resourcesflat")
+  // pool.query("SELECT * FROM resourcesflat")
   .then(res => {
     // console.log("q: gARs r.r[3]:", res.rows[3]);
+    console.log("q: gARs r.r[3]:", res);
     // return res.rows[0];
     return res.rows;
+    // res.rows;
   })
+  .catch(err => {console.error("error from DB", err)})
 };
+
 
 // getOneResource for a resource_id
 const getOneResource = (resource_id) => {
   let values = [resource_id];
   // console.log("q: gOR: id ENTERED", resource_id);
-  return pool.query("SELECT * FROM resources where id = $1", values)
+  return pool.query("SELECT * FROM resourcesflat where resourceflat_id = $1", values)
   .then(res => {
     // console.log("q: gOR r.r[0]:", res.rows[0]);
     // return res.rows[0];
