@@ -6,7 +6,7 @@ const path = require('path');
 
 const express = require('express');
 const app = express();
-const pg = require("../db/query.js");
+const pg = require('../db/query.js');
 
 // // get/ test that running this file
 app.get('/', (req, res) => {
@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 
 // app.use(express.static(__dirname + '/public'));
 let pathname = path.join(__dirname, '../public/index.html');
-console.log("app: pathname: ", pathname);
+// console.log("app: pathname: ", pathname);
 app.use(express.static(pathname));
 
 const cors = require('cors');
@@ -26,21 +26,22 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 let entryTime = new Date();
+console.log(new Date());
 // console.log("a.js: ENTERING");
 
 // getAllResources
-app.get('/resources_db/resources', (req, res) => {
-  // console.log("a:: gARs: ENTERED");
+app.get('/resources_db/resourcesflat', (req, res) => {
+  console.log("a:: gARs: ENTERED");
   pg.getAllResources()
   .then((results) => {
-    // console.log("a:: gARs: r.r.[0]: COMPLETED", results[0]);
+    console.log("a:: gARs: r.r.[0]: COMPLETED", results[0]);
     res.send(results);
   })
   .catch(err => console.log(err));
 });
 
 // getOneResource
-app.get('/resources_db/:id', (req, res) => {
+app.get('/resources_db/resourcesflat/:id', (req, res) => {
   // let entryTime = new Date();
   // console.log("a:: gOR: req.url: ", req.url);
   // console.log("a:: gOR: ENTERED");
