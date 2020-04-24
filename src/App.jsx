@@ -27,7 +27,7 @@ import legacyDataJSON from './legacyData.js';
 // const fs = require('fs');
 // const legacyDataJSON = JSON.parse(fs.readFileSync('./legacyData.json', 'utf8'));
 // const json = require('json-loader!/legacyData.json');
-console.log("App: lDJ: ", legacyDataJSON);
+// console.log("App: lDJ: ", legacyDataJSON);
 
 
 
@@ -83,11 +83,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("App: PRE cDM: t.s.r(s): ", this.state.resourcesArr)
-    console.log("App: PRE cDM: iD: ", initialDataJSON)
+    // console.log("App: PRE cDM: t.s.r(s): ", this.state.resourcesArr)
+    // console.log("App: PRE cDM: iD: ", initialDataJSON)
     // this.loadResourcesLandingPage();
     this.loadImportedResources(initialDataJSON);
-    console.log("App: POST cDM: t.s.r(s): ", this.state.resourcesArr)
+    // console.log("App: POST cDM: t.s.r(s): ", this.state.resourcesArr)
   }
 
   // componentDidUpdate = (prevProps, prevState) => {
@@ -121,7 +121,6 @@ class App extends React.Component {
     this.event.preventDefault();
 
     const resourceObj = {
-      abbrev: abbrev,
       contributor: contributor,
       description: description,
       level: level,
@@ -140,6 +139,10 @@ class App extends React.Component {
       .then(res => console.log(res));
   }
 
+  getOneResource = (resource_id) => {
+    this.event.preventDefault();
+
+  }
   // async deleteResource(resource) {
   //   if (window.confirm(`Are you sure you want to delete "${resource}"`)) {
   //     await this.fetch('delete', `/resources/${resource.id}`);
@@ -201,10 +204,12 @@ class App extends React.Component {
     if (!this.isReadytoRenderResources()) return null;
 
     // console.log("App: POST: iD: ", initialDataJSON)
-    console.log("App: POST: render: rA: ", this.state.resourcesArr);
+    // console.log("App: POST: render: rA: ", this.state.resourcesArr);
     // console.log("App: POST: render: cRA: ", this.state.currentResourceArr);
 
     return (
+
+
       // <Container-fluid className="layout">
       <div className="container-fluid">
         <Col className="layout header">
@@ -230,10 +235,10 @@ class App extends React.Component {
           </Row>
           <Row>
               <Table id="resources-table" responsive striped bordered hover border-style="solid">
-                <thead className="resources-header">
+                <thead className="resources-header" border-style="solid">
                   <tr>
                     <th className="col-sm-2 topic_col" >Topic</th>
-                    <th className="col-sm-1">Abbrev</th>
+                    {/* <th className="col-sm-1">Abbrev</th> */}
                     <th className="col-sm-1">Link</th>
                     <th className="col-sm-1">Level</th>
                     <th className="col-sm-2">Contributor</th>
@@ -243,42 +248,15 @@ class App extends React.Component {
                 <tbody className="resources-body"> 
                   <tr>
                     <td className="col-sm-2">A topic</td>
-                    <td className="col-sm-1">An abbrev</td>
+                    {/* <td className="col-sm-1">An abbrev</td> */}
                     <td className="col-sm-1">A link</td>
                     <td className="col-sm-1">A level</td>
                     <td className="col-sm-2">A contributor</td>
                     <td className="col-sm-5">A description</td>
                   </tr>
+
                   <tr>
                     <td className="col-sm-2">A topic but longer than the first one</td>
-                    <td className="col-sm-1">An abbrev</td>
-                    <td className="col-sm-1">A link</td>
-                    <td className="col-sm-1">A level</td>
-                    <td className="col-sm-2">A contributor</td>
-                    <td className="col-sm-5">A description that is much longer than the other stuff in many ways. See Spot. See Spot run.</td>
-                  </tr>
-                  {
-                    // legacyDataJSON.map((resource, index) => {
-                    //   console.log("App: render: rA: ", legacyDataJSON)
-                      resourcesArr.map((resource, index) => {
-                        console.log("App: render: rA: ", resourcesArr)
-                        // initialDataJSON.map((resource, index) => {
-                      // console.log("App: render: iD: ", initialDataJSON)
-                      return (
-                        <tr className="cols layout resources-body dynamic-rows" key={index}>
-                          <td>{resourcesArr[index].Topic}</td>
-                          <td>{resourcesArr[index].Abbrev}</td>
-                          <td>{resourcesArr[index].Link}</td>
-                          <td>{resourcesArr[index].Level}</td>
-                          <td>{resourcesArr[index].Contributor}</td>
-                          <td>{resourcesArr[index].Description}</td>
-                        </tr>
-                      )
-                    })
-                  }
-                  <tr>
-                    <td className="col-sm-2">A topic but longer than the first one</td>
-                    <td className="col-sm-1">An abbrev</td>
                     <td className="col-sm-1">A link</td>
                     <td className="col-sm-1">A level</td>
                     <td className="col-sm-2">A contributor</td>
