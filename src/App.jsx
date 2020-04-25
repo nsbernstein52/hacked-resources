@@ -3,6 +3,10 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Table from "react-bootstrap/Table";
 import "react-bootstrap/Container";
+
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+
 // import "react-scripts"
 // import FormControl from "react-bootstrap/FormControl";
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -269,25 +273,6 @@ class App extends React.Component {
                   </tr>
                   {/* { {console.log("App: render: rA: ", resourcesArr)} } */}
 
-                  {
-                    // importedDataJSON.map((resource, index) => {
-                      resourcesArr.map((resource, index) => {
-                        // console.log("App: render: map: rA.data[5]: ", resourcesArr.data)
-                        // console.log("App: render: map: rA: ", resourcesArr)
-                        // initialDataJSON.map((resource, index) => {
-                      // console.log("App: render: iD: ", initialDataJSON)
-                      return (
-                        <tr className="cols layout resources-body dynamic-rows" key={index}>
-                          <td>{resourcesArr[index].topic}</td>
-                          {/* <td>{resourcesArr[index].Abbrev}</td> */}
-                          <td>{resourcesArr[index].level}</td>
-                          <td>{resourcesArr[index].link}</td>
-                          <td>{resourcesArr[index].contributor}</td>
-                          <td>{resourcesArr[index].description}</td>
-                        </tr>
-                      )
-                    })
-                  }
 
                   {/* <tr>
                     <td className="col-sm-2">A topic but longer than the first one</td>
@@ -298,6 +283,13 @@ class App extends React.Component {
                   </tr> */}
                 </tbody>
               </Table>
+              <BootstrapTable data={resourcesArr} striped hover>
+                <TableHeaderColumn isKey dataField='topic'>Topic</TableHeaderColumn>
+                <TableHeaderColumn dataField='level'>Level</TableHeaderColumn>
+                <TableHeaderColumn dataField='link'>Link</TableHeaderColumn>
+                <TableHeaderColumn dataField='contributor'>Contributor</TableHeaderColumn>
+                <TableHeaderColumn dataField='description'>Description</TableHeaderColumn>
+              </BootstrapTable>
           </Row>
         </Col>
       </div>
