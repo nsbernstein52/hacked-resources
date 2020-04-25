@@ -14,7 +14,7 @@ CREATE TABLE resources_flat (
 );
 
 
-CREATE TABLE resources_v01 (
+CREATE TABLE resources (
   resource_id SERIAL PRIMARY KEY,
   abbrev TEXT,
   contributor TEXT,
