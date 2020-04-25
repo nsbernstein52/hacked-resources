@@ -103,6 +103,7 @@ class App extends React.Component {
 
   // }
 
+  // //// loadImportedResources
   loadImportedResources = (initialDataJSON) => {
     // console.log("App: PRE: lIR: iD:  ", initialDataJSON);
     this.setState({
@@ -114,6 +115,7 @@ class App extends React.Component {
     // console.log("App: POST: lIRs: rA:  ", legacyResourcesArr);
   };
 
+  // //// loadLegacyResources
   loadAllLegacyResources = () => {
     // this.event.preventDefault();
     
@@ -140,7 +142,7 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  // loadAllResources
+  // //// loadAllResources
   loadAllResources = () => {
     // this.event.preventDefault();
 
@@ -171,7 +173,8 @@ class App extends React.Component {
       this.setState({ currentResourceArr: this.state.legacyResourcesArr[index] })
     }
   
-  addOneResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
+  // //// addResource
+  addResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
     // return new Promise( (resolve, reject) => {
 
     event.preventDefault(); // needed?
@@ -205,6 +208,7 @@ class App extends React.Component {
       .catch(err => console.error("App: aOR: catch: ", err));
   };
 
+  // //// deleteResource
   deleteResource = (id) => {
     // event.preventDefault();
     console.log("App: dR: id: ", id);
@@ -214,10 +218,17 @@ class App extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(id)
-      // body: id
     })
-      .then(res => console.log(res));
-   }
+    .then(response =>  {
+      console.log("App: response, r.sT: ", response, response.statusText)
+      this.setState( {
+        resourcesChanged: true
+      });
+      // return response.statusText()
+    })
+    // .then(data => callback(data))
+    .catch(err => console.error("App: aOR: catch: ", err));
+};
 
 
     // async deleteResource(resource) {
@@ -360,7 +371,7 @@ priceFormatter(cell, row) {   // String example
           <Row>
             {/* <hr> */}
               <div id="add-resource">
-                <ChangeHandler addOneResource={this.addOneResource}/>
+                <ChangeHandler addResource={this.addResource}/>
             </div>
           {/* <hr> */}
           <br /> &nbsp; <br />

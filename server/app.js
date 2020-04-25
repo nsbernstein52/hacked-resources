@@ -29,12 +29,12 @@ let entryTime = new Date();
 // console.log(new Date());
 console.log("a.js: ENTERING", new Date());
 
-// addOneResource
+// addResource
 app.post('/resources_db/resources/', (req, res) => {
   // let entryTime = new Date();
   // console.log("a:: aoR: req.url: ", req.url);
   // console.log("a:: aoR: ENTERED");
-  pg.addOneResource(req.body)
+  pg.addResource(req.body)
   .then((results) => {
     // console.log("a:: aoR: r.r.[0]: COMPLETED", results);
     // console.log("duration to complete call: ", new Date() - entryTime, req.url);
@@ -42,6 +42,18 @@ app.post('/resources_db/resources/', (req, res) => {
   })
   .catch(err => console.log(err));
 });
+
+// deleteResource
+app.delete('/resources_db/resources/:id', (req, res) => {
+  console.log("i: dR: ENTERED");
+  pgdb.deleteResource(req.params.id)
+    .then(() => {
+      console.log("i: dR: COMPLETED");
+      res.sendStatus(204); // null-ish
+    })
+    .catch(err => console.log(err));
+});
+
 
 
 // getAllResources
@@ -72,12 +84,12 @@ app.get('/resources_db/resources', (req, res) => {
   .catch(err => console.log("app.js: gAR: err: ", err));
 });
 
-// getOneResource
+// getResource
 app.get('/resources_db/resources_flat/:id', (req, res) => {
   // let entryTime = new Date();
   // console.log("a:: gOR: req.url: ", req.url);
   // console.log("a:: gOR: ENTERED");
-  pg.getOneResource(req.params.id)
+  pg.getResource(req.params.id)
   .then((results) => {
     // console.log("a:: gOR: r.r.[0]: COMPLETED", results);
     // console.log("duration to complete call: ", new Date() - entryTime, req.url);

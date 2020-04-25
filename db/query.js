@@ -60,6 +60,18 @@ const getAllResources = () => {
   .catch(err => {console.error("error from DB", err)})
 };
 
+// deleteResource
+// DELETE FROM table_name WHERE condition; ???
+const deleteResource = (id) => {
+  let values = [id]
+  return pool.query('DELETE FROM resources WHERE resource_id = $1', values)
+    .then(() => {
+      console.log("q: dR: COMPLETE");
+      return true
+   })
+   .catch(err => {console.error("error from DB", err)})
+};
+
 
 // getAllResources V01
 const getAllResourcesV01 = () => {
@@ -78,8 +90,8 @@ const getAllResourcesV01 = () => {
 };
 
 
-// getOneResource for a resource_id
-const getOneResource = (resource_id) => {
+// getResource for a resource_id
+const getResource = (resource_id) => {
   let values = [resource_id];
   // console.log("q: gOR: id ENTERED", resource_id);
   return pool.query("SELECT * FROM resources_flat where resource_id = $1", values)
@@ -90,8 +102,8 @@ const getOneResource = (resource_id) => {
   })
 };
 
-// addOneResource
-const addOneResource = (resource) => {
+// addResource
+const addResource = (resource) => {
   let values = [resource.abbrev, resource.contributor, resource.description, resource.level, resource.link, resource.topic];
   // console.log("q: aOR: ENTERED");
   return pool.query('INSERT INTO resources (abbrev, contributor, description, level, link, topic) VALUES ($1, $2, $3, $4, $5, $6)', values)
@@ -133,10 +145,11 @@ const getOneTopic = (topic_id) => {
 // console.log("q.js: LEAVING");
 
 module.exports = {
-  addOneResource,
+  addResource,
+  deleteResource,
   getAllResources,
   getAllResourcesV01,
-  getOneResource,
+  getResource,
   getOneUser,
   getOneTopic
 }
