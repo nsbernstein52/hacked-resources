@@ -55,7 +55,9 @@ CREATE TABLE resources_topics (
 
 /* INSERT seeding */
 
+/*
 INSERT INTO resourcesflat (contributor, description, level, link, topic) VALUES ('Neil the snail', 'a test description', 'All', 'http:#www.tbd.com', 'Test topic');
+*/
 
 /* INSERT seeding */
 /*
