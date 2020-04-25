@@ -24,12 +24,12 @@ pool.on('error', (err, client) => {
 // callback - checkout a client
 pool.connect((err, client, done) => {
   if (err) throw err
-  client.query('SELECT * FROM resourcesflat WHERE resourceflat_id = $1', [1], (err, res) => {
+  client.query('SELECT * FROM resources_flat WHERE resource_id = $1', [1], (err, res) => {
     done()
     if (err) {
       console.log("q: p.c: err: ", err.stack)
     } else {
-      console.log("q: p.c res.rows[000]: ", res.rows[0])
+      // console.log("q: p.c res.rows[000]: ", res.rows[0])
     }
   })
 })
@@ -41,14 +41,30 @@ pool.connect((err, client, done) => {
 //   console.log(err, res)
 //   pool.end()
 // });
-console.log("q: process.env.DB_HOST: ", process.env.DB_HOST);
-console.log("q: process.env.DB_USER: ", process.env.DB_USER);
+// console.log("q: process.env.DB_HOST: ", process.env.DB_HOST);
+// console.log("q: process.env.DB_USER: ", process.env.DB_USER);
 
 // getAllResources
 const getAllResources = () => {
   // let values = [];
   console.log("q: gARs: ENTERED");
-  return pool.query("SELECT * FROM resourcesflat")
+  return pool.query("SELECT * FROM resources_flat")
+  // pool.query("SELECT * FROM resourcesflat")
+  .then(res => {
+    // console.log("q: gARs r.r[3]:", res.rows[3]);
+    console.log("q: gARs r.r[3]:", res);
+    // return res.rows[0];
+    return res.rows;
+    // res.rows;
+  })
+  .catch(err => {console.error("error from DB", err)})
+};
+
+// getAllResources
+const getAllResourcesV01 = () => {
+  // let values = [];
+  console.log("q: gARv01s: ENTERED");
+  return pool.query("SELECT * FROM resources_v01")
   // pool.query("SELECT * FROM resourcesflat")
   .then(res => {
     // console.log("q: gARs r.r[3]:", res.rows[3]);
@@ -65,7 +81,7 @@ const getAllResources = () => {
 const getOneResource = (resource_id) => {
   let values = [resource_id];
   // console.log("q: gOR: id ENTERED", resource_id);
-  return pool.query("SELECT * FROM resourcesflat where resourceflat_id = $1", values)
+  return pool.query("SELECT * FROM resources_flat where resource_id = $1", values)
   .then(res => {
     // console.log("q: gOR r.r[0]:", res.rows[0]);
     // return res.rows[0];
@@ -101,6 +117,7 @@ const getOneTopic = (topic_id) => {
 
 module.exports = {
   getAllResources,
+  getAllResourcesV01,
   getOneResource,
   getOneUser,
   getOneTopic
