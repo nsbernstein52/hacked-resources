@@ -3,8 +3,20 @@ DROP DATABASE IF EXISTS resources_db;
 CREATE DATABASE resources_db;
 \c resources_db;
 
-CREATE TABLE resourcesflat (
-  resourceflat_id SERIAL PRIMARY KEY,
+CREATE TABLE resources_flat (
+  resource_id SERIAL PRIMARY KEY,
+  abbrev TEXT,
+  contributor TEXT,
+  description TEXT,
+  level TEXT,
+  link TEXT,
+  topic TEXT
+);
+
+
+CREATE TABLE resources_v01 (
+  resource_id SERIAL PRIMARY KEY,
+  abbrev TEXT,
   contributor TEXT,
   description TEXT,
   level TEXT,
@@ -13,14 +25,6 @@ CREATE TABLE resourcesflat (
 );
 
 /*
-CREATE TABLE resources (
-  resource_id SERIAL PRIMARY KEY,
-  description TEXT,
-  level TEXT,
-  link TEXT
-);
-
-
 CREATE TABLE users_terse (
   userterse_id SERIAL PRIMARY KEY,
   name TEXT
