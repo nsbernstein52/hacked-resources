@@ -66,6 +66,7 @@ class App extends React.Component {
 
     this.state = {
       resourcesArr: [],
+      resourcesV01Arr: [],
       resourcesChanged: false,
       currentResourceArr: []
     };
@@ -80,6 +81,7 @@ class App extends React.Component {
     // this.loadImportedResources(initialDataJSON);
     // this.loadImportedResources(importedDataJSON);
     this.getAllResources();
+    this.getAllResourcesV01();
     // console.log("App: POST cDM: t.s.r(s): ", this.state.resourcesArr)
   }
 
@@ -122,7 +124,7 @@ class App extends React.Component {
     };
     
     // console.log("App: aR: rO: ", resourceObj);
-    fetch('http://localhost:3000/resources_db/resourcesflat/', {
+    fetch('http://localhost:3000/resources_db/resources_flat/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -137,7 +139,7 @@ class App extends React.Component {
     // this.event.preventDefault();
     
     // console.log("App: gAR: ENTERING "); 
-    fetch('http://localhost:3000/resources_db/resourcesflat', {
+    fetch('http://localhost:3000/resources_db/resources_flat', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -153,6 +155,32 @@ class App extends React.Component {
         // console.log("App: gARs: .then.then res: ", res)
         this.setState({
           resourcesArr:  res.data
+        });
+
+      })
+      .catch(err => console.error(err));
+  }
+
+  getAllResourcesV01 = () => {
+    // this.event.preventDefault();
+    
+    // console.log("App: gAR: ENTERING "); 
+    fetch('http://localhost:3000/resources_db/resources_v01', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }    })
+      .then((results) => {
+        return results.json();
+        // console.log("App: gARs: r.r.[N]: COMPLETED", resultsParsed);
+        // console.log("App: gARs: r.r.[N].key: COMPLETED", results.key);
+        
+        // res.send(results);
+      })
+      .then(( res ) => {
+        // console.log("App: gARs: .then.then res: ", res)
+        this.setState({
+          resourcesV01Arr:  res.data
         });
 
       })
@@ -213,7 +241,9 @@ priceFormatter(cell, row) {   // String example
   isReadytoRenderResources = () => {
     return (
       this.state.resourcesArr !== null &&
-      this.state.resourcesArr.length !== 0
+      this.state.resourcesArr.length !== 0 &&
+      this.state.resourcesV01Arr !== null &&
+      this.state.resourcesV01Arr.length !== 0
     );
   };
 
@@ -221,7 +251,7 @@ priceFormatter(cell, row) {   // String example
 
     // console.log("App: iD: ", initialDataJSON)
 
-    const { resourcesArr, resourcesChanged, currentResourceArr } = this.state;
+    const { resourcesArr, resourcesV01Arr, resourcesChanged, currentResourceArr } = this.state;
 
     // console.log("App: PRE: render: rA: ", resourcesArr);
     // console.log("App: PRE: render: t.s.rA: ", this.state.resourcesArr);
