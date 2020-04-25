@@ -23,22 +23,25 @@ class ChangeHandler extends React.Component {
     render() {
         return (
             <form id="addResourceForm">
-                <input name="topic" onChange={this.handleChange} placeholder="topic ..." type="text" size="10" /> &nbsp;&nbsp;
+                <input name="topic" onChange={this.handleChange} placeholder="topic ..." type="text" size="30" /> &nbsp;&nbsp;
                 {/* <br /> */}
-                <input name="abbrev" onChange={this.handleChange} placeholder="abbrev ..." type="text" size="10" /> &nbsp;&nbsp;
+                <input name="link" onChange={this.handleChange} placeholder="link ..." type="text" size="60" /> &nbsp;&nbsp;
                 {/* <br /> */}
-                <input name="level" onChange={this.handleChange} placeholder="level ..." type="text" size="10" /> &nbsp;&nbsp;
+                <input name="abbrev" onChange={this.handleChange} placeholder="abbrev..." type="text" size="10" /> &nbsp;&nbsp;
                 {/* <br /> */}
-                <input name="link" onChange={this.handleChange} placeholder="link ..." type="text" size="10" /> &nbsp;&nbsp;
+                <input name="level" onChange={this.handleChange} placeholder="level ..." type="text" size="5" /> &nbsp;&nbsp;
                 {/* <br /> */}
-                <input name="description" onChange={this.handleChange} placeholder="description ..." type="number" /> &nbsp;&nbsp;
+                <input name="contributor" onChange={this.handleChange} placeholder="contributor ..." type="text" size="20" /> &nbsp;&nbsp;
                 {/* <br /> */}
-                <button text-color="red" onClick={(e) => this.props.addResource(e, 
-                  this.state.topic, 
+                <input name="description" onChange={this.handleChange} placeholder="description ..." size="60" /> &nbsp;&nbsp;
+                {/* <br /> */}
+               <button text-color="red" onClick={(e) => this.props.addOneResource(e, 
                   this.state.abbrev, 
+                  this.state.contributor, 
+                  this.state.description,
                   this.state.level, 
                   this.state.link, 
-                  this.state.description
+                  this.state.topic
                 )}><b>Add A Resource</b></button>
             </form>
         )
