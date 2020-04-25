@@ -30,7 +30,7 @@ let entryTime = new Date();
 console.log("a.js: ENTERING", new Date());
 
 // getAllResources
-app.get('/resources_db/resourcesflat', (req, res) => {
+app.get('/resources_db/resources_flat', (req, res) => {
   console.log("a:: gARs: ENTERED");
   pg.getAllResources()
   .then((results) => {
@@ -43,8 +43,22 @@ app.get('/resources_db/resourcesflat', (req, res) => {
   .catch(err => console.log("app.js: gAR: err: ", err));
 });
 
+// getAllResourcesV01
+app.get('/resources_db/resources_v01', (req, res) => {
+  console.log("a:: gARv01s: ENTERED");
+  pg.getAllResourcesV01()
+  .then((results) => {
+    let resultsJSON = JSON.stringify({data: results})
+    console.log("a:: gARv01s: r.r.[0]: COMPLETED", resultsJSON[4]);
+    // let resObj = {key: results};
+    // res.send(results);
+    res.send(resultsJSON);
+  })
+  .catch(err => console.log("app.js: gAR: err: ", err));
+});
+
 // getOneResource
-app.get('/resources_db/resourcesflat/:id', (req, res) => {
+app.get('/resources_db/resources_flat/:id', (req, res) => {
   // let entryTime = new Date();
   // console.log("a:: gOR: req.url: ", req.url);
   // console.log("a:: gOR: ENTERED");
