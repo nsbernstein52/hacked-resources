@@ -44,15 +44,15 @@ pool.connect((err, client, done) => {
 // console.log("q: process.env.DB_HOST: ", process.env.DB_HOST);
 // console.log("q: process.env.DB_USER: ", process.env.DB_USER);
 
-// getAllResources
+// getAllResources_FLAT
 const getAllResources = () => {
   // let values = [];
-  console.log("q: gARs: ENTERED");
+  // console.log("q: gARFLATs: ENTERED");
   return pool.query("SELECT * FROM resources_flat")
   // pool.query("SELECT * FROM resourcesflat")
   .then(res => {
     // console.log("q: gARs r.r[3]:", res.rows[3]);
-    console.log("q: gARs r.r[3]:", res);
+    // console.log("q: gARsFLAT: r.r[3]:", res);
     // return res.rows[0];
     return res.rows;
     // res.rows;
@@ -60,15 +60,16 @@ const getAllResources = () => {
   .catch(err => {console.error("error from DB", err)})
 };
 
-// getAllResources
+
+// getAllResources V01
 const getAllResourcesV01 = () => {
   // let values = [];
-  console.log("q: gARv01s: ENTERED");
-  return pool.query("SELECT * FROM resources_v01")
+  // console.log("q: gARv01s: ENTERED");
+  return pool.query("SELECT * FROM resources")
   // pool.query("SELECT * FROM resourcesflat")
   .then(res => {
     // console.log("q: gARs r.r[3]:", res.rows[3]);
-    console.log("q: gARs r.r[3]:", res);
+    // console.log("q: gARsV01: r.r[3]:", res);
     // return res.rows[0];
     return res.rows;
     // res.rows;
@@ -88,6 +89,22 @@ const getOneResource = (resource_id) => {
     return res.rows;
   })
 };
+
+// addOneResource
+const addOneResource = (resource) => {
+  let values = [resource.abbrev, resource.contributor, resource.description, resource.level, resource.link, resource.topic];
+  // console.log("q: aOR: ENTERED");
+  return pool.query('INSERT INTO resources (abbrev, contributor, description, level, link, topic) VALUES ($1, $2, $3, $4, $5, $6)', values)
+  .then(res => {
+    // console.log("q: gARs r.r[3]:", res.rows[3]);
+    // console.log("q: aOR r.r:", res);
+    // return res.rows[0];
+    return res.rows;
+    // res.rows;
+  })
+  .catch(err => {console.error("error from DB", err)})
+};
+
 
 //getOneUser
 const getOneUser = (user_id) => {
@@ -116,6 +133,7 @@ const getOneTopic = (topic_id) => {
 // console.log("q.js: LEAVING");
 
 module.exports = {
+  addOneResource,
   getAllResources,
   getAllResourcesV01,
   getOneResource,
