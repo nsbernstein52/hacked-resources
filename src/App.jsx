@@ -5,6 +5,8 @@ import Table from "react-bootstrap/Table";
 import "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import ChangeHandler from './comp/ChangeHandler';
+
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 // import BootstrapTable from 'reactjs-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
@@ -65,8 +67,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      legacyResourcesArr: [],
       resourcesArr: [],
-      resourcesV01Arr: [],
       resourcesChanged: false,
       currentResourceArr: []
     };
@@ -75,71 +77,75 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // console.log("App: PRE cDM: t.s.r(s): ", this.state.resourcesArr)
+    // console.log("App: PRE cDM: t.s.r(s): ", this.state.legacyResourcesArr)
     // console.log("App: PRE cDM: iD: ", initialDataJSON)
     // this.loadResourcesLandingPage();
     // this.loadImportedResources(initialDataJSON);
     // this.loadImportedResources(importedDataJSON);
-    this.getAllResources();
-    this.getAllResourcesV01();
-    // console.log("App: POST cDM: t.s.r(s): ", this.state.resourcesArr)
+    this.loadAllLegacyResources();
+    this.loadAllResources();
+    // console.log("App: POST cDM: t.s.r(s): ", this.state.legacyResourcesArr)
   }
 
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   console.log("App: cDU: t.p: ", prevState, this.state);
-  //   if (this.prevState.resourcesArr.length !== this.state.resourcesArr.length) {
-  //     // this.setState.resourcesChanged = false;
-  //     this.getAllResources();
-  //   }
+  componentDidUpdate = (prevProps, prevState) => {
+    console.log("App: cDU: t.p: ", prevState, this.state);
+    // if (this.state.resourcesArr.length !== prevState.resourcesArr.length) {
+    if (this.state.resourcesChanged ) {
+      this.setState( {
+        resourcesChanged: false
+      });
+      this.loadAllLegacyResources();
+      this.loadAllResources();
+    }
+  }
+
+  // loadResourcesLandingPage = () => {
+
   // }
-
-  loadResourcesLandingPage = () => {
-
-  }
 
   loadImportedResources = (initialDataJSON) => {
     // console.log("App: PRE: lIR: iD:  ", initialDataJSON);
     this.setState({
-      resourcesArr: initialDataJSON
+      legacyResourcesArr: initialDataJSON
     })
-  // this.setState({ resourcesArr: data })
-    // this.setState({ resourcesArr: initialDataJSON.slice() })
+  // this.setState({ legacyResourcesArr: data })
+    // this.setState({ legacyResourcesArr: initialDataJSON.slice() })
     // console.log("App: POST: lIRs: iD:  ", initialDataJSON);  
-    // console.log("App: POST: lIRs: rA:  ", resourcesArr);
+    // console.log("App: POST: lIRs: rA:  ", legacyResourcesArr);
   };
 
-  clickHandler = (index) => {
-    this.setState({ currentResourceArr: this.state.resourcesArr[index] })
-  }
-  
-  addResource = (contributor, description, level, link, topic) => {
-    this.event.preventDefault();
-
-    const resourceObj = {
-      contributor: contributor,
-      description: description,
-      level: level,
-      link: link,
-      topic: topic
-    };
-    
-    // console.log("App: aR: rO: ", resourceObj);
-    fetch('http://localhost:3000/resources_db/resources_flat/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(resourceObj)
-    })
-      // .then(res => console.log(res.rows[0]))
-      .catch(err => console.error(err));
-  }
-
-  getAllResources = () => {
+  loadAllLegacyResources = () => {
     // this.event.preventDefault();
     
     // console.log("App: gAR: ENTERING "); 
     fetch('http://localhost:3000/resources_db/resources_flat', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }    })
+      .then((results) => {
+        return results.json();
+        // console.log("App: gARs: r.r.[N]: COMPLETED", resultsParsed);
+        // console.log("App: gARs: r.r.[N].key: COMPLETED", results.key);
+        
+        // res.send(results);
+      })
+      .then(( res ) => {
+        // console.log("App: gARs: .then.then res: ", res)
+        this.setState({
+          legacyResourcesArr:  res.data
+        });
+
+      })
+      .catch(err => console.error(err));
+  }
+
+  // loadAllResources
+  loadAllResources = () => {
+    // this.event.preventDefault();
+
+    // console.log("App: gAR: ENTERING "); 
+    fetch('http://localhost:3000/resources_db/resources', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -161,33 +167,60 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  getAllResourcesV01 = () => {
-    // this.event.preventDefault();
+  clickHandler = (index) => {
+      this.setState({ currentResourceArr: this.state.legacyResourcesArr[index] })
+    }
+  
+  addOneResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
+    // return new Promise( (resolve, reject) => {
+
+    event.preventDefault(); // needed?
+
+    const resourceObj = {
+      abbrev: abbrev,
+      contributor: contributor,
+      description: description,
+      level: level,
+      link: link,
+      topic: topic
+    };
     
-    // console.log("App: gAR: ENTERING "); 
-    fetch('http://localhost:3000/resources_db/resources_v01', {
-      method: 'GET',
+    // console.log("App: aR: rO: ", resourceObj);
+    fetch('http://localhost:3000/resources_db/resources/', {
+      method: 'POST',
+      headers: {
+        Accept: "application/json",
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(resourceObj)
+    })
+      .then(response =>  {
+        console.log("App: response, r.sT: ", response, response.statusText)
+        this.setState( {
+          resourcesChanged: true
+        });
+        // return response.statusText()
+      })
+      // .then(data => callback(data))
+      .catch(err => console.error("App: aOR: catch: ", err));
+  };
+
+  deleteResource = (id) => {
+    // event.preventDefault();
+    console.log("App: dR: id: ", id);
+    fetch('http://localhost:3000/resources_db/resources/', {
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
-      }    })
-      .then((results) => {
-        return results.json();
-        // console.log("App: gARs: r.r.[N]: COMPLETED", resultsParsed);
-        // console.log("App: gARs: r.r.[N].key: COMPLETED", results.key);
-        
-        // res.send(results);
-      })
-      .then(( res ) => {
-        // console.log("App: gARs: .then.then res: ", res)
-        this.setState({
-          resourcesV01Arr:  res.data
-        });
+      },
+      body: JSON.stringify(id)
+      // body: id
+    })
+      .then(res => console.log(res));
+   }
 
-      })
-      .catch(err => console.error(err));
-  }
 
-  // async deleteResource(resource) {
+    // async deleteResource(resource) {
   //   if (window.confirm(`Are you sure you want to delete "${resource}"`)) {
   //     await this.fetch('delete', `/resources/${resource.id}`);
   //     // this.getResources();
@@ -232,37 +265,34 @@ priceFormatter(cell, row) {   // String example
 
   }
 
-  isReadytoRenderLandingPage = () => {
-    return (
-      true
-    );
-  };
-
   isReadytoRenderResources = () => {
     return (
+      this.state.legacyResourcesArr !== null &&
+      this.state.legacyResourcesArr.length !== 0 &&
       this.state.resourcesArr !== null &&
-      this.state.resourcesArr.length !== 0 &&
-      this.state.resourcesV01Arr !== null &&
-      this.state.resourcesV01Arr.length !== 0
+      this.state.resourcesArr.length !== 0
     );
   };
 
   render() {
 
+    // console.log("App: render: ", "ENTERING APP RENDER")
     // console.log("App: iD: ", initialDataJSON)
 
-    const { resourcesArr, resourcesV01Arr, resourcesChanged, currentResourceArr } = this.state;
+    const { legacyResourcesArr, resourcesArr, resourcesChanged, currentResourceArr } = this.state;
 
-    // console.log("App: PRE: render: rA: ", resourcesArr);
-    // console.log("App: PRE: render: t.s.rA: ", this.state.resourcesArr);
+    // console.log("App: PRE: render: rA: ", legacyResourcesArr);
+    // console.log("App: PRE: render: rV01A: ", resourcesArr);
+    // console.log("App: PRE: render: t.s.rA: ", this.state.legacyResourcesArr);
     // console.log("App: PRE: render: cRA: ", this.state.currentResourceArr);
 
     if (!this.isReadytoRenderResources()) return null;
+    // console.log("App: render: ", "APP AFTER RENDERABLE TEST")
 
-    // console.log("App: POST: render: rA.d: ", resourcesArr.data);
-    // console.log("App: POST: render: rA: ", resourcesArr);
+    // console.log("App: POST: render: rA.d: ", legacyResourcesArr.data);
+    // console.log("App: POST: render: rA: ", legacyResourcesArr);
     // console.log("App: POST: iD: ", initialDataJSON)
-    // console.log("App: POST: render: rA: ", this.state.resourcesArr);
+    // console.log("App: POST: render: rA: ", this.state.legacyResourcesArr);
     // console.log("App: POST: render: cRA: ", this.state.currentResourceArr);
 
     const bstOptions = {
@@ -289,18 +319,18 @@ priceFormatter(cell, row) {   // String example
           </Row>
           <Row className="layout">
             <Col className="layout" id="announcements">
-              <b>HACKED RESOURCES</b> &mdash; Hack your resources {" "}
+              <b>HACKED RESOURCES v00</b> &mdash; Hack your resources {" "}
               before they hack you!
               <br /> &nbsp; <br />
             </Col>
           </Row>
           <Row>
-            <BootstrapTable data={resourcesArr} striped hover version='4' options={ bstOptions } condensed columnFilter>
+            <BootstrapTable data={legacyResourcesArr} striped hover version='4' options={ bstOptions } condensed columnFilter>
               <TableHeaderColumn isKey dataField='resource_id' dataSort width='7%' tdStyle={ { whiteSpace: 'normal' }}>ID</TableHeaderColumn>
               <TableHeaderColumn dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>Topic</TableHeaderColumn>
               <TableHeaderColumn dataField='level' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>Level</TableHeaderColumn>
-              <TableHeaderColumn dataField='contributor' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>Contributor</TableHeaderColumn>
-              <TableHeaderColumn dataField='description' dataSort width='58%' tdStyle={ { whiteSpace: 'normal' }}>Description</TableHeaderColumn>
+              <TableHeaderColumn dataField='contributor' dataSort width='15%' tdStyle={ { whiteSpace: 'normal' }}>Contributor</TableHeaderColumn>
+              <TableHeaderColumn dataField='description' dataSort width='53%' tdStyle={ { whiteSpace: 'normal' }}>Description</TableHeaderColumn>
             </BootstrapTable>
             <br /> &nbsp; <br />
             <br /> &nbsp; <br />
@@ -322,13 +352,23 @@ priceFormatter(cell, row) {   // String example
 
           <Row className="layout">
             <Col className="layout" id="announcements">
-              <b>HACKED RESOURCES ++PLUS++</b> &mdash; Hack your resources {" "}
+              <b>HACKED RESOURCES +PLUS+ v01</b> &mdash; Hack your resources {" "}
               more than before!
               <br /> &nbsp; <br />
             </Col>
           </Row>
           <Row>
-              <BootstrapTable data={resourcesV01Arr} striped hover version='4' options={ bstOptions } condensed columnFilter>
+            {/* <hr> */}
+              <div id="add-resource">
+                <ChangeHandler addOneResource={this.addOneResource}/>
+            </div>
+          {/* <hr> */}
+          <br /> &nbsp; <br />
+
+          </Row>
+
+          <Row>
+              <BootstrapTable data={resourcesArr} striped hover version='4' options={ bstOptions } condensed columnFilter>
                 <TableHeaderColumn isKey dataField='resource_id' dataSort width='5%' tdStyle={ { whiteSpace: 'normal' }}>ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>Topic</TableHeaderColumn>
                 <TableHeaderColumn dataField='abbrev' dataSort width='9%' tdStyle={ { whiteSpace: 'normal' }}>Abbrev</TableHeaderColumn>
