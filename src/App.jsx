@@ -3,13 +3,14 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Table from "react-bootstrap/Table";
 import "react-bootstrap/Container";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+// import BootstrapTable from 'reactjs-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 // import "react-scripts"
 // import FormControl from "react-bootstrap/FormControl";
-// import "bootstrap/dist/css/bootstrap.min.css";
 
 import './App.css';
 
@@ -193,6 +194,15 @@ class App extends React.Component {
   //    );
   //   }
   // };
+/*
+priceFormatter(cell, row) {   // String example
+  return `<i class='glyphicon glyphicon-usd'></i> ${cell}`;
+}
+*/
+  linkFormatter = (cell, row) => {
+    return <a href={row.link}>{cell}</a>
+
+  }
 
   isReadytoRenderLandingPage = () => {
     return (
@@ -225,6 +235,10 @@ class App extends React.Component {
     // console.log("App: POST: render: rA: ", this.state.resourcesArr);
     // console.log("App: POST: render: cRA: ", this.state.currentResourceArr);
 
+    const bstOptions = {
+      sortIndicator: true
+    };
+
     return (
 
 
@@ -251,44 +265,13 @@ class App extends React.Component {
             </Col>
           </Row>
           <Row>
-              <Table id="resources-table" responsive striped bordered hover border-style="solid">
-                <thead className="resources-header" border-style="solid">
-                  <tr>
-                    <th className="col-sm-2 topic_col" >Topic</th>
-                    {/* <th className="col-sm-1">Abbrev</th> */}
-                    <th className="col-sm-1">Level</th>
-                    <th className="col-sm-1">Link</th>
-                    <th className="col-sm-2">Contributor</th>
-                    <th className="col-sm-5">Description</th>
-                  </tr>
-                </thead>
-                <tbody className="resources-body"> 
-                  <tr>
-                    <td className="col-sm-2">A topic</td>
-                    {/* <td className="col-sm-1">An abbrev</td> */}
-                    <td className="col-sm-1">A level</td>
-                    <td className="col-sm-1">A link</td>
-                    <td className="col-sm-2">A contributor</td>
-                    <td className="col-sm-5">A description</td>
-                  </tr>
-                  {/* { {console.log("App: render: rA: ", resourcesArr)} } */}
 
-
-                  {/* <tr>
-                    <td className="col-sm-2">A topic but longer than the first one</td>
-                    <td className="col-sm-1">A level</td>
-                    <td className="col-sm-1">A link</td>
-                    <td className="col-sm-2">A contributor</td>
-                    <td className="col-sm-5">A description that is much longer than the other stuff in many ways. See Spot. See Spot run.</td>
-                  </tr> */}
-                </tbody>
-              </Table>
-              <BootstrapTable data={resourcesArr} striped hover>
-                <TableHeaderColumn isKey dataField='topic'>Topic</TableHeaderColumn>
-                <TableHeaderColumn dataField='level'>Level</TableHeaderColumn>
-                <TableHeaderColumn dataField='link'>Link</TableHeaderColumn>
-                <TableHeaderColumn dataField='contributor'>Contributor</TableHeaderColumn>
-                <TableHeaderColumn dataField='description'>Description</TableHeaderColumn>
+              <BootstrapTable data={resourcesArr} striped hover version='4' options={ bstOptions } condensed columnFilter>
+                <TableHeaderColumn isKey dataField='topic' dataSort dataFormat={ this.linkFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>Topic</TableHeaderColumn>
+                <TableHeaderColumn dataField='level' dataSort width='5%' tdStyle={ { whiteSpace: 'normal' }}>Level</TableHeaderColumn>
+                {/* <TableHeaderColumn dataField='link' dataSort>Link</TableHeaderColumn> */}
+                <TableHeaderColumn dataField='contributor' dataSort width='15%' tdStyle={ { whiteSpace: 'normal' }}>Contributor</TableHeaderColumn>
+                <TableHeaderColumn dataField='description' dataSort width='65%' tdStyle={ { whiteSpace: 'normal' }}>Description</TableHeaderColumn>
               </BootstrapTable>
           </Row>
         </Col>
