@@ -121,7 +121,7 @@ class App extends React.Component {
       topic: topic
     };
     
-    console.log("App: aR: rO: ", resourceObj);
+    // console.log("App: aR: rO: ", resourceObj);
     fetch('http://localhost:3000/resources_db/resourcesflat/', {
       method: 'POST',
       headers: {
@@ -129,14 +129,14 @@ class App extends React.Component {
       },
       body: JSON.stringify(resourceObj)
     })
-      .then(res => console.log(res.rows[0]))
+      // .then(res => console.log(res.rows[0]))
       .catch(err => console.error(err));
   }
 
   getAllResources = () => {
     // this.event.preventDefault();
     
-    console.log("App: gAR: ENTERING "); 
+    // console.log("App: gAR: ENTERING "); 
     fetch('http://localhost:3000/resources_db/resourcesflat', {
       method: 'GET',
       headers: {
@@ -150,7 +150,7 @@ class App extends React.Component {
         // res.send(results);
       })
       .then(( res ) => {
-        console.log("App: gARs: .then.then res: ", res)
+        // console.log("App: gARs: .then.then res: ", res)
         this.setState({
           resourcesArr:  res.data
         });
@@ -199,7 +199,7 @@ priceFormatter(cell, row) {   // String example
   return `<i class='glyphicon glyphicon-usd'></i> ${cell}`;
 }
 */
-  linkFormatter = (cell, row) => {
+  topicFormatter = (cell, row) => {
     return <a href={row.link}>{cell}</a>
 
   }
@@ -230,7 +230,7 @@ priceFormatter(cell, row) {   // String example
     if (!this.isReadytoRenderResources()) return null;
 
     // console.log("App: POST: render: rA.d: ", resourcesArr.data);
-    console.log("App: POST: render: rA: ", resourcesArr);
+    // console.log("App: POST: render: rA: ", resourcesArr);
     // console.log("App: POST: iD: ", initialDataJSON)
     // console.log("App: POST: render: rA: ", this.state.resourcesArr);
     // console.log("App: POST: render: cRA: ", this.state.currentResourceArr);
@@ -267,10 +267,10 @@ priceFormatter(cell, row) {   // String example
           <Row>
 
               <BootstrapTable data={resourcesArr} striped hover version='4' options={ bstOptions } condensed columnFilter>
-                <TableHeaderColumn isKey dataField='topic' dataSort dataFormat={ this.linkFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>Topic</TableHeaderColumn>
-                <TableHeaderColumn dataField='level' dataSort width='5%' tdStyle={ { whiteSpace: 'normal' }}>Level</TableHeaderColumn>
+                <TableHeaderColumn isKey dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>Topic</TableHeaderColumn>
+                <TableHeaderColumn dataField='level' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>Level</TableHeaderColumn>
                 {/* <TableHeaderColumn dataField='link' dataSort>Link</TableHeaderColumn> */}
-                <TableHeaderColumn dataField='contributor' dataSort width='15%' tdStyle={ { whiteSpace: 'normal' }}>Contributor</TableHeaderColumn>
+                <TableHeaderColumn dataField='contributor' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>Contributor</TableHeaderColumn>
                 <TableHeaderColumn dataField='description' dataSort width='65%' tdStyle={ { whiteSpace: 'normal' }}>Description</TableHeaderColumn>
               </BootstrapTable>
           </Row>
