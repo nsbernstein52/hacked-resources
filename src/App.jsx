@@ -295,15 +295,49 @@ priceFormatter(cell, row) {   // String example
             </Col>
           </Row>
           <Row>
+            <BootstrapTable data={resourcesArr} striped hover version='4' options={ bstOptions } condensed columnFilter>
+              <TableHeaderColumn isKey dataField='resource_id' dataSort width='7%' tdStyle={ { whiteSpace: 'normal' }}>ID</TableHeaderColumn>
+              <TableHeaderColumn dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>Topic</TableHeaderColumn>
+              <TableHeaderColumn dataField='level' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>Level</TableHeaderColumn>
+              <TableHeaderColumn dataField='contributor' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>Contributor</TableHeaderColumn>
+              <TableHeaderColumn dataField='description' dataSort width='58%' tdStyle={ { whiteSpace: 'normal' }}>Description</TableHeaderColumn>
+            </BootstrapTable>
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+            <br /> &nbsp; <br />
+          </Row>
 
-              <BootstrapTable data={resourcesArr} striped hover version='4' options={ bstOptions } condensed columnFilter>
-                <TableHeaderColumn isKey dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>Topic</TableHeaderColumn>
-                <TableHeaderColumn dataField='level' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>Level</TableHeaderColumn>
-                {/* <TableHeaderColumn dataField='link' dataSort>Link</TableHeaderColumn> */}
+          <Row className="layout">
+            <Col className="layout" id="announcements">
+              <b>HACKED RESOURCES ++PLUS++</b> &mdash; Hack your resources {" "}
+              more than before!
+              <br /> &nbsp; <br />
+            </Col>
+          </Row>
+          <Row>
+              <BootstrapTable data={resourcesV01Arr} striped hover version='4' options={ bstOptions } condensed columnFilter>
+                <TableHeaderColumn isKey dataField='resource_id' dataSort width='5%' tdStyle={ { whiteSpace: 'normal' }}>ID</TableHeaderColumn>
+                <TableHeaderColumn dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>Topic</TableHeaderColumn>
+                <TableHeaderColumn dataField='abbrev' dataSort width='9%' tdStyle={ { whiteSpace: 'normal' }}>Abbrev</TableHeaderColumn>
+                <TableHeaderColumn dataField='level' dataSort width='6%' tdStyle={ { whiteSpace: 'normal' }}>Level</TableHeaderColumn>
                 <TableHeaderColumn dataField='contributor' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>Contributor</TableHeaderColumn>
-                <TableHeaderColumn dataField='description' dataSort width='65%' tdStyle={ { whiteSpace: 'normal' }}>Description</TableHeaderColumn>
+                <TableHeaderColumn dataField='description' dataSort width='55%' tdStyle={ { whiteSpace: 'normal' }}>Description</TableHeaderColumn>
               </BootstrapTable>
           </Row>
+
         </Col>
       </div>
       // </Container-fluid>
