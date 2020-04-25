@@ -29,13 +29,28 @@ let entryTime = new Date();
 // console.log(new Date());
 console.log("a.js: ENTERING", new Date());
 
+// addOneResource
+app.post('/resources_db/resources/', (req, res) => {
+  // let entryTime = new Date();
+  // console.log("a:: aoR: req.url: ", req.url);
+  // console.log("a:: aoR: ENTERED");
+  pg.addOneResource(req.body)
+  .then((results) => {
+    // console.log("a:: aoR: r.r.[0]: COMPLETED", results);
+    // console.log("duration to complete call: ", new Date() - entryTime, req.url);
+    res.sendStatus(201);
+  })
+  .catch(err => console.log(err));
+});
+
+
 // getAllResources
 app.get('/resources_db/resources_flat', (req, res) => {
-  console.log("a:: gARs: ENTERED");
+  // console.log("a:: gARs: ENTERED");
   pg.getAllResources()
   .then((results) => {
     let resultsJSON = JSON.stringify({data: results})
-    console.log("a:: gARs: r.r.[0]: COMPLETED", resultsJSON[4]);
+    // console.log("a:: gARs: r.r.[0]: COMPLETED", resultsJSON[4]);
     // let resObj = {key: results};
     // res.send(results);
     res.send(resultsJSON);
@@ -44,12 +59,12 @@ app.get('/resources_db/resources_flat', (req, res) => {
 });
 
 // getAllResourcesV01
-app.get('/resources_db/resources_v01', (req, res) => {
-  console.log("a:: gARv01s: ENTERED");
+app.get('/resources_db/resources', (req, res) => {
+  // console.log("a:: gARv01s: ENTERED");
   pg.getAllResourcesV01()
   .then((results) => {
     let resultsJSON = JSON.stringify({data: results})
-    console.log("a:: gARv01s: r.r.[0]: COMPLETED", resultsJSON[4]);
+    // console.log("a:: gARv01s: r.r.[0]: COMPLETED", resultsJSON[4]);
     // let resObj = {key: results};
     // res.send(results);
     res.send(resultsJSON);
