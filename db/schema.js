@@ -21,12 +21,12 @@ CREATE TABLE resources (
 );
 
 
-CREATE TABLE users (
-  user_id SERIAL PRIMARY KEY,
+CREATE TABLE users_terse (
+  userterse_id SERIAL PRIMARY KEY,
   name TEXT
 );
 
-CREATE TABLE users_long (
+CREATE TABLE users(
   user_id SERIAL PRIMARY KEY,
   name TEXT,
   first_name TEXT,
