@@ -42,7 +42,7 @@ class AddResourceHandler extends React.Component {
               <Row>
               &nbsp;&nbsp; Description: &nbsp; &nbsp;  <input name="description" onChange={this.handleChange} placeholder="description ..." size="70" /> 
               </Row>
-               <button text-color="red" onClick={(e) => this.props.addOneResource(e, 
+               <button text-color="red" onClick={(e) => this.props.addResource(e, 
                   this.state.abbrev, 
                   this.state.contributor, 
                   this.state.description,
