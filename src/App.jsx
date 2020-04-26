@@ -5,7 +5,7 @@ import Table from "react-bootstrap/Table";
 import "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import ChangeHandler from './comp/ChangeHandler';
+import AddResourceHandler from './comp/AddResourceHandler';
 
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 // import BootstrapTable from 'reactjs-bootstrap-table';
@@ -230,7 +230,7 @@ class App extends React.Component {
 
 
   topicFormatter = (cell, row) => {
-    return <a href={row.link}>{cell}</a>
+    return <a href={row.link} target="_blank" title={row.link}>{cell}</a>
   }
 
   isReadytoRenderResources = () => {
@@ -263,9 +263,15 @@ class App extends React.Component {
     // console.log("App: POST: render: rA: ", this.state.legacyResourcesArr);
     // console.log("App: POST: render: cRA: ", this.state.currentResourceArr);
 
-    const bstOptions = {
-      sortIndicator: true
-    };
+    // react-bootstrap-table OPTIONS
+    const bstOptions = { sortIndicator: true };
+    const selectRow = {
+      mode: 'radio'
+    }
+    const cellEdit = {
+      mode: 'dbclick'
+    }
+    const options = { afterDeleteRow: this.deleteResource };
 
     return (
 
@@ -285,7 +291,7 @@ class App extends React.Component {
               Hacked Resources
             </Col> */}
           </Row>
-          <Row className="layout">
+          {/* <Row className="layout">
             <Col className="layout" id="announcements">
               <b>HACKED RESOURCES v00</b> &mdash; Hack your resources {" "}
               before they hack you!
@@ -316,7 +322,7 @@ class App extends React.Component {
             <br /> &nbsp; <br />
             <br /> &nbsp; <br />
             <br /> &nbsp; <br />
-          </Row>
+          </Row> */}
 
           <Row className="layout">
             <Col className="layout" id="announcements">
@@ -328,7 +334,7 @@ class App extends React.Component {
           <Row>
             {/* <hr> */}
               <div id="add-resource">
-                <ChangeHandler addResource={this.addResource}/>
+                <AddResourceHandler addResource={this.addResource}/>
             </div>
           {/* <hr> */}
           <br /> &nbsp; <br />
@@ -336,14 +342,25 @@ class App extends React.Component {
           </Row>
 
           <Row>
-              <BootstrapTable data={resourcesArr} striped hover version='4' options={ bstOptions } condensed columnFilter>
-                <TableHeaderColumn isKey dataField='resource_id' dataSort width='5%' tdStyle={ { whiteSpace: 'normal' }}>ID</TableHeaderColumn>
-                <TableHeaderColumn dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>Topic</TableHeaderColumn>
-                <TableHeaderColumn dataField='abbrev' dataSort width='9%' tdStyle={ { whiteSpace: 'normal' }}>Abbrev</TableHeaderColumn>
-                <TableHeaderColumn dataField='level' dataSort width='6%' tdStyle={ { whiteSpace: 'normal' }}>Level</TableHeaderColumn>
-                <TableHeaderColumn dataField='contributor' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>Contributor</TableHeaderColumn>
-                <TableHeaderColumn dataField='description' dataSort width='55%' tdStyle={ { whiteSpace: 'normal' }}>Description</TableHeaderColumn>
-              </BootstrapTable>
+            <BootstrapTable 
+              cellEdit={ cellEdit }
+              columnFilter 
+              condensed 
+              data={resourcesArr} 
+              hover 
+              options={ bstOptions } 
+              selectRow={ selectRow }
+              selectRow={ selectRow } deleteRow
+              striped  
+              version='4' 
+            > 
+              <TableHeaderColumn isKey dataField='resource_id' dataSort width='5%' tdStyle={ { whiteSpace: 'normal' }}>ID</TableHeaderColumn>
+              <TableHeaderColumn dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>Topic</TableHeaderColumn>
+              <TableHeaderColumn dataField='abbrev' dataSort width='9%' tdStyle={ { whiteSpace: 'normal' }}>Abbrev</TableHeaderColumn>
+              <TableHeaderColumn dataField='level' dataSort width='6%' tdStyle={ { whiteSpace: 'normal' }}>Level</TableHeaderColumn>
+              <TableHeaderColumn dataField='contributor' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>Contributor</TableHeaderColumn>
+              <TableHeaderColumn dataField='description' dataSort width='55%' tdStyle={ { whiteSpace: 'normal' }}>Description</TableHeaderColumn>
+            </BootstrapTable>
           </Row>
 
         </Col>
