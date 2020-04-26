@@ -120,7 +120,7 @@ class App extends React.Component {
     // this.event.preventDefault();
     
     // console.log("App: gAR: ENTERING "); 
-    fetch('http://localhost:3000/resources_db/resources_flat', {
+    fetch('http://localhost:3000/resources_db/resources_legacy', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -212,8 +212,8 @@ class App extends React.Component {
   // //// deleteResource
   deleteResource = (id) => {
     // event.preventDefault();
-    console.log("App: dR: id: ", id);
-    fetch('http://localhost:3000/resources_db/resources/', {
+    console.log("App: dR: ENTER: id: ", id);
+    fetch('http://localhost:3000/resources_db/resources/:id', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -225,8 +225,9 @@ class App extends React.Component {
       this.setState( {
         resourcesChanged: true
       });
+      console.log("App: dR: EXIT: rA: ", this.resourcesArr);
     })
-    .catch(err => console.error("App: aOR: catch: ", err));
+    .catch(err => console.error("App: dR: catch: ", err));
 };
 
 

@@ -24,7 +24,7 @@ pool.on('error', (err, client) => {
 // callback - checkout a client
 pool.connect((err, client, done) => {
   if (err) throw err
-  client.query('SELECT * FROM resources_flat WHERE resource_id = $1', [1], (err, res) => {
+  client.query('SELECT * FROM resources_legacy WHERE resource_id = $1', [1], (err, res) => {
     done()
     if (err) {
       console.log("q: p.c: err: ", err.stack)
@@ -80,12 +80,11 @@ const deleteResource = (id) => {
 // getAllResources
 const getAllResources = () => {
   // let values = [];
-  // console.log("q: gARFLATs: ENTERED");
-  return pool.query("SELECT * FROM resources_flat")
-  // pool.query("SELECT * FROM resourcesflat")
+  // console.log("q: gARs: ENTERED");
+  return pool.query("SELECT * FROM resources")
   .then(res => {
     // console.log("q: gARs r.r[3]:", res.rows[3]);
-    // console.log("q: gARsFLAT: r.r[3]:", res);
+    // console.log("q: gARs: r.r[3]:", res);
     // return res.rows[0];
     return res.rows;
     // res.rows;
@@ -93,12 +92,11 @@ const getAllResources = () => {
   .catch(err => {console.error("error from DB", err)})
 };
 
-// getAllResources_FLAT
-const getAllResources_flat = () => {
+// getAllResources_legacy
+const getAllResources_legacy = () => {
   // let values = [];
   // console.log("q: gARv01s: ENTERED");
-  return pool.query("SELECT * FROM resources")
-  // pool.query("SELECT * FROM resourcesflat")
+  return pool.query("SELECT * FROM resources_legacy")
   .then(res => {
     // console.log("q: gARs r.r[3]:", res.rows[3]);
     // console.log("q: gARsV01: r.r[3]:", res);
@@ -110,13 +108,13 @@ const getAllResources_flat = () => {
 };
 
 
-// getResource for a resource_id
+// getResource
 const getResource = (resource_id) => {
   let values = [resource_id];
-  // console.log("q: gOR: id ENTERED", resource_id);
-  return pool.query("SELECT * FROM resources_flat where resource_id = $1", values)
+  // console.log("q: gR: id ENTERED", resource_id);
+  return pool.query("SELECT * FROM resources where resource_id = $1", values)
   .then(res => {
-    // console.log("q: gOR r.r[0]:", res.rows[0]);
+    // console.log("q: gR r.r[0]:", res.rows[0]);
     // return res.rows[0];
     return res.rows;
   })
@@ -152,7 +150,7 @@ module.exports = {
   addResource,
   deleteResource,
   getAllResources,
-  getAllResources_flat,
+  getAllResources_legacy,
   getResource,
   getUser,
   getTopic

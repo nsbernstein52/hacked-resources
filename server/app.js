@@ -59,8 +59,8 @@ app.delete('/resources_db/resources/:id', (req, res) => {
 });
 
 
-// getAllResources
-app.get('/resources_db/resources_flat', (req, res) => {
+// getAllResources_legacy
+app.get('/resources_db/resources_legacy', (req, res) => {
   // console.log("a:: gARs: ENTERED");
   pg.getAllResources()
   .then((results) => {
@@ -74,10 +74,10 @@ app.get('/resources_db/resources_flat', (req, res) => {
 });
 
 
-// getAllResources_flat
+// getAllResources_legacy
 app.get('/resources_db/resources', (req, res) => {
   // console.log("a:: gARv01s: ENTERED");
-  pg.getAllResources_flat()
+  pg.getAllResources_legacy()
   .then((results) => {
     let resultsJSON = JSON.stringify({data: results})
     // console.log("a:: gARv01s: r.r.[0]: COMPLETED", resultsJSON[4]);
