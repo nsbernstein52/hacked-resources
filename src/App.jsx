@@ -240,7 +240,14 @@ class App extends React.Component {
       this.state.resourcesArr !== null &&
       this.state.resourcesArr.length !== 0
     );
-  };
+  }
+
+  // renderCaret = (direction, fieldName) => {
+  //   if (direction === 'asc') return 'up';
+  //   if (direction === 'desc') return 'down';
+  //   return 'up/down';
+  // }
+  // dataSort caretRender={ this.renderCaret() }
 
   render() {
 
@@ -265,16 +272,11 @@ class App extends React.Component {
 
     // react-bootstrap-table OPTIONS
     const bstOptions = { sortIndicator: true };
-    const selectRow = {
-      mode: 'radio'
-    }
-    const cellEdit = {
-      mode: 'dbclick'
-    }
+    const selectRow = { mode: 'radio' }
+    const cellEdit = { mode: 'dbclick' }
     const options = { afterDeleteRow: this.deleteResource };
 
-    return (
-
+    return(
 
       // <Container-fluid className="layout">
       <div className="container-fluid">
@@ -300,13 +302,16 @@ class App extends React.Component {
             </Col>
           </Row>
           <Row>
-            {/* <hr> */}
               <div id="add-resource">
                 <AddResourceHandler addResource={this.addResource}/>
-            </div>
-          {/* <hr> */}
-          <br /> &nbsp; <br />
-
+              </div>
+          </Row>
+          <Row>
+            <Col className="layout" align="center" >
+              <br />
+              (<b>NOTE: Double-click to edit cell text</b>)
+              <br /> &nbsp; <br />
+            </Col>
           </Row>
 
           <Row>
@@ -334,8 +339,9 @@ class App extends React.Component {
         </Col>
       </div>
       // </Container-fluid>
-    );
-  }
+    )
+  };
+  
 }
 
 export default App;
