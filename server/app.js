@@ -29,6 +29,9 @@ let entryTime = new Date();
 // console.log(new Date());
 console.log("a.js: ENTERING", new Date());
 
+
+////// CRUD
+
 // addResource
 app.post('/resources_db/resources/', (req, res) => {
   // let entryTime = new Date();
@@ -43,17 +46,17 @@ app.post('/resources_db/resources/', (req, res) => {
   .catch(err => console.log(err));
 });
 
+
 // deleteResource
 app.delete('/resources_db/resources/:id', (req, res) => {
   console.log("i: dR: ENTERED");
-  pgdb.deleteResource(req.params.id)
+  pg.deleteResource(req.params.id)
     .then(() => {
       console.log("i: dR: COMPLETED");
       res.sendStatus(204); // null-ish
     })
     .catch(err => console.log(err));
 });
-
 
 
 // getAllResources
@@ -70,10 +73,11 @@ app.get('/resources_db/resources_flat', (req, res) => {
   .catch(err => console.log("app.js: gAR: err: ", err));
 });
 
-// getAllResourcesV01
+
+// getAllResources_flat
 app.get('/resources_db/resources', (req, res) => {
   // console.log("a:: gARv01s: ENTERED");
-  pg.getAllResourcesV01()
+  pg.getAllResources_flat()
   .then((results) => {
     let resultsJSON = JSON.stringify({data: results})
     // console.log("a:: gARv01s: r.r.[0]: COMPLETED", resultsJSON[4]);
@@ -84,8 +88,9 @@ app.get('/resources_db/resources', (req, res) => {
   .catch(err => console.log("app.js: gAR: err: ", err));
 });
 
+
 // getResource
-app.get('/resources_db/resources_flat/:id', (req, res) => {
+app.get('/resources_db/resources/:id', (req, res) => {
   // let entryTime = new Date();
   // console.log("a:: gOR: req.url: ", req.url);
   // console.log("a:: gOR: ENTERED");
