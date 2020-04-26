@@ -224,56 +224,13 @@ class App extends React.Component {
       this.setState( {
         resourcesChanged: true
       });
-      // return response.statusText()
     })
-    // .then(data => callback(data))
     .catch(err => console.error("App: aOR: catch: ", err));
 };
 
 
-    // async deleteResource(resource) {
-  //   if (window.confirm(`Are you sure you want to delete "${resource}"`)) {
-  //     await this.fetch('delete', `/resources/${resource.id}`);
-  //     // this.getResources();
-  //   }
-  // }
-
-  // deleteResource = (id) => {
-  //   // event.preventDefault();
-  //   console.log("App: dR: id: ", id);
-  //   fetch('http://localhost:3000/resources_db', {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(id)
-  //     // body: id
-  //   })
-  //     .then(res => console.log(res));
-  //  }
-
-  // addResourcesFromData = (exampleResourceData) => {
-  //  for (let i = 0; i < exampleResourceData.length; i++ ) {
-  //    let currentResourceArr = exampleResourceData[i];
-  //    let e = 'event';
-  //    this.addResource(e, 
-  //      currentResourceArr.abbrev,
-  //      currentResourceArr.contributor,
-  //      currentResourceArr.description,
-  //      currentResourceArr.level,
-  //      currentResourceArr.link,
-  //      currentResourceArr.topic
-  //    );
-  //   }
-  // };
-/*
-priceFormatter(cell, row) {   // String example
-  return `<i class='glyphicon glyphicon-usd'></i> ${cell}`;
-}
-*/
   topicFormatter = (cell, row) => {
     return <a href={row.link}>{cell}</a>
-
   }
 
   isReadytoRenderResources = () => {
