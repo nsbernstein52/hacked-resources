@@ -59,10 +59,10 @@ app.delete('/resources_db/resources/:id', (req, res) => {
 });
 
 
-// getAllResources_legacy
-app.get('/resources_db/resources_legacy', (req, res) => {
+// getAllResources
+app.get('/resources_db/resources', (req, res) => {
   // console.log("a:: gARs: ENTERED");
-  pg.getAllResources()
+  pg.getAllResources_legacy()
   .then((results) => {
     let resultsJSON = JSON.stringify({data: results})
     // console.log("a:: gARs: r.r.[0]: COMPLETED", resultsJSON[4]);
@@ -70,23 +70,24 @@ app.get('/resources_db/resources_legacy', (req, res) => {
     // res.send(results);
     res.send(resultsJSON);
   })
-  .catch(err => console.log("app.js: gAR: err: ", err));
+  .catch(err => console.log("app.js: gARs: err: ", err));
 });
 
 
 // getAllResources_legacy
-app.get('/resources_db/resources', (req, res) => {
-  // console.log("a:: gARv01s: ENTERED");
-  pg.getAllResources_legacy()
+app.get('/resources_db/resources_legacy', (req, res) => {
+  // console.log("a:: gARsLegacy: ENTERED");
+  pg.getAllResources()
   .then((results) => {
     let resultsJSON = JSON.stringify({data: results})
-    // console.log("a:: gARv01s: r.r.[0]: COMPLETED", resultsJSON[4]);
+    // console.log("a:: gARsLegacy: r.r.[0]: COMPLETED", resultsJSON[4]);
     // let resObj = {key: results};
     // res.send(results);
     res.send(resultsJSON);
   })
-  .catch(err => console.log("app.js: gAR: err: ", err));
+  .catch(err => console.log("app.js: gARsLegacy: err: ", err));
 });
+
 
 
 // getResource
@@ -103,11 +104,11 @@ app.get('/resources_db/resources/:id', (req, res) => {
   .catch(err => console.log(err));
 });
 
-// getOneUser
+// getUser
 app.get('/resources_db/users/:id', (req, res) => {
   // let entryTime = new Date();
   // console.log("a:: gOU: ENTERED");
-  pg.getOneUser(req.params.id)
+  pg.getUser(req.params.id)
   .then((results) => {
     // console.log("a:: gOU: r.r.[0]: COMPLETED", results);
     // console.log("duration to complete call: ", new Date() - entryTime, req.url);
@@ -116,11 +117,11 @@ app.get('/resources_db/users/:id', (req, res) => {
   .catch(err => console.log(err));
 });
 
-// getOneTopic
+// getTopic
 app.get('/resources_db/topics/:id', (req, res) => {
   // let entryTime = new Date();
   // console.log("a:: gOT: ENTERED");
-  pg.getOneTopic(req.params.id)
+  pg.getTopic(req.params.id)
   .then((results) => {
     // console.log("a:: gOT: r.rs: COMPLETED", results);
     // console.log("duration to complete call: ", new Date() - entryTime, req.url);
