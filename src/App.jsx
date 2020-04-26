@@ -188,6 +188,7 @@ class App extends React.Component {
       topic: topic
     };
     
+    console.log("App: aR:ENTERED ");
     // console.log("App: aR: rO: ", resourceObj);
     fetch('http://localhost:3000/resources_db/resources/', {
       method: 'POST',
@@ -271,10 +272,12 @@ class App extends React.Component {
     // console.log("App: POST: render: cRA: ", this.state.currentResourceArr);
 
     // react-bootstrap-table OPTIONS
-    const bstOptions = { sortIndicator: true };
+    const bstOptions = { 
+      sortIndicator: true,
+      afterDeleteRow: this.deleteResource
+    };
     const selectRow = { mode: 'radio' }
     const cellEdit = { mode: 'dbclick' }
-    const options = { afterDeleteRow: this.deleteResource };
 
     return(
 
@@ -320,11 +323,11 @@ class App extends React.Component {
               columnFilter 
               condensed 
               data={resourcesArr} 
+              deleteRow
               hover 
-              options={ bstOptions } 
+              options = { bstOptions }
               selectRow={ selectRow }
-              selectRow={ selectRow } deleteRow
-              striped  
+              striped
               version='4' 
             > 
               <TableHeaderColumn isKey dataField='resource_id' dataSort width='5%' tdStyle={ { whiteSpace: 'normal' }}>ID</TableHeaderColumn>
