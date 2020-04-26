@@ -44,7 +44,40 @@ pool.connect((err, client, done) => {
 // console.log("q: process.env.DB_HOST: ", process.env.DB_HOST);
 // console.log("q: process.env.DB_USER: ", process.env.DB_USER);
 
-// getAllResources_FLAT
+
+////// CRUD
+
+// addResource
+const addResource = (resource) => {
+  let values = [resource.abbrev, resource.contributor, resource.description, resource.level, resource.link, resource.topic];
+  // console.log("q: aOR: ENTERED");
+  return pool.query('INSERT INTO resources (abbrev, contributor, description, level, link, topic) VALUES ($1, $2, $3, $4, $5, $6)', values)
+  .then(res => {
+    // console.log("q: gARs r.r[3]:", res.rows[3]);
+    // console.log("q: aOR r.r:", res);
+    // return res.rows[0];
+    return res.rows;
+    // res.rows;
+  })
+  .catch(err => {console.error("error from DB", err)})
+};
+
+
+// deleteResource
+// DELETE FROM table_name WHERE condition; ???
+const deleteResource = (id) => {
+  console.log("q: dR: ", id)
+  let values = [id]
+  return pool.query('DELETE FROM resources WHERE resource_id = $1', values)
+    .then(() => {
+      console.log("q: dR: COMPLETE");
+      return true
+   })
+   .catch(err => {console.error("error from DB", err)})
+};
+
+
+// getAllResources
 const getAllResources = () => {
   // let values = [];
   // console.log("q: gARFLATs: ENTERED");
@@ -60,21 +93,8 @@ const getAllResources = () => {
   .catch(err => {console.error("error from DB", err)})
 };
 
-// deleteResource
-// DELETE FROM table_name WHERE condition; ???
-const deleteResource = (id) => {
-  let values = [id]
-  return pool.query('DELETE FROM resources WHERE resource_id = $1', values)
-    .then(() => {
-      console.log("q: dR: COMPLETE");
-      return true
-   })
-   .catch(err => {console.error("error from DB", err)})
-};
-
-
-// getAllResources V01
-const getAllResourcesV01 = () => {
+// getAllResources_FLAT
+const getAllResources_flat = () => {
   // let values = [];
   // console.log("q: gARv01s: ENTERED");
   return pool.query("SELECT * FROM resources")
@@ -102,24 +122,8 @@ const getResource = (resource_id) => {
   })
 };
 
-// addResource
-const addResource = (resource) => {
-  let values = [resource.abbrev, resource.contributor, resource.description, resource.level, resource.link, resource.topic];
-  // console.log("q: aOR: ENTERED");
-  return pool.query('INSERT INTO resources (abbrev, contributor, description, level, link, topic) VALUES ($1, $2, $3, $4, $5, $6)', values)
-  .then(res => {
-    // console.log("q: gARs r.r[3]:", res.rows[3]);
-    // console.log("q: aOR r.r:", res);
-    // return res.rows[0];
-    return res.rows;
-    // res.rows;
-  })
-  .catch(err => {console.error("error from DB", err)})
-};
-
-
-//getOneUser
-const getOneUser = (user_id) => {
+//getUser
+const getUser = (user_id) => {
   let values = [user_id];
   // console.log("q: gUs: user_id ENTERED", user_id);
   return pool.query("SELECT * FROM users where user_id = $1", values)
@@ -130,8 +134,8 @@ const getOneUser = (user_id) => {
   })
 };
 
-//getOneTopic
-const getOneTopic = (topic_id) => {
+//getTopic
+const getTopic = (topic_id) => {
   let values = [topic_id];
   // console.log("q: gTs: topic_id ENTERED", topic_id);
   return pool.query("SELECT * FROM topics where topic_id = $1", values)
@@ -148,9 +152,9 @@ module.exports = {
   addResource,
   deleteResource,
   getAllResources,
-  getAllResourcesV01,
+  getAllResources_flat,
   getResource,
-  getOneUser,
-  getOneTopic
+  getUser,
+  getTopic
 }
 
