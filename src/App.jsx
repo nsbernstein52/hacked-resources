@@ -188,7 +188,7 @@ class App extends React.Component {
       topic: topic
     };
     
-    console.log("App: aR:ENTERED ");
+    // console.log("App: aR:ENTERED ");
     // console.log("App: aR: rO: ", resourceObj);
     fetch('http://localhost:3000/resources_db/resources/', {
       method: 'POST',
@@ -199,7 +199,7 @@ class App extends React.Component {
       body: JSON.stringify(resourceObj)
     })
       .then(response =>  {
-        console.log("App: response, r.sT: ", response, response.statusText)
+        // console.log("App: response, r.sT: ", response, response.statusText)
         this.setState( {
           resourcesChanged: true
         });
