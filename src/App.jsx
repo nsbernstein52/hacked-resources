@@ -291,38 +291,6 @@ class App extends React.Component {
               Hacked Resources
             </Col> */}
           </Row>
-          {/* <Row className="layout">
-            <Col className="layout" id="announcements">
-              <b>HACKED RESOURCES v00</b> &mdash; Hack your resources {" "}
-              before they hack you!
-              <br /> &nbsp; <br />
-            </Col>
-          </Row>
-          <Row>
-            <BootstrapTable data={legacyResourcesArr} striped hover version='4' options={ bstOptions } condensed columnFilter>
-              <TableHeaderColumn isKey dataField='resource_id' dataSort width='7%' tdStyle={ { whiteSpace: 'normal' }}>ID</TableHeaderColumn>
-              <TableHeaderColumn dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>Topic</TableHeaderColumn>
-              <TableHeaderColumn dataField='level' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>Level</TableHeaderColumn>
-              <TableHeaderColumn dataField='contributor' dataSort width='15%' tdStyle={ { whiteSpace: 'normal' }}>Contributor</TableHeaderColumn>
-              <TableHeaderColumn dataField='description' dataSort width='53%' tdStyle={ { whiteSpace: 'normal' }}>Description</TableHeaderColumn>
-            </BootstrapTable>
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-            <br /> &nbsp; <br />
-          </Row> */}
 
           <Row className="layout">
             <Col className="layout" id="announcements">
