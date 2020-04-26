@@ -97,7 +97,7 @@ CREATE TABLE xxs_yys (
   xx_id INT REFERENCES xxs(xx_id),
   yy_id INT REFERENCES yys(yy_id)
 );
-
+*/
 
 /*
 CREATE TABLE apis (
@@ -172,7 +172,6 @@ CREATE TABLE resources_tags (
   tag_id INT REFERENCES tags(tags_id)
 );
 
-/*
 CREATE TABLE yys (
   yy_id SERIAL PRIMARY KEY,
   yy TEXT
@@ -183,7 +182,5 @@ CREATE TABLE xxs_yys (
   xx_id INT REFERENCES xxs(xx_id),
   yy_id INT REFERENCES yys(yy_id)
 );
-
-
 
 */
