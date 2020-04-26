@@ -3,6 +3,7 @@ const webpack = require('webpack');
 console.log("wc: ", path.resolve(__dirname, 'dist'))
 module.exports = {
   mode: 'development',
+  devtool: 'source-map',
   entry: path.resolve(__dirname, 'src/index.jsx'),
   output: {
     path: path.resolve(__dirname, 'dist'),
