@@ -21,56 +21,27 @@ import './App.css';
 // const path = require('path');
 // console.log("PATH.BASENAME: :", path.basename('/Users/nsb52/Box Sync/galvanize/mvp/hacked-resources/src/legacyData.data'));
 
-import importedDataJSON from './legacyData.js';
-
-
-const initialDataJSON = [
-  {
-    "Topic": "Accessibility",
-    "Level": "All",
-    "Link": "https://shoptalkshow.com/367/",
-    "Description": "Podcast about accessibility",
-    "Contributor": ""
-  },
-  {
-    "Topic": "Accessibility",
-    "Level": "All",
-    "Link": "https://a11yproject.com/checklist/",
-    "Description": "Accessiblity checklist to  determine how accessible your site is",
-    "Contributor": ""
-  },
-  {
-    "Topic": "Accessibility",
-    "Level": "All",
-    "Link": "https://webaim.org/techniques/alttext/#basics",
-    "Description": "Alternative Text basics",
-    "Contributor": ""
-  },
-  {
-    "Topic": "Accessibility",
-    "Level": "All",
-    "Link": "https://webaim.org/techniques/images/",
-    "Description": "Image accessibility",
-    "Contributor": ""
-  },
-  {
-    "Topic": "Accessibility",
-    "Level": "All",
-    "Link": "https://www.deque.com/blog/dont-screen-readers-read-whats-screen-part-1-punctuation-typographic-symbols/",
-    "Description": "Good info about how screen readers read the web",
-    "Contributor": ""
-  }
-];
+// ////// OBSOLETE for testing
+// import importedDataJSON from './legacyData.js';
+// const initialDataJSON = [
+//   {
+//     "Topic": "Accessibility",
+//     "Level": "All",
+//     "Link": "https://shoptalkshow.com/367/",
+//     "Description": "Podcast about accessibility",
+//     "Contributor": ""
+//   }
+// ];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      legacyResourcesArr: [],
+      // legacyResourcesArr: [],
       resourcesArr: [],
-      resourcesChanged: false,
-      currentResourceArr: []
+      resourcesChanged: false
+      // currentResourceArr: []
     };
 
     // function bindings for non-lifecycle and non-arrow functions
@@ -82,7 +53,7 @@ class App extends React.Component {
     // this.loadResourcesLandingPage();
     // this.loadImportedResources(initialDataJSON);
     // this.loadImportedResources(importedDataJSON);
-    this.loadAllLegacyResources();
+    // this.loadAllLegacyResources();
     this.loadAllResources();
     // console.log("App: POST cDM: t.s.r(s): ", this.state.legacyResourcesArr)
   }
@@ -94,7 +65,7 @@ class App extends React.Component {
       this.setState( {
         resourcesChanged: false
       });
-      this.loadAllLegacyResources();
+      // this.loadAllLegacyResources();
       this.loadAllResources();
     }
   }
@@ -104,43 +75,43 @@ class App extends React.Component {
   // }
 
   // //// loadImportedResources
-  loadImportedResources = (initialDataJSON) => {
+  // loadImportedResources = (initialDataJSON) => {
     // console.log("App: PRE: lIR: iD:  ", initialDataJSON);
-    this.setState({
-      legacyResourcesArr: initialDataJSON
-    })
+    // this.setState({
+      // legacyResourcesArr: initialDataJSON
+    // })
   // this.setState({ legacyResourcesArr: data })
     // this.setState({ legacyResourcesArr: initialDataJSON.slice() })
     // console.log("App: POST: lIRs: iD:  ", initialDataJSON);  
     // console.log("App: POST: lIRs: rA:  ", legacyResourcesArr);
-  };
+  // };
 
   // //// loadLegacyResources
-  loadAllLegacyResources = () => {
-    // this.event.preventDefault();
+  // loadAllLegacyResources = () => {
+  //   // this.event.preventDefault();
     
-    // console.log("App: gAR: ENTERING "); 
-    fetch('http://localhost:3000/resources_db/resources_legacy', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }    })
-      .then((results) => {
-        return results.json();
-        // console.log("App: gARs: r.r.[N]: COMPLETED", resultsParsed);
-        // console.log("App: gARs: r.r.[N].key: COMPLETED", results.key);
+  //   // console.log("App: gAR: ENTERING "); 
+  //   fetch('http://localhost:3000/resources_db/resources_legacy', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }    })
+  //     .then((results) => {
+  //       return results.json();
+  //       // console.log("App: gARs: r.r.[N]: COMPLETED", resultsParsed);
+  //       // console.log("App: gARs: r.r.[N].key: COMPLETED", results.key);
         
-        // res.send(results);
-      })
-      .then(( res ) => {
-        // console.log("App: gARs: .then.then res: ", res)
-        this.setState({
-          legacyResourcesArr:  res.data
-        });
+  //       // res.send(results);
+  //     })
+  //     .then(( res ) => {
+  //       // console.log("App: gARs: .then.then res: ", res)
+  //       this.setState({
+  //         legacyResourcesArr:  res.data
+  //       });
 
-      })
-      .catch(err => console.error(err));
-  }
+  //     })
+  //     .catch(err => console.error(err));
+  // }
 
   // //// loadAllResources
   loadAllResources = () => {
@@ -169,9 +140,9 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  clickHandler = (index) => {
-      this.setState({ currentResourceArr: this.state.legacyResourcesArr[index] })
-    }
+  // clickHandler = (index) => {
+  //     this.setState({ currentResourceArr: this.state.legacyResourcesArr[index] })
+  //   }
   
   // //// addResource
   addResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
@@ -237,8 +208,8 @@ class App extends React.Component {
 
   isReadytoRenderResources = () => {
     return (
-      this.state.legacyResourcesArr !== null &&
-      this.state.legacyResourcesArr.length !== 0 &&
+      // this.state.legacyResourcesArr !== null &&
+      // this.state.legacyResourcesArr.length !== 0 &&
       this.state.resourcesArr !== null &&
       this.state.resourcesArr.length !== 0
     );
@@ -256,7 +227,8 @@ class App extends React.Component {
     // console.log("App: render: ", "ENTERING APP RENDER")
     // console.log("App: iD: ", initialDataJSON)
 
-    const { legacyResourcesArr, resourcesArr, resourcesChanged, currentResourceArr } = this.state;
+    // const { legacyResourcesArr, resourcesArr, resourcesChanged, currentResourceArr } = this.state;
+    const { resourcesArr, resourcesChanged } = this.state;
 
     // console.log("App: PRE: render: rA: ", legacyResourcesArr);
     // console.log("App: PRE: render: rV01A: ", resourcesArr);
