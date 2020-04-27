@@ -62,7 +62,7 @@ app.delete('/resources_db/resources/:id', (req, res) => {
 // getAllResources
 app.get('/resources_db/resources', (req, res) => {
   // console.log("a:: gARs: ENTERED");
-  pg.getAllResources_legacy()
+  pg.getAllResources()
   .then((results) => {
     let resultsJSON = JSON.stringify({data: results})
     // console.log("a:: gARs: r.r.[0]: COMPLETED", resultsJSON[4]);
@@ -75,18 +75,18 @@ app.get('/resources_db/resources', (req, res) => {
 
 
 // getAllResources_legacy
-app.get('/resources_db/resources_legacy', (req, res) => {
-  // console.log("a:: gARsLegacy: ENTERED");
-  pg.getAllResources()
-  .then((results) => {
-    let resultsJSON = JSON.stringify({data: results})
-    // console.log("a:: gARsLegacy: r.r.[0]: COMPLETED", resultsJSON[4]);
-    // let resObj = {key: results};
-    // res.send(results);
-    res.send(resultsJSON);
-  })
-  .catch(err => console.log("app.js: gARsLegacy: err: ", err));
-});
+// app.get('/resources_db/resources_legacy', (req, res) => {
+//   // console.log("a:: gARsLegacy: ENTERED");
+//   pg.getAllResources()
+//   .then((results) => {
+//     let resultsJSON = JSON.stringify({data: results})
+//     // console.log("a:: gARsLegacy: r.r.[0]: COMPLETED", resultsJSON[4]);
+//     // let resObj = {key: results};
+//     // res.send(results);
+//     res.send(resultsJSON);
+//   })
+//   .catch(err => console.log("app.js: gARsLegacy: err: ", err));
+// });
 
 
 

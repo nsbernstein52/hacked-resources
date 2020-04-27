@@ -24,7 +24,7 @@ pool.on('error', (err, client) => {
 // callback - checkout a client
 pool.connect((err, client, done) => {
   if (err) throw err
-  client.query('SELECT * FROM resources_legacy WHERE id = $1', [1], (err, res) => {
+  client.query('SELECT * FROM resources WHERE id = $1', [1], (err, res) => {
     done()
     if (err) {
       console.log("q: p.c: err: ", err.stack)
@@ -93,19 +93,19 @@ const getAllResources = () => {
 };
 
 // getAllResources_legacy
-const getAllResources_legacy = () => {
-  // let values = [];
-  // console.log("q: gARv01s: ENTERED");
-  return pool.query("SELECT * FROM resources_legacy")
-  .then(res => {
-    // console.log("q: gARs r.r[3]:", res.rows[3]);
-    // console.log("q: gARsV01: r.r[3]:", res);
-    // return res.rows[0];
-    return res.rows;
-    // res.rows;
-  })
-  .catch(err => {console.error("error from DB", err)})
-};
+// const getAllResources_legacy = () => {
+//   // let values = [];
+//   // console.log("q: gARv01s: ENTERED");
+//   return pool.query("SELECT * FROM resources_legacy")
+//   .then(res => {
+//     // console.log("q: gARs r.r[3]:", res.rows[3]);
+//     // console.log("q: gARsV01: r.r[3]:", res);
+//     // return res.rows[0];
+//     return res.rows;
+//     // res.rows;
+//   })
+//   .catch(err => {console.error("error from DB", err)})
+// };
 
 
 // getResource
@@ -150,7 +150,7 @@ module.exports = {
   addResource,
   deleteResource,
   getAllResources,
-  getAllResources_legacy,
+  // getAllResources_legacy,
   getResource,
   getUser,
   getTopic
