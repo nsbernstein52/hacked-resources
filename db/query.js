@@ -24,7 +24,7 @@ pool.on('error', (err, client) => {
 // callback - checkout a client
 pool.connect((err, client, done) => {
   if (err) throw err
-  client.query('SELECT * FROM resources_legacy WHERE resource_id = $1', [1], (err, res) => {
+  client.query('SELECT * FROM resources_legacy WHERE id = $1', [1], (err, res) => {
     done()
     if (err) {
       console.log("q: p.c: err: ", err.stack)
@@ -68,7 +68,7 @@ const addResource = (resource) => {
 const deleteResource = (id) => {
   console.log("q: dR: ", id)
   let values = [id]
-  return pool.query('DELETE FROM resources WHERE resource_id = $1', values)
+  return pool.query('DELETE FROM resources WHERE id = $1', values)
     .then(() => {
       console.log("q: dR: COMPLETE");
       return true
@@ -109,10 +109,10 @@ const getAllResources_legacy = () => {
 
 
 // getResource
-const getResource = (resource_id) => {
-  let values = [resource_id];
-  // console.log("q: gR: id ENTERED", resource_id);
-  return pool.query("SELECT * FROM resources where resource_id = $1", values)
+const getResource = (id) => {
+  let values = [id];
+  // console.log("q: gR: id ENTERED", id);
+  return pool.query("SELECT * FROM resources where id = $1", values)
   .then(res => {
     // console.log("q: gR r.r[0]:", res.rows[0]);
     // return res.rows[0];
@@ -121,10 +121,10 @@ const getResource = (resource_id) => {
 };
 
 //getUser
-const getUser = (user_id) => {
-  let values = [user_id];
-  // console.log("q: gUs: user_id ENTERED", user_id);
-  return pool.query("SELECT * FROM users where user_id = $1", values)
+const getUser = (id) => {
+  let values = [id];
+  // console.log("q: gUs: id ENTERED", id);
+  return pool.query("SELECT * FROM users where id = $1", values)
   .then(res => {
     // console.log("q: gS r.rs:", res.rows);
     // return res.rows[0];
@@ -133,10 +133,10 @@ const getUser = (user_id) => {
 };
 
 //getTopic
-const getTopic = (topic_id) => {
-  let values = [topic_id];
-  // console.log("q: gTs: topic_id ENTERED", topic_id);
-  return pool.query("SELECT * FROM topics where topic_id = $1", values)
+const getTopic = (id) => {
+  let values = [id];
+  // console.log("q: gTs: id ENTERED", id);
+  return pool.query("SELECT * FROM topics where id = $1", values)
   .then(res => {
     // console.log("q: gTs r.rs:", res.rows);
     // return res.rows[0];

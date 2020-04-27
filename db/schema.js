@@ -4,7 +4,7 @@ CREATE DATABASE resources_db;
 \c resources_db;
 
 CREATE TABLE resources_legacy (
-  resource_id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   abbrev TEXT,
   contributor TEXT,
   description TEXT,
@@ -15,7 +15,7 @@ CREATE TABLE resources_legacy (
 
 
 CREATE TABLE resources (
-  resource_id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   abbrev TEXT,
   contributor TEXT,
   description TEXT,
