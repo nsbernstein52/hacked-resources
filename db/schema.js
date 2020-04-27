@@ -3,6 +3,7 @@ DROP DATABASE IF EXISTS resources_db;
 CREATE DATABASE resources_db;
 \c resources_db;
 
+/*
 CREATE TABLE resources_legacy (
   id SERIAL PRIMARY KEY,
   abbrev TEXT,
@@ -12,7 +13,7 @@ CREATE TABLE resources_legacy (
   link TEXT,
   topic TEXT
 );
-
+*/
 
 CREATE TABLE resources (
   id SERIAL PRIMARY KEY,
