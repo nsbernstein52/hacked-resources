@@ -180,6 +180,7 @@ class App extends React.Component {
       .catch(err => console.error("App: aOR: catch: ", err));
   };
 
+
   // //// deleteResource
   deleteResource = (id) => {
     event.preventDefault();
@@ -200,6 +201,43 @@ class App extends React.Component {
     })
     .catch(err => console.error("App: dR: catch: ", err));
 };
+
+
+  // //// updateResource
+  updateResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
+    // return new Promise( (resolve, reject) => {
+
+    event.preventDefault(); // needed?
+
+    const resourceObj = {
+      abbrev: abbrev,
+      contributor: contributor,
+      description: description,
+      level: level,
+      link: link,
+      topic: topic
+    };
+    
+    // console.log("App: uR:ENTERED ");
+    // console.log("App: uR: rO: ", resourceObj);
+    fetch('http://localhost:3000/resources_db/resources/', {
+      method: 'PUT',
+      headers: {
+        Accept: "application/json",
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(resourceObj)
+    })
+      .then(response =>  {
+        // console.log("App: response, r.sT: ", response, response.statusText)
+        this.setState( {
+          resourcesChanged: true
+        });
+        // return response.statusText()
+      })
+      // .then(data => callback(data))
+      .catch(err => console.error("App: uR: catch: ", err));
+  };
 
 
   topicFormatter = (cell, row) => {
@@ -246,11 +284,13 @@ class App extends React.Component {
 
     // react-bootstrap-table OPTIONS
     const bstOptions = { 
-      sortIndicator: true,
-      afterDeleteRow: this.deleteResource
+      afterDeleteRow: this.deleteResource,
+      sortIndicator: true
     };
+    const cellEdit = { 
+      mode: 'dbclick' 
+    }
     const selectRow = { mode: 'radio' }
-    const cellEdit = { mode: 'dbclick' }
 
     return(
 
@@ -278,7 +318,7 @@ class App extends React.Component {
             </Col>
           </Row>
           <Row>
-              <div id="add-resource">
+              <div id="update-resource">
                 <AddResourceHandler addResource={this.addResource}/>
               </div>
           </Row>

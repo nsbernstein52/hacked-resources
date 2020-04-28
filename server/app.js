@@ -129,6 +129,22 @@ app.get('/resources_db/topics/:id', (req, res) => {
   .catch(err => console.log(err));
 });
 
+
+// updateResource
+app.post('/resources_db/resources/', (req, res) => {
+  // let entryTime = new Date();
+  // console.log("a:: uR: req.url: ", req.url);
+  // console.log("a:: uR: ENTERED");
+  pg.updateResource(req.body)
+  .then((results) => {
+    // console.log("a:: uR: r.r.[0]: COMPLETED", results);
+    // console.log("duration to complete call: ", new Date() - entryTime, req.url);
+    res.sendStatus(201);
+  })
+  .catch(err => console.log(err));
+});
+
+
 // console.log("a:: LEAVING");
 
 app.listen(PORT, () => {

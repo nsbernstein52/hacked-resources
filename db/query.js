@@ -5,14 +5,12 @@ const pool = new Pool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
-  // process.env.DB_USER should be recognized by root
-  // host private dns 
-  // security group allow ot access each other
-  // ipAddress: 3.16.68.230/32,
-  // password: 'PW',
-  // port: 5432 // GOOD?  BAD?
-  // port: 4000 // GOOD?  BAD?
+  // PG port: 5432
 });
+
+// console.log("q: process.env.DB_HOST: ", process.env.DB_HOST);
+// console.log("q: process.env.DB_USER: ", process.env.DB_USER);
+
 
 // the pool will emit an error on behalf of any idle clients
 // it contains if a backend error or network partition happens
@@ -41,8 +39,6 @@ pool.connect((err, client, done) => {
 //   console.log(err, res)
 //   pool.end()
 // });
-// console.log("q: process.env.DB_HOST: ", process.env.DB_HOST);
-// console.log("q: process.env.DB_USER: ", process.env.DB_USER);
 
 
 ////// CRUD
@@ -144,15 +140,31 @@ const getTopic = (id) => {
   })
 };
 
+
+// updateResource
+// UPDATE table_name SET column = expression WHERE condition;
+const updateResource = (id) => {
+  console.log("q: uR: ", id)
+  let values = [id]
+  return pool.query('UPDATE resources SET (abbrev, contributor, description, level, link, topic) =  ($1, $2, $3, $4, $5, $6', values)
+    .then(() => {
+      console.log("q: uR: COMPLETE");
+      return true
+   })
+   .catch(err => {console.error("error from DB", err)})
+};
+
+
+
 // console.log("q.js: LEAVING");
 
 module.exports = {
   addResource,
   deleteResource,
   getAllResources,
-  // getAllResources_legacy,
   getResource,
   getUser,
-  getTopic
+  getTopic,
+  updateResource
 }
 
