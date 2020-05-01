@@ -6,6 +6,7 @@ import "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import AddResourceHandler from './comp/AddResourceHandler';
+import UpdateResourceHandler from './comp/UpdateResourceHandler';
 
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 // import BootstrapTable from 'reactjs-bootstrap-table';
