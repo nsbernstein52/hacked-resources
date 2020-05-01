@@ -19,7 +19,7 @@ import './App.css';
 
 // import gfimage from './public/favicon.ico';
 
-// const path = require('path');
+// const path = require('path'); 
 // console.log("PATH.BASENAME: :", path.basename('/Users/nsb52/Box Sync/galvanize/mvp/hacked-resources/src/legacyData.data'));
 
 // ////// OBSOLETE for testing
