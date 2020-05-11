@@ -41,7 +41,9 @@
   border-radius: 0 !important;
 }
 
-.header {
+#announcements {
+  color: red;
+  font-size: 2em;
   /* background-color: #00b0ff; */
 }
 

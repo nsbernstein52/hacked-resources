@@ -6,7 +6,7 @@ import "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import AddResourceHandler from './comp/AddResourceHandler';
-import UpdateResourceHandler from './comp/UpdateResourceHandler';
+// import UpdateResourceHandler from './comp/UpdateResourceHandler';
 
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 // import BootstrapTable from 'reactjs-bootstrap-table';
@@ -182,7 +182,7 @@ class App extends React.Component {
   };
 
 
-  // //// deleteResource
+  //// deleteResource
   deleteResource = (id) => {
     event.preventDefault();
     console.log("App: dR: ENTER: id: ", id);
@@ -205,40 +205,40 @@ class App extends React.Component {
 
 
   // //// updateResource
-  updateResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
-    // return new Promise( (resolve, reject) => {
+  // updateResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
+  //   // return new Promise( (resolve, reject) => {
 
-    event.preventDefault(); // needed?
+  //   event.preventDefault(); // needed?
 
-    const resourceObj = {
-      abbrev: abbrev,
-      contributor: contributor,
-      description: description,
-      level: level,
-      link: link,
-      topic: topic
-    };
+  //   const resourceObj = {
+  //     abbrev: abbrev,
+  //     contributor: contributor,
+  //     description: description,
+  //     level: level,
+  //     link: link,
+  //     topic: topic
+  //   };
     
-    // console.log("App: uR:ENTERED ");
-    // console.log("App: uR: rO: ", resourceObj);
-    fetch('http://localhost:3000/resources_db/resources/', {
-      method: 'PUT',
-      headers: {
-        Accept: "application/json",
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(resourceObj)
-    })
-      .then(response =>  {
-        // console.log("App: response, r.sT: ", response, response.statusText)
-        this.setState( {
-          resourcesChanged: true
-        });
-        // return response.statusText()
-      })
-      // .then(data => callback(data))
-      .catch(err => console.error("App: uR: catch: ", err));
-  };
+  //   // console.log("App: uR:ENTERED ");
+  //   // console.log("App: uR: rO: ", resourceObj);
+  //   fetch('http://localhost:3000/resources_db/resources/', {
+  //     method: 'PUT',
+  //     headers: {
+  //       Accept: "application/json",
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(resourceObj)
+  //   })
+  //     .then(response =>  {
+  //       // console.log("App: response, r.sT: ", response, response.statusText)
+  //       this.setState( {
+  //         resourcesChanged: true
+  //       });
+  //       // return response.statusText()
+  //     })
+  //     // .then(data => callback(data))
+  //     .catch(err => console.error("App: uR: catch: ", err));
+  // };
 
 
   topicFormatter = (cell, row) => {
@@ -297,7 +297,7 @@ class App extends React.Component {
 
       // <Container-fluid className="layout">
       <div className="container-fluid">
-        <Col className="layout header">
+        <Col className="layout #header">
           <Row className="layout">
             {/* <Col className="layout bold" sm={2}> */}
             {/* <Col className="layout bold">
@@ -313,8 +313,9 @@ class App extends React.Component {
 
           <Row className="layout">
             <Col className="layout" id="announcements">
-              <b>HACKED RESOURCES +PLUS+ v01</b> &mdash; Hack your resources {" "}
-              more than before!
+              <b>HACKED RESOURCES +PLUS+</b>
+              <br /> Hack your resources {" "}
+              even more than before!
               <br /> &nbsp; <br />
             </Col>
           </Row>
