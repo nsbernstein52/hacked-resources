@@ -43,7 +43,7 @@ app.post('/resources_db/resources/', (req, res) => {
     console.log("a:: aR: r.r.[0]: COMPLETED");
     // console.log("duration to complete call: ", new Date() - entryTime, req.url);
     // res.sendStatus(201);
-    res.send(201);
+    res.sendStatus(201);
   })
   .catch(err => console.log(err));
 });
