@@ -38,11 +38,12 @@ app.post('/resources_db/resources/', (req, res) => {
   // console.log("a:: aoR: req.url: ", req.url);
   console.log("a:: aR: ENTERED: req.body: ", req.body);
   pg.addResource(req.body)
-  .then((res) => {
-    // console.log("a:: aoR: r.r.[0]: COMPLETED", results);
+  .then((results) => {
+    // console.log("a:: aR: r.r.[0]: COMPLETED", results);
+    console.log("a:: aR: r.r.[0]: COMPLETED");
     // console.log("duration to complete call: ", new Date() - entryTime, req.url);
     // res.sendStatus(201);
-    // res.send(201);
+    res.send(201);
   })
   .catch(err => console.log(err));
 });
@@ -50,10 +51,10 @@ app.post('/resources_db/resources/', (req, res) => {
 
 // deleteResource
 app.delete('/resources_db/resources/:id', (req, res) => {
-  console.log("i: dR: ENTERED");
+  console.log("a: dR: ENTERED");
   pg.deleteResource(req.params.id)
     .then(() => {
-      console.log("i: dR: COMPLETED");
+      console.log("a: dR: COMPLETED");
       res.sendStatus(204); // null-ish
     })
     .catch(err => console.log(err));

@@ -46,12 +46,13 @@ pool.connect((err, client, done) => {
 // addResource
 const addResource = (resource) => {
   let values = [resource.abbrev, resource.contributor, resource.description, resource.level, resource.link, resource.topic];
-  // console.log("q: aOR: ENTERED");
+  console.log("q: aR: ENTERED");
   return pool.query('INSERT INTO resources (abbrev, contributor, description, level, link, topic) VALUES ($1, $2, $3, $4, $5, $6)', values)
   .then(res => {
     // console.log("q: gARs r.r[3]:", res.rows[3]);
-    // console.log("q: aOR r.r:", res);
+    // console.log("q: aR r.r:", res);
     // return res.rows[0];
+    console.log("q: aR: COMPLETED");
     return res.rows;
     // res.rows;
   })

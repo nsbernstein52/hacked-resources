@@ -1,3 +1,4 @@
+console.log("FINDABLE");
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -171,14 +172,14 @@ class App extends React.Component {
       body: JSON.stringify(resourceObj)
     })
       .then(response =>  {
-        // console.log("App: response, r.sT: ", response, response.statusText)
+        console.log("App: response, r.sT: ", response, response.statusText)
         this.setState( {
           resourcesChanged: true
         });
         // return response.statusText()
       })
       // .then(data => callback(data))
-      .catch(err => console.error("App: aOR: catch: ", err));
+      .catch(err => console.error("App: aR: catch: ", err));
   };
 
 
