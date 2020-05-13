@@ -43,7 +43,9 @@ class App extends React.Component {
       // legacyResourcesArr: [],
       resourcesArr: [],
       resourcesChanged: false,
-      selectedRow: null
+      selectedRow: null,
+      prevCellValue: null,
+      newCellValue: null
       // currentResourceArr: []
     };
 
@@ -212,8 +214,27 @@ class App extends React.Component {
     .catch(err => console.error("App: dR: catch: ", err));
 };
 
+//// beforeSaveCell
+beforeSaveCell(row, cellName, cellValue) {
+  // if you dont want to save this editing, just return false to cancel it.
+  this.setState({
+    selectedRow:  row,
+    prevCellValue: cellValue
+  });
+}
 
-  // //// updateResource
+//// beforeSaveCell
+afterSaveCell(row, cellName, cellValue) {
+  if (prevCellValue === cellValue) return;
+  // if you dont want to save this editing, just return false to cancel it.
+  this.setState({
+    selectedRow:  row,
+    newCellValue: cellValue,
+    resourcesChanged: true
+  });
+}
+
+// //// updateResource
   // updateResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
   //   // return new Promise( (resolve, reject) => {
 
@@ -298,7 +319,9 @@ class App extends React.Component {
       sortIndicator: true
     };
     const cellEdit = { 
-      mode: 'dbclick' 
+      mode: 'dbclick',
+      beforeSaveCell: this.beforeSaveCell,
+      afterSaveCell: this.afterSaveCell
     }
     const selectRow = {
        mode: 'radio',
