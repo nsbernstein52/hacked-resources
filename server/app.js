@@ -51,7 +51,7 @@ app.post('/resources_db/resources/', (req, res) => {
 
 // deleteResource
 app.delete('/resources_db/resources/:id', (req, res) => {
-  console.log("a: dR: ENTERED");
+  console.log("a: dR: ENTERED: id: ", req.params.id);
   pg.deleteResource(req.params.id)
     .then(() => {
       console.log("a: dR: COMPLETED");
