@@ -42,7 +42,8 @@ class App extends React.Component {
     this.state = {
       // legacyResourcesArr: [],
       resourcesArr: [],
-      resourcesChanged: false
+      resourcesChanged: false,
+      selectedRow: null
       // currentResourceArr: []
     };
 
@@ -182,9 +183,15 @@ class App extends React.Component {
       .catch(err => console.error("App: aR: catch: ", err));
   };
 
+  //// handleRowSelect
+  handleRowSelect = (row, isSelected, e) => {
+    this.setState({
+      selectedRow:  row
+    });
+  }
 
   //// deleteResource
-  deleteResource = (id) => {
+  deleteResource = (id = parseInt(selectedRow)) => {
   // deleteResource = (event, id, callback) => {
       event.preventDefault();
     console.log("App: dR: ENTER: id: ", id);
@@ -294,7 +301,8 @@ class App extends React.Component {
       mode: 'dbclick' 
     }
     const selectRow = {
-       mode: 'radio' 
+       mode: 'radio',
+       onSelect: this.handleRowSelect
       }
 
     return(
