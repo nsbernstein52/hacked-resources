@@ -135,7 +135,7 @@ app.get('/resources_db/topics/:id', (req, res) => {
 // updateResource
 app.put('/resources_db/resources/:id', (req, res) => {
   // let entryTime = new Date();
-  console.log("a:: uR: ENTERED: req.body: ", res);
+  console.log("a:: uR: ENTERED: req.body: ", req);
   // console.log("a:: uR: ENTERED");
   pg.updateResource(req.body)
   .then((results) => {

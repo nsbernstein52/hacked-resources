@@ -44,8 +44,10 @@ class App extends React.Component {
       resourcesArr: [],
       resourcesChanged: false,
       selectedRow: null,
+      currentCell: null,
       prevCellValue: null,
-      newCellValue: null
+      newCellValue: null,
+      resourceElem: null
       // currentResourceArr: []
     };
 
@@ -193,7 +195,7 @@ class App extends React.Component {
   }
 
   //// deleteResource
-  deleteResource = (id = parseInt(selectedRow)) => {
+  deleteResource = (id = parseInt(selectedRow)) => {  // why not this.selectedRow QQQ
   // deleteResource = (event, id, callback) => {
       event.preventDefault();
     console.log("App: dR: ENTER: id: ", id);
@@ -209,7 +211,7 @@ class App extends React.Component {
       this.setState( {
         resourcesChanged: true
       });
-      console.log("App: dR: EXIT: rA: ", this.resourcesArr);
+      console.log("App: dR: EXIT: rA: ", this.resourcesArr[id]);
     })
     .catch(err => console.error("App: dR: catch: ", err));
 };
@@ -219,6 +221,7 @@ beforeSaveCell(row, cellName, cellValue) {
   // if you dont want to save this editing, just return false to cancel it.
   this.setState({
     selectedRow:  row,
+    currentCell: cellName,
     prevCellValue: cellValue
   });
 }
@@ -229,46 +232,50 @@ afterSaveCell(row, cellName, cellValue) {
   // if you dont want to save this editing, just return false to cancel it.
   this.setState({
     selectedRow:  row,
+    currentCell: cellName,
     newCellValue: cellValue,
+    resourceElem: {
+      id: row, 
+      col: cellName,
+      value: cellValue
+    },
     resourcesChanged: true
   });
 }
 
-// //// updateResource
-  // updateResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
-  //   // return new Promise( (resolve, reject) => {
+//// updateResource
+// updateResource = (event, id, abbrev, contributor, description, level, link, topic, callback) => {
+updateResource = (event, id, col, value, callback) => {
+    // return new Promise( (resolve, reject) => {
 
-  //   event.preventDefault(); // needed?
+    event.preventDefault(); // needed?
 
-  //   const resourceObj = {
-  //     abbrev: abbrev,
-  //     contributor: contributor,
-  //     description: description,
-  //     level: level,
-  //     link: link,
-  //     topic: topic
-  //   };
+    const resourceElemObj = {
+      id: id,
+      col: col,
+      val: value
+    };
     
-  //   // console.log("App: uR:ENTERED ");
-  //   // console.log("App: uR: rO: ", resourceObj);
-  //   fetch('http://localhost:3000/resources_db/resources/', {
-  //     method: 'PUT',
-  //     headers: {
-  //       Accept: "application/json",
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(resourceObj)
-  //   })
-  //     .then(response =>  {
-  //       // console.log("App: response, r.sT: ", response, response.statusText)
-  //       this.setState( {
-  //         resourcesChanged: true
-  //       });
-  //       // return response.statusText()
-  //     })
-  //     // .then(data => callback(data))
-  //     .catch(err => console.error("App: uR: catch: ", err));
-  // };
+    console.log("App: uR: ENTERED: id, col, val: ", resoucesElemObj.id, resoucesElemObj.col, resoucesElemObj.val);
+    // console.log("App: uR: rO: ", resourceObj);
+    fetch('http://localhost:3000/resources_db/resources/:id', {
+      method: 'PUT',
+      headers: {
+        Accept: "application/json",
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(resoucesElemObj)
+    })
+      .then(response =>  {
+        // console.log("App: response, r.sT: ", response, response.statusText)
+        this.setState( {
+          resourcesChanged: true
+        });
+        // return response.statusText()
+      })
+      // .then(data => callback(data))
+      .catch(err => console.error("App: uR: catch: ", err));
+  };
 
 
   topicFormatter = (cell, row) => {
