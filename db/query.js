@@ -146,7 +146,7 @@ const getTopic = (id) => {
 // UPDATE table_name SET column = expression WHERE condition;
 const updateResource = (resourceElem) => {
   console.log("q: uR: ", resourceElem)
-  let values = [resourceElem.row, resourceElem.cellName, resourceElem.cellValue
+  let values = [resourceElem.row, resourceElem.cellName, resourceElem.cellValue];
   return pool.query('UPDATE resources SET ({$2}) =  ($3) where id = $1', values)
     .then(() => {
       console.log("q: uR: COMPLETE");
