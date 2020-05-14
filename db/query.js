@@ -36,11 +36,11 @@ pool.connect((err, client, done) => {
 // //// addResource
 const addResource = (resource) => {
   let values = [resource.abbrev, resource.contributor, resource.description, resource.level, resource.link, resource.topic];
-  console.log("q: aR: ENTERED");
+  // console.log("q: aR: ENTERED");
   return pool.query('INSERT INTO resources (abbrev, contributor, description, level, link, topic) VALUES ($1, $2, $3, $4, $5, $6)', values)
   .then(res => {
     // console.log("q: gARs r.r[3]:", res.rows[3]);
-    console.log("q: aR: COMPLETED");
+    // console.log("q: aR: COMPLETED");
     return res.rows;
   })
   .catch(err => {console.error("error from DB", err)})
@@ -104,11 +104,11 @@ const getTopic = (id) => {
 
 // //// updateResource
 const updateResource = (row) => {
-  console.log("q: uR: ", row)
+  // console.log("q: uR: ", row)
   let values = [row.id, row.abbrev, row.contributor, row.description, row.leve, row.link, row.topic];
   return pool.query("UPDATE resources SET (abbrev, contributor, description, level, link, topic) = ($2, $3, $4, $5, $6, $7) WHERE id = $1", values)
     .then(() => {
-      console.log("q: uR: COMPLETE");
+      // console.log("q: uR: COMPLETE");
       return true
    })
    .catch(err => {console.error("error from DB", err)})
