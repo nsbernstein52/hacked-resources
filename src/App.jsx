@@ -5,127 +5,50 @@ import Row from 'react-bootstrap/Row';
 import Table from "react-bootstrap/Table";
 import "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 import AddResourceHandler from './comp/AddResourceHandler';
 // import UpdateResourceHandler from './comp/UpdateResourceHandler';
 
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-// import BootstrapTable from 'reactjs-bootstrap-table';
-import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
-
-// import "react-scripts"
-// import FormControl from "react-bootstrap/FormControl";
-
 import './App.css';
 
-// import gfimage from './public/favicon.ico';
-
-// const path = require('path'); 
 // console.log("PATH.BASENAME: :", path.basename('/Users/nsb52/Box Sync/galvanize/mvp/hacked-resources/src/legacyData.data'));
-
-// ////// OBSOLETE for testing
-// import importedDataJSON from './legacyData.js';
-// const initialDataJSON = [
-//   {
-//     "Topic": "Accessibility",
-//     "Level": "All",
-//     "Link": "https://shoptalkshow.com/367/",
-//     "Description": "Podcast about accessibility",
-//     "Contributor": ""
-//   }
-// ];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // legacyResourcesArr: [],
       resourcesArr: [],
-      resourcesChanged: false,
-      selectedRow: null,
-      currentCell: null,
-      prevCellValue: null,
-      newCellValue: null,
-      oldRowValues: null,
-      resourceElem: null
-      // currentResourceArr: []
+      resourcesChanged: false
     };
 
     // function bindings for non-lifecycle and non-arrow functions
   }
 
+  // ////
   componentDidMount() {
-    // console.log("App: PRE cDM: t.s.r(s): ", this.state.legacyResourcesArr)
-    // console.log("App: PRE cDM: iD: ", initialDataJSON)
-    // this.loadResourcesLandingPage();
-    // this.loadImportedResources(initialDataJSON);
-    // this.loadImportedResources(importedDataJSON);
-    // this.loadAllLegacyResources();
+    // console.log("App: PRE cDM: t.s.r(s)A: ", this.state.resourcesArr)
     this.loadAllResources();
-    // console.log("App: POST cDM: t.s.r(s): ", this.state.legacyResourcesArr)
+    // console.log("App: POST cDM: t.s.r(s)A: ", this.state.resourcesArr)
   }
 
+  // ////
   componentDidUpdate = (prevProps, prevState) => {
     // console.log("App: cDU: t.p: ", prevState, this.state);
-    // if (this.state.resourcesArr.length !== prevState.resourcesArr.length) {
     if (this.state.resourcesChanged ) {
       this.setState( {
         resourcesChanged: false
       });
-      // this.loadAllLegacyResources();
       this.loadAllResources();
     }
   }
 
-  // loadResourcesLandingPage = () => {
-
-  // }
-
-  // //// loadImportedResources
-  // loadImportedResources = (initialDataJSON) => {
-    // console.log("App: PRE: lIR: iD:  ", initialDataJSON);
-    // this.setState({
-      // legacyResourcesArr: initialDataJSON
-    // })
-  // this.setState({ legacyResourcesArr: data })
-    // this.setState({ legacyResourcesArr: initialDataJSON.slice() })
-    // console.log("App: POST: lIRs: iD:  ", initialDataJSON);  
-    // console.log("App: POST: lIRs: rA:  ", legacyResourcesArr);
-  // };
-
-  // //// loadLegacyResources
-  // loadAllLegacyResources = () => {
-  //   // this.event.preventDefault();
-    
-  //   // console.log("App: gAR: ENTERING "); 
-  //   fetch('http://localhost:3000/resources_db/resources_legacy', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }    })
-  //     .then((results) => {
-  //       return results.json();
-  //       // console.log("App: gARs: r.r.[N]: COMPLETED", resultsParsed);
-  //       // console.log("App: gARs: r.r.[N].key: COMPLETED", results.key);
-        
-  //       // res.send(results);
-  //     })
-  //     .then(( res ) => {
-  //       // console.log("App: gARs: .then.then res: ", res)
-  //       this.setState({
-  //         legacyResourcesArr:  res.data
-  //       });
-
-  //     })
-  //     .catch(err => console.error(err));
-  // }
-
   // //// loadAllResources
   loadAllResources = () => {
     // this.event.preventDefault();
-
-    // console.log("App: gAR: ENTERING "); 
+    // console.log("App: lAR: ENTERING "); 
     fetch('http://localhost:3000/resources_db/resources', {
       method: 'GET',
       headers: {
@@ -133,32 +56,25 @@ class App extends React.Component {
       }    })
       .then((results) => {
         return results.json();
-        // console.log("App: gARs: r.r.[N]: COMPLETED", resultsParsed);
-        // console.log("App: gARs: r.r.[N].key: COMPLETED", results.key);
-        
+        // console.log("App: lARs: r.r.[N]: COMPLETED", resultsParsed);
+        // console.log("App: lARs: r.r.[N].key: COMPLETED", results.key);       
         // res.send(results);
       })
       .then(( res ) => {
-        // console.log("App: gARs: .then.then res: ", res)
+        // console.log("App: lARs: .then.then res: ", res)
         this.setState({
           resourcesArr:  res.data
         });
-
       })
       .catch(err => console.error(err));
   }
 
-  // clickHandler = (index) => {
-  //     this.setState({ currentResourceArr: this.state.legacyResourcesArr[index] })
-  //   }
-  
   // //// addResource
   addResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
     // return new Promise( (resolve, reject) => {
-
     event.preventDefault(); // needed?
 
-    const resourceObj = {
+    const resourceObj = { // naming?
       abbrev: abbrev,
       contributor: contributor,
       description: description,
@@ -188,7 +104,7 @@ class App extends React.Component {
       .catch(err => console.error("App: aR: catch: ", err));
   };
 
-  //// deleteResource
+  // //// deleteResource
   deleteResource = (id) => {
       event.preventDefault();
     // console.log("App: dR: ENTER: id, rA.len: ", id, this.state.resourcesArr.length);
@@ -209,7 +125,7 @@ class App extends React.Component {
     .catch(err => console.error("App: dR: catch: ", err));
   };
 
-  //// updateResource
+  // //// updateResource
   updateResource = (row, cellName, cellValue) => {
     // console.log("App: uR: r.id, r,cN,cV: ", row.id, row, cellName, cellValue)
     fetch('http://localhost:3000/resources_db/resources/' + row.id, {
@@ -238,8 +154,6 @@ class App extends React.Component {
 
   isReadytoRenderResources = () => {
     return (
-      // this.state.legacyResourcesArr !== null &&
-      // this.state.legacyResourcesArr.length !== 0 &&
       this.state.resourcesArr !== null &&
       this.state.resourcesArr.length !== 0
     );
@@ -255,26 +169,16 @@ class App extends React.Component {
   render() {
 
     // console.log("App: render: ", "ENTERING APP RENDER")
-    // console.log("App: iD: ", initialDataJSON)
 
-    // const { legacyResourcesArr, resourcesArr, resourcesChanged, currentResourceArr } = this.state;
     const { resourcesArr, resourcesChanged } = this.state;
 
-    // console.log("App: PRE: render: rA: ", legacyResourcesArr);
-    // console.log("App: PRE: render: rV01A: ", resourcesArr);
-    // console.log("App: PRE: render: t.s.rA: ", this.state.legacyResourcesArr);
-    // console.log("App: PRE: render: cRA: ", this.state.currentResourceArr);
+    // console.log("App: PRE: render: rA: ", resourcesArr);
+    // console.log("App: PRE: render: rC: ", resourcesChanged);
 
     if (!this.isReadytoRenderResources()) return null;
-    // console.log("App: render: ", "APP AFTER RENDERABLE TEST")
+    // console.log("App: render: ", "APP AFTER isReadytoRenderResources TEST")
 
-    // console.log("App: POST: render: rA.d: ", legacyResourcesArr.data);
-    // console.log("App: POST: render: rA: ", legacyResourcesArr);
-    // console.log("App: POST: iD: ", initialDataJSON)
-    // console.log("App: POST: render: rA: ", this.state.legacyResourcesArr);
-    // console.log("App: POST: render: cRA: ", this.state.currentResourceArr);
-
-    // react-bootstrap-table OPTIONS
+    // //// react-bootstrap-table OPTIONS
     const bstOptions = { 
       afterDeleteRow: this.deleteResource,
       sortIndicator: true
@@ -287,12 +191,10 @@ class App extends React.Component {
     }
     const selectRow = {
        mode: 'radio'
-      //  onSelect: this.handleRowSelect
-    }
+      }
 
     return(
 
-      // <Container-fluid className="layout">
       <div className="container-fluid">
         <Col className="layout #header">
           <Row className="layout">
@@ -311,8 +213,7 @@ class App extends React.Component {
           <Row className="layout">
             <Col className="layout" id="announcements">
               <b>HACKED RESOURCES +PLUS+</b>
-              <br /> Hack your resources {" "}
-              even more than before!
+              <br /> Hack your resources even more than before!
               <br /> &nbsp; <br />
             </Col>
           </Row>
@@ -353,10 +254,8 @@ class App extends React.Component {
 
         </Col>
       </div>
-      // </Container-fluid>
     )
-  };
-  
+  };  
 }
 
 export default App;

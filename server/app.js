@@ -1,6 +1,7 @@
-// require('newrelic');
 require('dotenv').config();
 const path = require('path');
+
+const PORT = process.env.PORT || 3000;
 
 // const bodyParser = require('body-parser');
 
@@ -8,20 +9,17 @@ const express = require('express');
 const app = express();
 const pg = require('../db/query.js');
 
-// // get/ test that running this file
-app.get('/', (req, res) => {
-  res.send("hello")
-});
+// ////  get - tests that this file executes 
+// app.get('/', (req, res) => {
+//   res.send("hello")
+// });
 
-// app.use(express.static(__dirname + '/public'));
 let pathname = path.join(__dirname, '../public/index.html');
 // console.log("app: pathname: ", pathname);
 app.use(express.static(pathname));
 
 const cors = require('cors');
 app.use(cors());
-
-const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -32,24 +30,22 @@ console.log("a.js: ENTERING", new Date());
 
 ////// CRUD
 
-// addResource
+// //// addResource
 app.post('/resources_db/resources/', (req, res) => {
   // let entryTime = new Date();
-  // console.log("a:: aoR: req.url: ", req.url);
-  console.log("a:: aR: ENTERED: req.body: ", req.body);
+  // console.log("a:: aR: ENTERED: req.url: ", req.url);
+  // console.log("a:: aR: ENTERED: req.body: ", req.body);
   pg.addResource(req.body)
   .then((results) => {
     // console.log("a:: aR: r.r.[0]: COMPLETED", results);
-    console.log("a:: aR: r.r.[0]: COMPLETED");
     // console.log("duration to complete call: ", new Date() - entryTime, req.url);
-    // res.sendStatus(201);
     res.sendStatus(201);
   })
   .catch(err => console.log(err));
 });
 
 
-// deleteResource
+// //// deleteResource
 app.delete('/resources_db/resources/:id', (req, res) => {
   // console.log("a: dR: ENTERED: r.body[0]: ", req.body[0]);
   pg.deleteResource(req.body[0])
@@ -60,59 +56,36 @@ app.delete('/resources_db/resources/:id', (req, res) => {
     .catch(err => console.log(err));
 });
 
-
-// getAllResources
+// //// getAllResources
 app.get('/resources_db/resources', (req, res) => {
   // console.log("a:: gARs: ENTERED");
   pg.getAllResources()
   .then((results) => {
     let resultsJSON = JSON.stringify({data: results})
-    // console.log("a:: gARs: r.r.[0]: COMPLETED", resultsJSON[4]);
-    // let resObj = {key: results};
-    // res.send(results);
+    // console.log("a:: gARs: r.rJ[3]: COMPLETED", resultsJSON[3]);
     res.send(resultsJSON);
   })
   .catch(err => console.log("app.js: gARs: err: ", err));
 });
 
-
-// getAllResources_legacy
-// app.get('/resources_db/resources_legacy', (req, res) => {
-//   // console.log("a:: gARsLegacy: ENTERED");
-//   pg.getAllResources()
-//   .then((results) => {
-//     let resultsJSON = JSON.stringify({data: results})
-//     // console.log("a:: gARsLegacy: r.r.[0]: COMPLETED", resultsJSON[4]);
-//     // let resObj = {key: results};
-//     // res.send(results);
-//     res.send(resultsJSON);
-//   })
-//   .catch(err => console.log("app.js: gARsLegacy: err: ", err));
-// });
-
-
-// getResource
+// //// getResource
 app.get('/resources_db/resources/:id', (req, res) => {
-  // let entryTime = new Date();
   console.log("a:: gR: ENTERED: req.id: ", req.params.id);
   // console.log("a:: gOR: ENTERED");
   pg.getResource(req.params.id)
   .then((results) => {
-    console.log("a:: gR: r.r.[0]: COMPLETED", results);
-    // console.log("duration to complete call: ", new Date() - entryTime, req.url);
+    // console.log("a:: gR: rs: COMPLETED", results);
     res.send(results);
   })
   .catch(err => console.log(err));
 });
 
-// getUser
+// //// getUser
 app.get('/resources_db/users/:id', (req, res) => {
-  // let entryTime = new Date();
-  // console.log("a:: gOU: ENTERED");
+  // console.log("a:: gU: ENTERED");
   pg.getUser(req.params.id)
   .then((results) => {
-    // console.log("a:: gOU: r.r.[0]: COMPLETED", results);
-    // console.log("duration to complete call: ", new Date() - entryTime, req.url);
+    // console.log("a:: gU: rs: COMPLETED", results);
     res.send(results);
   })
   .catch(err => console.log(err));
@@ -120,32 +93,27 @@ app.get('/resources_db/users/:id', (req, res) => {
 
 // getTopic
 app.get('/resources_db/topics/:id', (req, res) => {
-  // let entryTime = new Date();
-  // console.log("a:: gOT: ENTERED");
+  // console.log("a:: gT: ENTERED");
   pg.getTopic(req.params.id)
   .then((results) => {
-    // console.log("a:: gOT: r.rs: COMPLETED", results);
-    // console.log("duration to complete call: ", new Date() - entryTime, req.url);
+    // console.log("a:: gT: rs: COMPLETED", results);
     res.send(results);
   })
   .catch(err => console.log(err));
 });
 
 
-// updateResource // put request handler, i.e. register a put with path, will call function
+// //// updateResource // put request handler, i.e. register a put with path, will call function
 app.put('/resources_db/resources/:id', (req, res) => {
-  // let entryTime = new Date();
-  // console.log("a:: uR: ENTERED: req.body: ", req.body);
   // console.log("a:: uR: ENTERED");
+  // console.log("a:: uR: ENTERED: req.body: ", req.body);
   pg.updateResource(req.body)
   .then((results) => {
-    // console.log("a:: uR: r.r.[0]: COMPLETED", results);
-    // console.log("duration to complete call: ", new Date() - entryTime, req.url);
+    // console.log("a:: uR: r.rs: COMPLETED", results);
     res.sendStatus(201);
   })
   .catch(err => console.log(err));
 });
-
 
 // console.log("a:: LEAVING");
 

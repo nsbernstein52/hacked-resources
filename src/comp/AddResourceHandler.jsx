@@ -1,5 +1,3 @@
-// AddResourceHandler.jsx
-
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 // import Row from 'react-bootstrap/Col';
@@ -18,9 +16,9 @@ class AddResourceHandler extends React.Component {
     };
   }
 
-    handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
-    }
+  handleChange = (e) => {
+      this.setState({ [e.target.name]: e.target.value });
+  }
 
     render() {
       return (
