@@ -177,7 +177,7 @@ class App extends React.Component {
       body: JSON.stringify(resourceObj)
     })
       .then(response =>  {
-        console.log("App: response, r.sT: ", response, response.statusText)
+        // console.log("App: response, r.sT: ", response, response.statusText)
         this.setState( {
           resourcesChanged: true
         });
