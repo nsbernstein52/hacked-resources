@@ -26,6 +26,10 @@ CREATE TABLE resources (
 );
 
 /*
+COPY resources (abbrev, contributor, description, level, link, topic) FROM '/Users/nsb52/mvp/hr_data_ver01_20200425b.nsb.csv' DELIMITER ',' CSV HEADER;
+*/
+
+/*
 CREATE TABLE users(
   user_id SERIAL PRIMARY KEY,
   name TEXT,
