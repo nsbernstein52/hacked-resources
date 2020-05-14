@@ -63,11 +63,11 @@ const addResource = (resource) => {
 // deleteResource
 // DELETE FROM table_name WHERE condition; ???
 const deleteResource = (id) => {
-  console.log("q: dR: typeof id", typeof id)
+  // console.log("q: dR: typeof id", typeof id)
   let values = [id]
   return pool.query('DELETE FROM resources WHERE id = $1', values)
     .then(() => {
-      console.log("q: dR: COMPLETE");
+      // console.log("q: dR: COMPLETED: ");
       return true
    })
    .catch(err => {console.error("error from DB", err)})

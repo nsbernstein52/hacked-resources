@@ -198,7 +198,7 @@ class App extends React.Component {
   deleteResource = (id) => {  // why not this.selectedRow QQQ
       // deleteResource = (event, id, callback) => {
       event.preventDefault();
-    console.log("App: dR: ENTER: id: ", id);
+    // console.log("App: dR: ENTER: id, rA.len: ", id, this.state.resourcesArr.length);
     fetch('http://localhost:3000/resources_db/resources/:id', {
       method: 'DELETE',
       headers: {
@@ -207,17 +207,17 @@ class App extends React.Component {
       body: JSON.stringify(id)
     })
     .then(response =>  {
-      console.log("App: response, r.sT: ", response, response.statusText)
+      // console.log("App: response, r.sT: ", response, response.statusText)
       this.setState( {
         resourcesChanged: true
       });
-      console.log("App: dR: EXIT: rA: ", this.resourcesArr[id]);
+      // console.log("App: dR: EXIT: rA.len: ", this.state.resourcesArr.length);
     })
     .catch(err => console.error("App: dR: catch: ", err));
   };
 
-  //// afterSaveCell
-  afterSaveCell = (row, cellName, cellValue) => {
+  //// updateResource
+  updateResource = (row, cellName, cellValue) => {
     const resourceElemObj = {
       id: row.id,
       column: cellName,
@@ -295,8 +295,8 @@ class App extends React.Component {
     const cellEdit = { 
       mode: 'dbclick',
       // beforeSaveCell: this.beforeSaveCell,
-      // afterSaveCell: this.afterSaveCell.bind(this) // scope is render, component instance
-      afterSaveCell: this.afterSaveCell
+      // updateResource: this.updateResource.bind(this) // scope is render, component instance
+      afterSaveCell: this.updateResource
     }
     const selectRow = {
        mode: 'radio'

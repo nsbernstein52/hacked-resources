@@ -51,10 +51,10 @@ app.post('/resources_db/resources/', (req, res) => {
 
 // deleteResource
 app.delete('/resources_db/resources/:id', (req, res) => {
-  console.log("a: dR: ENTERED: r.body[0]: ", req.body[0]);
+  // console.log("a: dR: ENTERED: r.body[0]: ", req.body[0]);
   pg.deleteResource(req.body[0])
     .then(() => {
-      console.log("a: dR: COMPLETED");
+      // console.log("a: dR: COMPLETED");
       res.sendStatus(204); // null-ish
     })
     .catch(err => console.log(err));
