@@ -76,3 +76,21 @@
   /* text-justify: left; */
   text-align: left;
 }
+
+.bst {
+  font-size: x-small;
+}
+
+/* #container-all {
+  padding-left: 20%;
+  padding-right: 2%;
+} */
+
+/* #container-add-resource {
+  padding-left: 20%;
+  padding-right: 2%;
+} */
+
+.add-resource-form {
+  /* padding-left: 2%; */
+}

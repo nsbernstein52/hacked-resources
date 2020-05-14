@@ -194,6 +194,8 @@ class App extends React.Component {
 
     return(
 
+      <Container-fluid className="layout" id="container-all">
+
       <div className="container-fluid">
         <Col className="layout #header">
           <Row className="layout">
@@ -212,8 +214,8 @@ class App extends React.Component {
           <Row className="layout">
             <Col className="layout" id="announcements">
               <b>HACKED RESOURCES +PLUS+</b>
-              <br /> Hack your resources even more than before!
-              <br /> &nbsp; <br />
+              <br /> Find and contribute to Hack Reactor SEI resources
+              {/* <br /> &nbsp; <br /> */}
             </Col>
           </Row>
           <Row>
@@ -224,16 +226,14 @@ class App extends React.Component {
           <Row>
             <Col className="layout" id="edit-cell-note" align="center" >
               <br />
-                {/* <b>To:</b> <br /> */}
-                <b>Sort by column:</b> &nbsp; Click on the column header<br />
-                <b>Edit cell:</b> &nbsp; Double-click in cell (in the case of &quot;link&quot;, click to the right side of the link), change text, press ENTER<br />
+                <b>Sort by column:</b> &nbsp; Click on column header<br />
+                <b>Edit cell:</b> &nbsp; Double-click in ell (for &quot;link&quot;, click to right side of link), change text, press ENTER<br />
                 <b>Delete row:</b> &nbsp; Click on radio button, click on DELETE<br />
-                <b>Filter by column:</b> &nbsp; Enter text in box at bottom of the column<br /> &nbsp;
-                {/* <br /> &nbsp; <br /> */}
+                <b>Filter by column:</b> &nbsp; Enter text (not case sensitive) in box at bottom of column<br /> &nbsp;
               </Col>
           </Row>
 
-          <Row>
+          <Row className="bst">
             <BootstrapTable 
               cellEdit = { cellEdit }
               columnFilter 
@@ -246,19 +246,21 @@ class App extends React.Component {
               striped
               version = '4' 
             > 
-              <TableHeaderColumn isKey dataField='id' dataSort width='5%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; ID</TableHeaderColumn>
+              <TableHeaderColumn isKey dataField='id' dataSort width='5%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; ID</TableHeaderColumn>
               {/* <TableHeaderColumn dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Topic</TableHeaderColumn> */}
-              <TableHeaderColumn dataField='link' dataSort dataFormat={ this.topicFormatter} width='5%' tdStyle={ { whiteSpace: 'normal' }}>Link</TableHeaderColumn>
-              <TableHeaderColumn dataField='topic' dataSort width='15%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Topic</TableHeaderColumn>
-              <TableHeaderColumn dataField='abbrev' dataSort width='9%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Abbrev</TableHeaderColumn>
-              <TableHeaderColumn dataField='level' dataSort width='6%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Level</TableHeaderColumn>
-              <TableHeaderColumn dataField='contributor' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Contributor</TableHeaderColumn>
-              <TableHeaderColumn dataField='description' dataSort width='50%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Description</TableHeaderColumn>
+              <TableHeaderColumn dataField='link' dataFormat={ this.topicFormatter} width='4%' tdStyle={{ whiteSpace: 'normal' }}>Link</TableHeaderColumn>
+              <TableHeaderColumn dataField='topic' dataSort width='15%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Topic</TableHeaderColumn>
+              <TableHeaderColumn dataField='abbrev' dataSort width='6%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Abbrev</TableHeaderColumn>
+              <TableHeaderColumn dataField='level' dataSort width='6%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Level</TableHeaderColumn>
+              <TableHeaderColumn dataField='contributor' dataSort width='10%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Contributor</TableHeaderColumn>
+              <TableHeaderColumn dataField='description' dataSort width='53%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Description</TableHeaderColumn>
             </BootstrapTable>
           </Row>
 
         </Col>
       </div>
+      </Container-fluid>
+
     )
   };  
 }
