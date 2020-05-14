@@ -132,7 +132,7 @@ app.get('/resources_db/topics/:id', (req, res) => {
 });
 
 
-// updateResource
+// updateResource // put request handler, i.e. register a put with path, will call function
 app.put('/resources_db/resources/:id', (req, res) => {
   // let entryTime = new Date();
   console.log("a:: uR: ENTERED: req.body: ", req);

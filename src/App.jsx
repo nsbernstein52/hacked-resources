@@ -188,15 +188,15 @@ class App extends React.Component {
   };
 
   //// handleRowSelect
-  handleRowSelect = (row, isSelected, e) => {
-    this.setState({
-      selectedRow:  row
-    });
-  }
+  // handleRowSelect = (row, isSelected, e) => {
+  //   this.setState({
+  //     selectedRow:  row
+  //   });
+  // }
 
   //// deleteResource
-  deleteResource = (id = parseInt(selectedRow)) => {  // why not this.selectedRow QQQ
-  // deleteResource = (event, id, callback) => {
+  deleteResource = (id) => {  // why not this.selectedRow QQQ
+      // deleteResource = (event, id, callback) => {
       event.preventDefault();
     console.log("App: dR: ENTER: id: ", id);
     fetch('http://localhost:3000/resources_db/resources/:id', {
@@ -214,57 +214,24 @@ class App extends React.Component {
       console.log("App: dR: EXIT: rA: ", this.resourcesArr[id]);
     })
     .catch(err => console.error("App: dR: catch: ", err));
-};
+  };
 
-//// beforeSaveCell
-beforeSaveCell(row, cellName, cellValue) {
-  // if you dont want to save this editing, just return false to cancel it.
-  this.setState({
-    selectedRow:  row,
-    currentCell: cellName,
-    prevCellValue: cellValue
-  });
-}
-
-//// beforeSaveCell
-afterSaveCell(row, cellName, cellValue) {
-  if (prevCellValue === cellValue) return;
-  // if you dont want to save this editing, just return false to cancel it.
-  this.setState({
-    selectedRow:  row,
-    currentCell: cellName,
-    newCellValue: cellValue,
-    resourceElem: {
-      id: row, 
-      col: cellName,
-      value: cellValue
-    },
-    resourcesChanged: true
-  });
-}
-
-//// updateResource
-// updateResource = (event, id, abbrev, contributor, description, level, link, topic, callback) => {
-updateResource = (event, id, col, value, callback) => {
-    // return new Promise( (resolve, reject) => {
-
-    event.preventDefault(); // needed?
-
+  //// afterSaveCell
+  afterSaveCell = (row, cellName, cellValue) => {
     const resourceElemObj = {
-      id: id,
-      col: col,
-      val: value
-    };
-    
-    console.log("App: uR: ENTERED: id, col, val: ", resoucesElemObj.id, resoucesElemObj.col, resoucesElemObj.val);
+      id: row.id,
+      column: cellName,
+      value: cellValue
+    };    
+    console.log("App: uR: ENTERED: id, col, val: ", resourceElemObj.id, resourceElemObj.column, resourceElemObj.value);
     // console.log("App: uR: rO: ", resourceObj);
-    fetch('http://localhost:3000/resources_db/resources/:id', {
+    fetch('http://localhost:3000/resources_db/resources/' + resourceElemObj.id, {
       method: 'PUT',
       headers: {
         Accept: "application/json",
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(resoucesElemObj)
+      body: JSON.stringify(resourceElemObj)
     })
       .then(response =>  {
         // console.log("App: response, r.sT: ", response, response.statusText)
@@ -327,13 +294,14 @@ updateResource = (event, id, col, value, callback) => {
     };
     const cellEdit = { 
       mode: 'dbclick',
-      beforeSaveCell: this.beforeSaveCell,
+      // beforeSaveCell: this.beforeSaveCell,
+      // afterSaveCell: this.afterSaveCell.bind(this) // scope is render, component instance
       afterSaveCell: this.afterSaveCell
     }
     const selectRow = {
-       mode: 'radio',
-       onSelect: this.handleRowSelect
-      }
+       mode: 'radio'
+      //  onSelect: this.handleRowSelect
+    }
 
     return(
 
