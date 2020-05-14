@@ -144,10 +144,11 @@ const getTopic = (id) => {
 
 // updateResource
 // UPDATE table_name SET column = expression WHERE condition;
-const updateResource = (resourceElem) => {
-  console.log("q: uR: ", resourceElem)
-  let values = [resourceElem.id, resourceElem.column, resourceElem.value];
-  return pool.query('UPDATE resources SET ($2) =  ($3) where id = $1', values)
+const updateResource = (row) => {
+  console.log("q: uR: ", row)
+  // let values = [resourceElem.id, resourceElem.column, resourceElem.value];
+  let values = [row.id, row.abbrev, row.contributor, row.description, row.leve, row.link, row.topic];
+  return pool.query("UPDATE resources SET (abbrev, contributor, description, level, link, topic) = ($2, $3, $4, $5, $6, $7) WHERE id = $1", values)
     .then(() => {
       console.log("q: uR: COMPLETE");
       return true

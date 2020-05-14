@@ -47,6 +47,7 @@ class App extends React.Component {
       currentCell: null,
       prevCellValue: null,
       newCellValue: null,
+      oldRowValues: null,
       resourceElem: null
       // currentResourceArr: []
     };
@@ -66,7 +67,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log("App: cDU: t.p: ", prevState, this.state);
+    // console.log("App: cDU: t.p: ", prevState, this.state);
     // if (this.state.resourcesArr.length !== prevState.resourcesArr.length) {
     if (this.state.resourcesChanged ) {
       this.setState( {
@@ -187,16 +188,8 @@ class App extends React.Component {
       .catch(err => console.error("App: aR: catch: ", err));
   };
 
-  //// handleRowSelect
-  // handleRowSelect = (row, isSelected, e) => {
-  //   this.setState({
-  //     selectedRow:  row
-  //   });
-  // }
-
   //// deleteResource
-  deleteResource = (id) => {  // why not this.selectedRow QQQ
-      // deleteResource = (event, id, callback) => {
+  deleteResource = (id) => {
       event.preventDefault();
     // console.log("App: dR: ENTER: id, rA.len: ", id, this.state.resourcesArr.length);
     fetch('http://localhost:3000/resources_db/resources/:id', {
@@ -218,20 +211,14 @@ class App extends React.Component {
 
   //// updateResource
   updateResource = (row, cellName, cellValue) => {
-    const resourceElemObj = {
-      id: row.id,
-      column: cellName,
-      value: cellValue
-    };    
-    console.log("App: uR: ENTERED: id, col, val: ", resourceElemObj.id, resourceElemObj.column, resourceElemObj.value);
-    // console.log("App: uR: rO: ", resourceObj);
-    fetch('http://localhost:3000/resources_db/resources/' + resourceElemObj.id, {
+    // console.log("App: uR: r.id, r,cN,cV: ", row.id, row, cellName, cellValue)
+    fetch('http://localhost:3000/resources_db/resources/' + row.id, {
       method: 'PUT',
       headers: {
         Accept: "application/json",
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(resourceElemObj)
+      body: JSON.stringify(row)
     })
       .then(response =>  {
         // console.log("App: response, r.sT: ", response, response.statusText)
@@ -294,7 +281,7 @@ class App extends React.Component {
     };
     const cellEdit = { 
       mode: 'dbclick',
-      // beforeSaveCell: this.beforeSaveCell,
+      // beforeSaveCell: this.beforeUpdateResource,
       // updateResource: this.updateResource.bind(this) // scope is render, component instance
       afterSaveCell: this.updateResource
     }

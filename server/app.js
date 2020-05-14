@@ -135,11 +135,11 @@ app.get('/resources_db/topics/:id', (req, res) => {
 // updateResource // put request handler, i.e. register a put with path, will call function
 app.put('/resources_db/resources/:id', (req, res) => {
   // let entryTime = new Date();
-  console.log("a:: uR: ENTERED: req.body: ", req);
+  // console.log("a:: uR: ENTERED: req.body: ", req.body);
   // console.log("a:: uR: ENTERED");
   pg.updateResource(req.body)
   .then((results) => {
-    console.log("a:: uR: r.r.[0]: COMPLETED", results);
+    // console.log("a:: uR: r.r.[0]: COMPLETED", results);
     // console.log("duration to complete call: ", new Date() - entryTime, req.url);
     res.sendStatus(201);
   })
