@@ -70,3 +70,9 @@
 .dynamic-rows {
   border-style: solid black;
 }
+
+#edit-cell-note {
+  color: red;
+  /* text-justify: left; */
+  text-align: left;
+}

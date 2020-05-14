@@ -24,7 +24,7 @@ class AddResourceHandler extends React.Component {
       return (
         <form id="addResourceForm">
             <Row>
-                &nbsp;&nbsp; <b>Topic:</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input name="topic" onChange={this.handleChange} placeholder="topic ..." type="text" size="50" />  
+                &nbsp;&nbsp; <b>Topic:</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input name="topic" onChange={this.handleChange} placeholder="topic ..." type="text" size="30" />  
             </Row>
             <Row>
             &nbsp;&nbsp; <b>Link:</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;    <input name="link" onChange={this.handleChange} placeholder="link ..." type="text" size="70" /> 
@@ -33,15 +33,15 @@ class AddResourceHandler extends React.Component {
             &nbsp;&nbsp; <b>Abbreviation:</b> &nbsp;  <input name="abbrev" onChange={this.handleChange} placeholder="abbrev..." type="text" size="10" />                  
             </Row>
             <Row>
-            &nbsp;&nbsp; <b>Level:</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <input name="level" onChange={this.handleChange} placeholder="level ..." type="text" size="5" /> 
+            &nbsp;&nbsp; <b>Level:</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <input name="level" onChange={this.handleChange} placeholder="level ..." type="text" size="10" /> 
             </Row>
             <Row>                 
-            &nbsp;&nbsp; <b>Contributor:</b> &nbsp; &nbsp;  <input name="contributor" onChange={this.handleChange} placeholder="contributor ..." type="text" size="20" /> 
+            &nbsp;&nbsp; <b>Contributor:</b> &nbsp; &nbsp;  <input name="contributor" onChange={this.handleChange} placeholder="contributor ..." type="text" size="30" /> 
             </Row>
             <Row>
             &nbsp;&nbsp; <b>Description:</b> &nbsp; &nbsp;  <input name="description" onChange={this.handleChange} placeholder="description ..." size="70" /> 
             </Row>
-            <button text-color="red" onClick={(e) => this.props.addResource(e, 
+            <button style={{color: "red"}} onClick={(e) => this.props.addResource(e, 
                 this.state.abbrev, 
                 this.state.contributor, 
                 this.state.description,

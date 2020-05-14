@@ -147,9 +147,8 @@ class App extends React.Component {
       .catch(err => console.error("App: uR: catch: ", err));
   };
 
-
   topicFormatter = (cell, row) => {
-    return <a href={row.link} target="_blank" title={row.link}>{cell}</a>
+    return <a href={row.link} target="_blank" title={row.link}>link</a>
   }
 
   isReadytoRenderResources = () => {
@@ -223,32 +222,38 @@ class App extends React.Component {
               </div>
           </Row>
           <Row>
-            <Col className="layout" align="center" >
+            <Col className="layout" id="edit-cell-note" align="center" >
               <br />
-              (<b>NOTE: Double-click to edit cell text</b>)
-              <br /> &nbsp; <br />
-            </Col>
+                {/* <b>To:</b> <br /> */}
+                <b>Sort by column:</b> &nbsp; Click on the column header<br />
+                <b>Edit cell:</b> &nbsp; Double-click in cell (in the case of &quot;link&quot;, click to the right side of the link), change text, press ENTER<br />
+                <b>Delete row:</b> &nbsp; Click on radio button, click on DELETE<br />
+                <b>Filter by column:</b> &nbsp; Enter text in box at bottom of the column<br /> &nbsp;
+                {/* <br /> &nbsp; <br /> */}
+              </Col>
           </Row>
 
           <Row>
             <BootstrapTable 
-              cellEdit={ cellEdit }
+              cellEdit = { cellEdit }
               columnFilter 
               condensed 
-              data={resourcesArr} 
+              data = { resourcesArr } 
               deleteRow
               hover 
               options = { bstOptions }
-              selectRow={ selectRow }
+              selectRow = { selectRow }
               striped
-              version='4' 
+              version = '4' 
             > 
-              <TableHeaderColumn isKey dataField='id' dataSort width='5%' tdStyle={ { whiteSpace: 'normal' }}>ID</TableHeaderColumn>
-              <TableHeaderColumn dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>Topic</TableHeaderColumn>
-              <TableHeaderColumn dataField='abbrev' dataSort width='9%' tdStyle={ { whiteSpace: 'normal' }}>Abbrev</TableHeaderColumn>
-              <TableHeaderColumn dataField='level' dataSort width='6%' tdStyle={ { whiteSpace: 'normal' }}>Level</TableHeaderColumn>
-              <TableHeaderColumn dataField='contributor' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>Contributor</TableHeaderColumn>
-              <TableHeaderColumn dataField='description' dataSort width='55%' tdStyle={ { whiteSpace: 'normal' }}>Description</TableHeaderColumn>
+              <TableHeaderColumn isKey dataField='id' dataSort width='5%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; ID</TableHeaderColumn>
+              {/* <TableHeaderColumn dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Topic</TableHeaderColumn> */}
+              <TableHeaderColumn dataField='link' dataSort dataFormat={ this.topicFormatter} width='5%' tdStyle={ { whiteSpace: 'normal' }}>Link</TableHeaderColumn>
+              <TableHeaderColumn dataField='topic' dataSort width='15%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Topic</TableHeaderColumn>
+              <TableHeaderColumn dataField='abbrev' dataSort width='9%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Abbrev</TableHeaderColumn>
+              <TableHeaderColumn dataField='level' dataSort width='6%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Level</TableHeaderColumn>
+              <TableHeaderColumn dataField='contributor' dataSort width='10%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Contributor</TableHeaderColumn>
+              <TableHeaderColumn dataField='description' dataSort width='50%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Description</TableHeaderColumn>
             </BootstrapTable>
           </Row>
 
