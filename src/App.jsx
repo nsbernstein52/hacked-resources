@@ -226,13 +226,47 @@ class App extends React.Component {
                 <AddResourceHandler addResource={this.addResource}/>
               </div>
           </Row>
+          <br />
+          <Row className="layout, instructions" align="center" >
+            <Col className="instr-caption" md={3}>
+              Sort by column: &nbsp;
+            </Col>
+            <Col className="instr-body" md={9}>
+              Click on column header
+            </Col>
+          </Row>
+          <Row>            
+            <Col className="instr-caption" md={3}>
+              Edit cell: &nbsp; 
+            </Col>
+            <Col className="instr-body" md={9}>
+              Double-click in cell (for &quot;link&quot;, click to right side of link), change text, press ENTER (or ESC to cancel)<br />
+            </Col>
+          </Row>
           <Row>
-            <Col className="layout" id="edit-cell-note" align="center" >
-              <br />
-                <b>Sort by column:</b> &nbsp; Click on column header<br />
-                <b>Edit cell:</b> &nbsp; Double-click in ell (for &quot;link&quot;, click to right side of link), change text, press ENTER<br />
-                <b>Delete row:</b> &nbsp; Click on radio button, click on DELETE<br />
-                <b>Filter by column:</b> &nbsp; Enter text (not case sensitive) in box at bottom of column<br /> &nbsp;
+            <Col className="instr-caption" md={3}>
+              Delete row: &nbsp; 
+            </Col>
+            <Col className="instr-body" md={9}>
+              Click on radio button, click on DELETE<br />
+            </Col>
+          </Row>
+          <Row>            
+            <Col className="instr-caption" md={3}>
+              Filter by column: &nbsp; 
+            </Col>
+            <Col className="instr-body" md={9}>
+              Enter text (not case sensitive) in box at bottom of column<br /> &nbsp;
+            </Col>
+          </Row>
+          <Row>            
+            <Col>
+            </Col>
+            <Col>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
               </Col>
           </Row>
 

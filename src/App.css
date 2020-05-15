@@ -71,10 +71,22 @@
   border-style: solid black;
 }
 
-#edit-cell-note {
-  color: red;
+.instructions {
   /* text-justify: left; */
   text-align: left;
+}
+
+.instr-caption {
+  /* width: 10%; */
+  text-align: left;
+  font-weight: bold;
+  color: red;
+}
+
+.instr-body {
+  /* width: 80%; */
+  text-align: left;
+  color: black;
 }
 
 .bst {
