@@ -259,16 +259,6 @@ class App extends React.Component {
               Enter text (not case sensitive) in box at bottom of column<br /> &nbsp;
             </Col>
           </Row>
-          <Row>            
-            <Col>
-            </Col>
-            <Col>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              </Col>
-          </Row>
 
           <Row className="bst">
             <BootstrapTable 
