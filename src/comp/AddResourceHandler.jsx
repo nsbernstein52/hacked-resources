@@ -2,6 +2,16 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 // import Row from 'react-bootstrap/Col';
 
+import Modal from "react-bootstrap/Modal";
+import ModalDialog from 'react-bootstrap/ModalDialog'
+import ModalHeader from "react-bootstrap/ModalHeader";
+import ModalTitle from "react-bootstrap/ModalTitle";
+import ModalBody from "react-bootstrap/ModalBody";
+import ModalFooter from "react-bootstrap/ModalFooter";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
+
 import '../App.css';
 
 class AddResourceHandler extends React.Component {
@@ -24,17 +34,16 @@ class AddResourceHandler extends React.Component {
 
     render() {
       return (
-        <Container-fluid className="layout" id="container-add-resource">
 
         <form id="addResourceForm" className="add-resource-form">
             <Row>
                 &nbsp; &nbsp; &nbsp; <b>Topic:</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input name="topic" onChange={this.handleChange} placeholder="topic ..." type="text" size="30" />  
             </Row>
             <Row>
-            &nbsp; &nbsp; &nbsp; <b>Link:</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;    <input name="link" onChange={this.handleChange} placeholder="link ..." type="text" size="70" /> 
+            &nbsp; &nbsp; &nbsp; <b>Abbreviation:</b> &nbsp;  <input name="abbrev" onChange={this.handleChange} placeholder="abbrev..." type="text" size="10" />                  
             </Row>
             <Row>
-            &nbsp; &nbsp; &nbsp; <b>Abbreviation:</b> &nbsp;  <input name="abbrev" onChange={this.handleChange} placeholder="abbrev..." type="text" size="10" />                  
+            &nbsp; &nbsp; &nbsp; <b>Link:</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;    <input name="link" onChange={this.handleChange} placeholder="link ..." type="text" size="70" /> 
             </Row>
             <Row>
             &nbsp; &nbsp; &nbsp; <b>Level:</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <input name="level" onChange={this.handleChange} placeholder="level ..." type="text" size="10" /> 
@@ -54,9 +63,7 @@ class AddResourceHandler extends React.Component {
                 this.state.topic
             )}><b>Add A Resource</b></button>
         </form>
-        </Container-fluid>
-
-        )
+      )
     }
 }
 
