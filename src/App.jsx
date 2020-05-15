@@ -213,8 +213,11 @@ class App extends React.Component {
 
           <Row className="layout">
             <Col className="layout" id="announcements">
-              <b>HACKED RESOURCES +PLUS+</b>
-              <br /> Find and contribute to Hack Reactor SEI resources
+              <b>HACKED RESOURCES</b>
+              <br /> 
+              <Row className="subheader">
+                Find and contribute to Hack Reactor's Software Engineering Immersive (SEI) resources
+              </Row>
               {/* <br /> &nbsp; <br /> */}
             </Col>
           </Row>
@@ -248,9 +251,9 @@ class App extends React.Component {
             > 
               <TableHeaderColumn isKey dataField='id' dataSort width='5%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; ID</TableHeaderColumn>
               {/* <TableHeaderColumn dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Topic</TableHeaderColumn> */}
-              <TableHeaderColumn dataField='link' dataFormat={ this.topicFormatter} width='4%' tdStyle={{ whiteSpace: 'normal' }}>Link</TableHeaderColumn>
               <TableHeaderColumn dataField='topic' dataSort width='15%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Topic</TableHeaderColumn>
               <TableHeaderColumn dataField='abbrev' dataSort width='6%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Abbrev</TableHeaderColumn>
+              <TableHeaderColumn dataField='link' dataSort dataFormat={ this.topicFormatter} width='4%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Link</TableHeaderColumn>
               <TableHeaderColumn dataField='level' dataSort width='6%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Level</TableHeaderColumn>
               <TableHeaderColumn dataField='contributor' dataSort width='10%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Contributor</TableHeaderColumn>
               <TableHeaderColumn dataField='description' dataSort width='53%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Description</TableHeaderColumn>

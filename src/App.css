@@ -94,3 +94,8 @@
 .add-resource-form {
   /* padding-left: 2%; */
 }
+
+.subheader {
+  text-align: center;
+  font-size: 0.5em;
+}
