@@ -1,12 +1,17 @@
-const { Pool } = require('pg')
-const pool = new Pool(process.env.DATABASE_URL || {
-  
-  database: 'resources_db',
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  // PG port: 5432
-});
+const { Pool } = require('pg');
+let pool;
+if (!process.env.DATABASE_URL) {
+  pool = new Pool({
+    database: 'resources_db',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+  });
+} else {
+  pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+  });
+}
 
 // console.log("q: process.env.DB_HOST: ", process.env.DB_HOST);
 // console.log("q: process.env.DB_USER: ", process.env.DB_USER);
