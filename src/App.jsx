@@ -9,11 +9,8 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 import AddResourceHandler from './comp/AddResourceHandler';
-// import UpdateResourceHandler from './comp/UpdateResourceHandler';
 
 import './App.css';
-
-// console.log("PATH.BASENAME: :", path.basename('/Users/nsb52/Box Sync/galvanize/mvp/hacked-resources/src/legacyData.data'));
 
 class App extends React.Component {
   constructor(props) {
@@ -23,20 +20,15 @@ class App extends React.Component {
       resourcesArr: [],
       resourcesChanged: false
     };
-
-    // function bindings for non-lifecycle and non-arrow functions
   }
 
-  // ////
+  // componentDidMount
   componentDidMount() {
-    // console.log("App: PRE cDM: t.s.r(s)A: ", this.state.resourcesArr)
     this.loadAllResources();
-    // console.log("App: POST cDM: t.s.r(s)A: ", this.state.resourcesArr)
   }
 
-  // ////
+  // componentDidUpdate
   componentDidUpdate = (prevProps, prevState) => {
-    // console.log("App: cDU: t.p: ", prevState, this.state);
     if (this.state.resourcesChanged ) {
       this.setState( {
         resourcesChanged: false
@@ -45,10 +37,8 @@ class App extends React.Component {
     }
   }
 
-  // //// loadAllResources
+  // loadAllResources
   loadAllResources = () => {
-    // this.event.preventDefault();
-    // console.log("App: lAR: ENTERING "); 
     fetch('http://localhost:3000/resources_db/resources', {
       method: 'GET',
       headers: {
@@ -56,12 +46,8 @@ class App extends React.Component {
       }    })
       .then((results) => {
         return results.json();
-        // console.log("App: lARs: r.r.[N]: COMPLETED", resultsParsed);
-        // console.log("App: lARs: r.r.[N].key: COMPLETED", results.key);       
-        // res.send(results);
       })
       .then(( res ) => {
-        // console.log("App: lARs: .then.then res: ", res)
         this.setState({
           resourcesArr:  res.data
         });
@@ -69,12 +55,11 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  // //// addResource
+  // addResource
   addResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
-    // return new Promise( (resolve, reject) => {
     event.preventDefault(); // needed?
 
-    const resourceObj = { // naming?
+    const resourceObj = { // naming QQQ
       abbrev: abbrev,
       contributor: contributor,
       description: description,
@@ -83,8 +68,6 @@ class App extends React.Component {
       topic: topic
     };
     
-    // console.log("App: aR:ENTERED ");
-    // console.log("App: aR: rO: ", resourceObj);
     fetch('http://localhost:3000/resources_db/resources/', {
       method: 'POST',
       headers: {
@@ -94,20 +77,16 @@ class App extends React.Component {
       body: JSON.stringify(resourceObj)
     })
       .then(response =>  {
-        // console.log("App: response, r.sT: ", response, response.statusText)
         this.setState( {
           resourcesChanged: true
         });
-        // return response.statusText()
       })
-      // .then(data => callback(data))
       .catch(err => console.error("App: aR: catch: ", err));
   };
 
-  // //// deleteResource
+  // deleteResource
   deleteResource = (id) => {
       event.preventDefault();
-    // console.log("App: dR: ENTER: id, rA.len: ", id, this.state.resourcesArr.length);
     fetch('http://localhost:3000/resources_db/resources/:id', {
       method: 'DELETE',
       headers: {
@@ -116,18 +95,15 @@ class App extends React.Component {
       body: JSON.stringify(id)
     })
     .then(response =>  {
-      // console.log("App: response, r.sT: ", response, response.statusText)
       this.setState( {
         resourcesChanged: true
       });
-      // console.log("App: dR: EXIT: rA.len: ", this.state.resourcesArr.length);
     })
     .catch(err => console.error("App: dR: catch: ", err));
   };
 
-  // //// updateResource
+  // updateResource
   updateResource = (row, cellName, cellValue) => {
-    // console.log("App: uR: r.id, r,cN,cV: ", row.id, row, cellName, cellValue)
     fetch('http://localhost:3000/resources_db/resources/' + row.id, {
       method: 'PUT',
       headers: {
@@ -137,13 +113,10 @@ class App extends React.Component {
       body: JSON.stringify(row)
     })
       .then(response =>  {
-        // console.log("App: response, r.sT: ", response, response.statusText)
         this.setState( {
           resourcesChanged: true
         });
-        // return response.statusText()
       })
-      // .then(data => callback(data))
       .catch(err => console.error("App: uR: catch: ", err));
   };
 
@@ -158,34 +131,19 @@ class App extends React.Component {
     );
   }
 
-  // renderCaret = (direction, fieldName) => {
-  //   if (direction === 'asc') return 'up';
-  //   if (direction === 'desc') return 'down';
-  //   return 'up/down';
-  // }
-  // dataSort caretRender={ this.renderCaret() }
-
   render() {
-
-    // console.log("App: render: ", "ENTERING APP RENDER")
 
     const { resourcesArr, resourcesChanged } = this.state;
 
-    // console.log("App: PRE: render: rA: ", resourcesArr);
-    // console.log("App: PRE: render: rC: ", resourcesChanged);
-
     if (!this.isReadytoRenderResources()) return null;
-    // console.log("App: render: ", "APP AFTER isReadytoRenderResources TEST")
 
-    // //// react-bootstrap-table OPTIONS
+    // react-bootstrap-table OPTIONS
     const bstOptions = { 
       afterDeleteRow: this.deleteResource,
       sortIndicator: true
     };
     const cellEdit = { 
       mode: 'dbclick',
-      // beforeSaveCell: this.beforeUpdateResource,
-      // updateResource: this.updateResource.bind(this) // scope is render, component instance
       afterSaveCell: this.updateResource
     }
     const selectRow = {
@@ -199,26 +157,12 @@ class App extends React.Component {
       <div className="container-fluid">
         <Col className="layout #header">
           <Row className="layout">
-            {/* <Col className="layout bold" sm={2}> */}
-            {/* <Col className="layout bold">
-              <img
-                // src={require("./logo.svg")}
-                // src={require("./public/favicon.ico")}
-                alt="logo: HACK-mask"
-                id="logo"
-              />{" "}
-              Hacked Resources
-            </Col> */}
-          </Row>
-
-          <Row className="layout">
             <Col className="layout" id="announcements">
               <b>HACKED RESOURCES</b>
               <br /> 
               <Row className="subheader">
                 Find and contribute to Hack Reactor's Software Engineering Immersive (SEI) resources
               </Row>
-              {/* <br /> &nbsp; <br /> */}
             </Col>
           </Row>
           <Row>
@@ -259,7 +203,6 @@ class App extends React.Component {
               Enter text (not case sensitive) in box at bottom of column<br /> &nbsp;
             </Col>
           </Row>
-
           <Row className="bst">
             <BootstrapTable 
               cellEdit = { cellEdit }
@@ -274,7 +217,6 @@ class App extends React.Component {
               version = '4' 
             > 
               <TableHeaderColumn isKey dataField='id' dataSort width='6%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; ID</TableHeaderColumn>
-              {/* <TableHeaderColumn dataField='topic' dataSort dataFormat={ this.topicFormatter} width='15%' tdStyle={ { whiteSpace: 'normal' }}>&#x2195; Topic</TableHeaderColumn> */}
               <TableHeaderColumn dataField='topic' dataSort width='15%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Topic</TableHeaderColumn>
               <TableHeaderColumn dataField='abbrev' dataSort width='8%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Abbrev</TableHeaderColumn>
               <TableHeaderColumn dataField='link' dataSort dataFormat={ this.topicFormatter} width='6%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Link</TableHeaderColumn>
