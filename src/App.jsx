@@ -28,7 +28,7 @@ class App extends React.Component {
   }
 
   // componentDidUpdate
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidUpdate(prevProps, prevState) {
     if (this.state.resourcesChanged ) {
       this.setState( {
         resourcesChanged: false
