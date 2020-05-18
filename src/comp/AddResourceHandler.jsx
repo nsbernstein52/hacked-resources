@@ -1,17 +1,5 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
-// import Row from 'react-bootstrap/Col';
-
-import Modal from "react-bootstrap/Modal";
-import ModalDialog from 'react-bootstrap/ModalDialog'
-import ModalHeader from "react-bootstrap/ModalHeader";
-import ModalTitle from "react-bootstrap/ModalTitle";
-import ModalBody from "react-bootstrap/ModalBody";
-import ModalFooter from "react-bootstrap/ModalFooter";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-
-
 import '../App.css';
 
 class AddResourceHandler extends React.Component {
@@ -34,7 +22,6 @@ class AddResourceHandler extends React.Component {
 
     render() {
       return (
-
         <form id="addResourceForm" className="add-resource-form">
             <Row>
                 &nbsp; &nbsp; &nbsp; <b>Topic:</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input name="topic" onChange={this.handleChange} placeholder="topic ..." type="text" size="30" />  
