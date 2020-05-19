@@ -34,3 +34,24 @@ describe ('routes', () => {
     });
   });
 });
+
+// respond with arrays, object, and other data with appropriate properties
+describe ('resource elements DISINCT', () => {
+  // get QQQ
+  describe('resources_db/resources/', () => {
+    it('should return an object of an array object of objects', (done) => {
+      return(supertest(expressApp)
+        // .get('resources_db/resources/')
+        .get('/') // {data: [ { id: 1 ... } ] }
+        .end((err, response) => {
+          if (err) { return done(err); }
+          let body = response.body;
+          console.log("body: ", body);
+          // .expect(true, true);
+          // assert.equal(Array.isArray(items), true);
+          // done();
+          return(true);
+        }));
+    });
+  });
+});
