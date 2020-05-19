@@ -4,7 +4,6 @@ const express = require('express');
 const cors = require('cors');
 const pg = require('../db/query.js');
 
-const PORT = process.env.PORT || 3000;
 const app = express();
 const pathname = path.join(__dirname, '../public/index.html');
 
@@ -13,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/../public/index.html'));
+  res.sendFile(pathname);
 });
 
 app.get('/dist/bundle.js', (req, res) => {
@@ -87,6 +86,4 @@ app.put('/resources_db/resources/:id', (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.listen(PORT, () => {
-  console.log(`Web server running on: http://localhost:${PORT}, at`, new Date().toLocaleTimeString());
-});
+module.exports = app;
