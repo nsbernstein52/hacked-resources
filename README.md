@@ -5,6 +5,7 @@ Find and contribute to Hack Reactor's Software Engineering Immersive (SEI) resou
 # Deployment on Heroku
 localhost:3000
 [Heroku: HACKED RESOURCES](https://tranquil-mesa-77742.herokuapp.com/)
+For PG DB url:
 ```sh
 heroku run printenv
 ```
