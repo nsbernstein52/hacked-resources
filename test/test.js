@@ -5,7 +5,7 @@ const expressApp = require('../server/app.js');
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-describe ('API route to root', () => {
+describe ('SERVER API: route to root', () => {
   describe('root:  status, type', () => {
     it('should respond with: 200, "html" ', async () => {
       const response = await chai.request(expressApp).get('/');
@@ -16,7 +16,7 @@ describe ('API route to root', () => {
 });
 
 // resource_db elements
-describe ('API resoures_db elements', () => {
+describe ('SERVER/DB:API: resoures_db', () => {
   // getAllResources
   describe('resources_db/resources/: status, type, body type, data type, level', () => {
     it('should respond with:  200, json, "object", "array", "All" ', async () => {
