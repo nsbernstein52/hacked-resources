@@ -43,8 +43,9 @@ app.delete('/resources_db/resources/:id', (req, res) => {
 app.get('/resources_db/resources', (req, res) => {
   pg.getAllResources()
     .then((results) => {
-      const resultsJSON = JSON.stringify({ data: results });
-      res.send(resultsJSON);
+      // const resultsJSON = JSON.stringify({ data: results });
+      // res.send(resultsJSON);
+      res.send({ data: results });
     })
     .catch((err) => console.log('app.js: gARs: err: ', err));
 });
