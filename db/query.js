@@ -36,10 +36,13 @@ pool.connect((err, client, done) => {
 
 // addResource
 const addResource = (resource) => {
+  console.log('q: aR: ENTERED');
   const values = [resource.abbrev, resource.contributor, resource.description, resource.level,
     resource.link, resource.topic];
   return pool.query('INSERT INTO resources (abbrev, contributor, description, level, link, topic) VALUES ($1, $2, $3, $4, $5, $6)', values)
     .then((res) => {
+      console.log('q: gARs r.r[3]:', res.rows[3]);
+      console.log('q: aR: COMPLETED');
       return res.rows;
     })
     .catch((err) => { console.error('error from DB', err) });
@@ -47,9 +50,11 @@ const addResource = (resource) => {
 
 // deleteResource
 const deleteResource = (id) => {
+  console.log('q: dR: id ENTERED', id);
   const values = [id];
   return pool.query('DELETE FROM resources WHERE id = $1', values)
     .then(() => {
+      console.log('q: dR: COMPLETED: ');
       return true;
     })
     .catch((err) => { console.error('error from DB', err); });
@@ -57,8 +62,10 @@ const deleteResource = (id) => {
 
 // getAllResources
 const getAllResources = () => {
+  console.log('q: gARs: ENTERED');
   return pool.query('SELECT * FROM resources')
     .then((res) => {
+      console.log('q: gARs r.r[3]:', res.rows[3]);
       return res.rows;
     })
     .catch((err) => { console.error('error from DB', err); });
@@ -66,9 +73,11 @@ const getAllResources = () => {
 
 // getResource
 const getResource = (id) => {
+  console.log('q: gR: id ENTERED', id);
   const values = [id];
   return pool.query('SELECT * FROM resources where id = $1', values)
     .then((res) => {
+      console.log('q: gR r.r[0]:', res.rows[0]);
       return res.rows;
     });
 };

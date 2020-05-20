@@ -23,8 +23,13 @@ app.get('/dist/bundle.js', (req, res) => {
 
 // addResource
 app.post('/resources_db/resources/', (req, res) => {
+  console.log('a:: aR: ENTERED: req.url: ', req.url);
+  console.log('a:: aR: ENTERED: req.body: ', req.body);
+
   pg.addResource(req.body)
     .then((results) => {
+      console.log('a:: aR: r.r.[0]: COMPLETED', results);
+
       res.sendStatus(201);
     })
     .catch((err) => console.log(err)); // eslint: unexpected console statement
@@ -32,8 +37,12 @@ app.post('/resources_db/resources/', (req, res) => {
 
 // deleteResource
 app.delete('/resources_db/resources/:id', (req, res) => {
+  console.log('a: dR: ENTERED: r.body[0]: ', req.body[0]);
+
   pg.deleteResource(req.body[0])
     .then(() => {
+      console.log('a: dR: COMPLETED');
+
       res.sendStatus(204); // null-ish
     })
     .catch((err) => console.log(err));
@@ -41,10 +50,14 @@ app.delete('/resources_db/resources/:id', (req, res) => {
 
 // getAllResources
 app.get('/resources_db/resources', (req, res) => {
+  console.log('a:: gARs: ENTERED');
+
   pg.getAllResources()
     .then((results) => {
       // const resultsJSON = JSON.stringify({ data: results });
       // res.send(resultsJSON);
+      console.log('a:: gARs: r.rs[3]: COMPLETED', results[3]);
+
       res.send({ data: results });
     })
     .catch((err) => console.log('app.js: gARs: err: ', err));
@@ -52,27 +65,12 @@ app.get('/resources_db/resources', (req, res) => {
 
 // getResource
 app.get('/resources_db/resources/:id', (req, res) => {
+  console.log('a:: gR: ENTERED: req.id: ', req.params.id);
+  console.log('a:: gR: ENTERED');
+
   pg.getResource(req.params.id)
     .then((results) => {
-      // console.log('a:: gR: rs: COMPLETED', results);
-      res.send(results);
-    })
-    .catch((err) => console.log(err));
-});
-
-// getUser
-app.get('/resources_db/users/:id', (req, res) => {
-  pg.getUser(req.params.id)
-    .then((results) => {
-      res.send(results);
-    })
-    .catch((err) => console.log(err));
-});
-
-// getTopic
-app.get('/resources_db/topics/:id', (req, res) => {
-  pg.getTopic(req.params.id)
-    .then((results) => {
+      console.log('a:: gR: rs: COMPLETED', results);
       res.send(results);
     })
     .catch((err) => console.log(err));
@@ -80,8 +78,13 @@ app.get('/resources_db/topics/:id', (req, res) => {
 
 // updateResource
 app.put('/resources_db/resources/:id', (req, res) => {
+  console.log('a:: uR: ENTERED');
+  console.log('a:: uR: ENTERED: req.body: ', req.body);
+
   pg.updateResource(req.body)
     .then((results) => {
+      console.log('a:: uR: r.rs: COMPLETED', results);
+
       res.sendStatus(201);
     })
     .catch((err) => console.log(err));
