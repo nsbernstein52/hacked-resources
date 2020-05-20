@@ -1,57 +1,40 @@
-// npm i chai -D
-// npm i supertest -D
-
 const chai = require('chai');
-const supertest = require('supertest');
+const chaiHttp = require('chai-http');
 const expressApp = require('../server/app.js');
 
-describe ('routes', () => {
-  // get root endpoint
-  describe('root', () => {
-    it('should respond with: "text/html; charset=UTF-8"', () => {
-      return(supertest(expressApp).get('/')
-        .expect(200)
-        .expect('Content-Type', 'text/html; charset=UTF-8')
-      );
-    });
-  });
-  // getAllResources endpoint
-  describe('resources_db/resources', () => {
-    it('should respond with: "text/html; charset=utf-8"', () => {
-      return(supertest(expressApp).get('/resources_db/resources/')
-        .expect(200)
-        .expect('Content-Type', 'text/html; charset=utf-8')
-      );
-    });
-  });
-  // getResource endpoint
-  describe('resources_db/resources/', () => {
-    it('should respond with: "object"', () => {
-      return(supertest(expressApp).get('/resources_db/resources/')
-        .expect(200)
-        .expect('Content-Type', 'text/html; charset=utf-8')
-      );
+chai.use(chaiHttp);
+const expect = chai.expect;
+
+describe ('API route to root', () => {
+  describe('root:  status, type', () => {
+    it('should respond with: 200, "html" ', async () => {
+      const response = await chai.request(expressApp).get('/');
+      expect(response).to.have.status(200);
+      expect(response).to.be.html;
     });
   });
 });
 
-// respond with arrays, object, and other data with appropriate properties
-describe ('resource elements DISINCT', () => {
-  // get QQQ
-  describe('resources_db/resources/', () => {
-    it('should return an object of an array object of objects', (done) => {
-      return(supertest(expressApp)
-        // .get('resources_db/resources/')
-        .get('/') // {data: [ { id: 1 ... } ] }
-        .end((err, response) => {
-          if (err) { return done(err); }
-          let body = response.body;
-          console.log("body: ", body);
-          // .expect(true, true);
-          // assert.equal(Array.isArray(items), true);
-          // done();
-          return(true);
-        }));
+// resource_db elements
+describe ('API resoures_db elements', () => {
+  // getAllResources
+  describe('resources_db/resources/: status, type, body type, data type, level', () => {
+    it('should respond with:  200, json, "object", "array", "All" ', async () => {
+      const response = await chai.request(expressApp).get('/resources_db/resources/');
+      expect(response).to.have.status(200);
+      expect(response).to.be.json;
+      expect(response.body).to.be.an('object');
+      expect(response.body.data).to.be.an('array');
+      expect(response.body.data[0].level).to.equal('All');
+    });
+  });
+  // getResource
+  describe('resources_db/resources/1:  status, body type, topic', () => {
+    it('should respond with:  200, "array", "accessiblity" ', async () => {
+      const response = await chai.request(expressApp).get('/resources_db/resources/1');
+      expect(response).to.have.status(200);
+      expect(response.body).to.be.an('array');
+      expect(response.body[0].topic).to.equal('accessibility');
     });
   });
 });
