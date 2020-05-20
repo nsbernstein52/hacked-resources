@@ -14,6 +14,7 @@ heroku run printenv
 [HACKED RESOURCES](https://github.com/nsbernstein52/hacked-resources)
 
 # To run locally
+const pathname = path.join(__dirname, '../public/index.html');
 (<root>/hacked-resources/public/index.html)
 
 # testing:
