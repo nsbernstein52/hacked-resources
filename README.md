@@ -2,7 +2,7 @@
 Find and contribute to Hack Reactor's Software Engineering Immersive (SEI) resources
 
 ## Deployment on Heroku
-- [Heroku: HACKED RESOURCES](https://tranquil-mesa-77742.herokuapp.com/)
+[Heroku: HACKED RESOURCES](https://tranquil-mesa-77742.herokuapp.com/)
 
 ## Source on github
 [HACKED RESOURCES](https://github.com/nsbernstein52/hacked-resources)
@@ -16,7 +16,8 @@ npm install
 npm run webpack-dev
 npm run nodemon
 ```
-- To open in a browser, enter [url](localhost:3000) 
+- To open in a browser, enter 
+[url](http://localhost:3000) 
 
 ## Testing:
 ```sh

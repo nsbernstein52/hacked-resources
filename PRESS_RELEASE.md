@@ -14,10 +14,10 @@ This app, is stable, and easy and quick to use, for both finding resources and f
 
 "When I was a student, I asked about a listing of useful resources for full stack programming. The Team Mentor compiled such a list. I asked about making the listing more structured, robust, and extendible. In the manner of the squeeky wheel, I volunteered to be the can of oil. *- Neil Bernstein BLD08*
 
-"With initial release, HACKED RESOURCES is more accessible, and easier and quicker to use. I look forward to future enhancements." *- Student, BLD09*
+"Already with initial release, HACKED RESOURCES is more accessible, and easier and quicker to use. I look forward to future enhancements." *- Student, BLD09*
 
 ## Access HACKED RESOURCES on Heroku:
-- [Heroku: HACKED RESOURCES](https://tranquil-mesa-77742.herokuapp.com/)
+[Heroku: HACKED RESOURCES](https://tranquil-mesa-77742.herokuapp.com/)
 
 ## Contribute to HACKED RESOURCES by forking and cloning the repo:
 [HACKED RESOURCES](https://github.com/nsbernstein52/hacked-resources)
