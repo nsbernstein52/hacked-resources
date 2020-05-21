@@ -1,8 +1,8 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import "react-bootstrap/Container";
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'react-bootstrap/Container';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
@@ -67,7 +67,7 @@ class App extends React.Component {
     fetch('http://localhost:3000/resources_db/resources/', {
       method: 'POST',
       headers: {
-        Accept: "application/json",
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(resourceObj)
@@ -77,7 +77,7 @@ class App extends React.Component {
           resourcesChanged: true
         });
       })
-      .catch(err => console.error("App: aR: catch: ", err));
+      .catch(err => console.error('App: aR: catch: ', err));
   };
 
   deleteResource = (rowKeys) => {
@@ -96,14 +96,14 @@ class App extends React.Component {
         resourcesChanged: true
       });
     })
-    .catch(err => console.error("App: dR: catch: ", err));
+    .catch(err => console.error('App: dR: catch: ', err));
   };
 
   updateResource = (row, cellName, cellValue) => {
     fetch('http://localhost:3000/resources_db/resources/' + row.id, {
       method: 'PUT',
       headers: {
-        Accept: "application/json",
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(row)
@@ -113,11 +113,11 @@ class App extends React.Component {
           resourcesChanged: true
         });
       })
-      .catch(err => console.error("App: uR: catch: ", err));
+      .catch(err => console.error('App: uR: catch: ', err));
   };
 
   topicFormatter = (cell, row) => {
-    return <a href={row.link} target="_blank" title={row.link}>link</a>
+    return <a href={row.link} target='_blank' title={row.link}>link</a>
   }
 
   isReadytoRenderResources = () => {
@@ -147,57 +147,57 @@ class App extends React.Component {
       }
 
     return(
-      <Container-fluid className="layout" id="container-all">
-      <div className="container-fluid">
-        <Col className="layout #header">
-          <Row className="layout">
-            <Col className="layout" id="announcements">
+      <Container-fluid className='layout' id='container-all'>
+      <div className='container-fluid'>
+        <Col className='layout #header'>
+          <Row className='layout'>
+            <Col className='layout' id='announcements'>
               <b>HACKED RESOURCES</b>
               <br /> 
-              <Row className="subheader">
+              <Row className='subheader'>
                 Find and contribute to Hack Reactor's Software Engineering Immersive (SEI) resources
               </Row>
             </Col>
           </Row>
           <Row>
-              <div id="update-resource">
+              <div id='update-resource'>
                 <AddResourceHandler addResource={this.addResource}/>
               </div>
           </Row>
           <br />
-          <Row className="layout, instructions" align="center" >
-            <Col className="instr-caption" md={3}>
+          <Row className='layout, instructions' align='center' >
+            <Col className='instr-caption' md={3}>
               Sort by column: &nbsp;
             </Col>
-            <Col className="instr-body" md={9}>
+            <Col className='instr-body' md={9}>
               Click on column header
             </Col>
           </Row>
           <Row>            
-            <Col className="instr-caption" md={3}>
+            <Col className='instr-caption' md={3}>
               Edit cell: &nbsp; 
             </Col>
-            <Col className="instr-body" md={9}>
+            <Col className='instr-body' md={9}>
               Double-click in cell (for &quot;link&quot;, click to right side of link), change text, press ENTER (or ESC to cancel)<br />
             </Col>
           </Row>
           <Row>
-            <Col className="instr-caption" md={3}>
+            <Col className='instr-caption' md={3}>
               Delete row: &nbsp; 
             </Col>
-            <Col className="instr-body" md={9}>
+            <Col className='instr-body' md={9}>
               Click on radio button, click on DELETE<br />
             </Col>
           </Row>
           <Row>            
-            <Col className="instr-caption" md={3}>
+            <Col className='instr-caption' md={3}>
               Filter by column: &nbsp; 
             </Col>
-            <Col className="instr-body" md={9}>
+            <Col className='instr-body' md={9}>
               Enter text (not case sensitive) in box at bottom of column<br /> &nbsp;
             </Col>
           </Row>
-          <Row className="bst">
+          <Row className='bst'>
             <BootstrapTable 
               cellEdit = { cellEdit }
               columnFilter 
