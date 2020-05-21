@@ -1,7 +1,7 @@
 {
   "name": "hacked-resources",
   "version": "1.0.0",
-  "description": "",
+  "description": "Find and contribute to Hack Reactor's Software Engineering Immersive (SEI) resources",
   "main": "./src/App.jsx",
   "scripts": {
     "start": "node ./server/start.js",
@@ -15,14 +15,13 @@
     "type": "git",
     "url": "git+https://github.com/nsbernstein52/hacked-resources.git"
   },
-  "author": "",
+  "author": "Neil Bernstein",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nsbernstein52/hacked-resources/issues"
   },
   "homepage": "https://github.com/nsbernstein52/hacked-resources#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
     "brew": "0.0.8",
     "cors": "^2.8.5",
@@ -54,7 +53,6 @@
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
-    "eslint-plugin-mocha": "^7.0.0",
     "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
@@ -62,11 +60,11 @@
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-mocha": "^7.0.0",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "file-loader": "^6.0.0",
     "json-loader": "^0.5.7",
-    "supertest": "^4.0.2",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
