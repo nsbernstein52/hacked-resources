@@ -25,16 +25,19 @@ describe ('SERVER/DB:API: resoures_db', () => {
       expect(response).to.be.json;
       expect(response.body).to.be.an('object');
       expect(response.body.data).to.be.an('array');
-      expect(response.body.data[0].level).to.equal('All');
+      expect(response.body.data[19]).to.be.an('object');
+      expect(response.body.data[19].topic).to.equal('bundler');
     });
   });
   // getResource
-  describe('resources_db/resources/1:  status, body type, topic', () => {
-    it('should respond with:  200, "array", "accessiblity" ', async () => {
-      const response = await chai.request(expressApp).get('/resources_db/resources/1');
+  describe('resources_db/resources/17:  status, body type, topic', () => {
+    it('should respond with:  200, "array", "object", "string", "auth" ', async () => {
+      const response = await chai.request(expressApp).get('/resources_db/resources/17');
       expect(response).to.have.status(200);
       expect(response.body).to.be.an('array');
-      expect(response.body[0].topic).to.equal('accessibility');
+      expect(response.body[0]).to.be.an('object');
+      expect(response.body[0].abbrev).to.be.an('string');
+      expect(response.body[0].abbrev).to.equal('auth');
     });
   });
 });
