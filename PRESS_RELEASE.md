@@ -10,7 +10,7 @@
 - It is difficult, time consuming, and frustrating for each student to search for and find useful full stack resources.
 
 ## Solution
-This app, is stable, and easy and quick to use, for both finding resources and for contributing resources. 
+This app is easy and quick to use, for both finding resources and for contributing resources. 
 
 "When I was a student, I asked about a listing of useful resources for full stack programming. The Team Mentor compiled such a list. I asked about making the listing more structured, robust, and extendible. In the manner of the squeeky wheel, I volunteered to be the can of oil. *- Neil Bernstein BLD08*
 
