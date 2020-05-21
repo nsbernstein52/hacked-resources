@@ -84,7 +84,7 @@ const getResource = (id) => {
 
 // updateResource
 const updateResource = (row) => {
-  const values = [row.id, row.abbrev, row.contributor, row.description, row.leve, row.link,
+  const values = [row.id, row.abbrev, row.contributor, row.description, row.level, row.link,
     row.topic];
   return pool.query('UPDATE resources SET (abbrev, contributor, description, level, link, topic) = ($2, $3, $4, $5, $6, $7) WHERE id = $1', values)
     .then(() => {
