@@ -30,7 +30,7 @@ describe ('SERVER/DB:API: resoures_db', () => {
     });
   });
   // getResource
-  describe('resources_db/resources/17:  status, body type, topic', () => {
+  describe('resources_db/resources/17:  status, body type, body[0] type, abbrev', () => {
     it('should respond with:  200, "array", "object", "string", "auth" ', async () => {
       const response = await chai.request(expressApp).get('/resources_db/resources/17');
       expect(response).to.have.status(200);
