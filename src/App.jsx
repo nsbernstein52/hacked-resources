@@ -1,4 +1,3 @@
-console.log("FINDABLE");
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -29,9 +28,7 @@ class App extends React.Component {
 
   // componentDidUpdate
   componentDidUpdate(prevProps, prevState) {
-    console.log("App: cDU: ENTER: p,s, t.s, t.s.rA.len: ", prevState, this.state, this.state.resourcesArr.length);
     if (this.state.resourcesChanged ) {
-      console.log("App: cDU: EXIT: p.s, t.p, t.s.rA.len: ", prevState, this.state, this.state.resourcesArr.length);
       this.setState( {
     resourcesChanged: false
       });
@@ -59,8 +56,7 @@ class App extends React.Component {
 
   // addResource
   addResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
-    console.log("App: aR: ENTER, t.s.rA.len", this.state.resourcesArr.length);
-    event.preventDefault(); // needed?
+    event.preventDefault();
 
     const resourceObj = { // naming QQQ
       abbrev: abbrev,
@@ -80,7 +76,6 @@ class App extends React.Component {
       body: JSON.stringify(resourceObj)
     })
       .then(response =>  {
-    console.log("App: aR: rO: t.s.rA.len: ", resourceObj, this.state.resourcesArr.length);
     this.setState( {
           resourcesChanged: true
         });
@@ -89,10 +84,7 @@ class App extends React.Component {
   };
 
   // deleteResource
-  // deleteResource = (id) => {
   deleteResource = (rowKeys) => {
-    // console.log("App: dR: ENTER: id, t.s.rA.len: ", id, this.state.resourcesArr.length);
-    console.log("App: dR: ENTER: id, t.s.rA.len: ", rowKeys[0], this.state.resourcesArr.length);
     this.setState( {
       resourcesArr: this.state.resourcesArr.filter( (elem) => { return elem.id !== rowKeys[0] } )
     });
@@ -104,18 +96,15 @@ class App extends React.Component {
       },
     })
     .then(response =>  {
-      console.log("App: dR: MID: t.s.rA.len: ", this.state.resourcesArr.length);
       this.setState( {
         resourcesChanged: true
       });
-      console.log("App: dR: EXIT: t.s.rA.len: ", this.state.resourcesArr.length);
     })
     .catch(err => console.error("App: dR: catch: ", err));
   };
 
   // updateResource
   updateResource = (row, cellName, cellValue) => {
-    console.log("App: uR: ENTER: r.id, r,cN,cV: ", row.id, row, cellName, cellValue)
     fetch('http://localhost:3000/resources_db/resources/' + row.id, {
       method: 'PUT',
       headers: {

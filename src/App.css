@@ -1,63 +1,7 @@
-.App {
-  text-align: center;
-}
-
-.logo {
-  height: 60vmin;
-  pointer-events: none;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* .layout {
-  border: 1px solid;
-  border-color: black;
-} */
-
-.btn-outline-primary {
-  /* color: #00b0ff; */
-  border-radius: 0 !important;
-}
-
 #announcements {
   color: red;
   font-size: 2em;
-  /* background-color: #00b0ff; */
-}
-
-.bold {
-  font-weight: bold;
-}
-
-#logo {
-  width: 2em;
-}
-
-#announcements {
   text-align: center;
-}
-
-#resources-table {
-  border: solid 1px black
-}
-
-.topic_col {
-  width: 100;
-}
-
-.dynamic-rows {
-  border-style: solid black;
 }
 
 .instructions {
@@ -81,16 +25,6 @@
 .bst {
   font-size: x-small;
 }
-
-/* #container-all {
-  padding-left: 20%;
-  padding-right: 2%;
-} */
-
-/* #container-add-resource {
-  padding-left: 20%;
-  padding-right: 2%;
-} */
 
 .add-resource-form {
   /* padding-left: 2%; */
