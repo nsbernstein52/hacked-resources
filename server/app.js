@@ -29,12 +29,14 @@ app.post('/resources_db/resources/', (req, res) => {
     .catch((err) => console.log(err));
 });
 
-pg.deleteResource(req.params.id)
-.then(() => {
-    app.delete('/resources_db/resources/:id', (req, res) => {
-      res.sendStatus(204);
-    })
+app.delete('/resources_db/resources/:id', (req, res) => {
+  pg.deleteResource(req.params.id)
+    .then(() => {
+      app.delete('/resources_db/resources/:id', (req, res) => {
+        res.sendStatus(204);
+      })
     .catch((err) => console.log(err));
+    });
 });
 
 app.get('/resources_db/resources', (req, res) => {
