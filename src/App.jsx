@@ -1,7 +1,6 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Table from "react-bootstrap/Table";
 import "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
