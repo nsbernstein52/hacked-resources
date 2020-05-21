@@ -89,15 +89,19 @@ class App extends React.Component {
   };
 
   // deleteResource
+  // deleteResource = (id) => {
   deleteResource = (rowKeys) => {
+    // console.log("App: dR: ENTER: id, t.s.rA.len: ", id, this.state.resourcesArr.length);
     console.log("App: dR: ENTER: id, t.s.rA.len: ", rowKeys[0], this.state.resourcesArr.length);
+    this.setState( {
+      resourcesArr: this.state.resourcesArr.filter( (elem) => { return elem.id !== rowKeys[0] } )
+    });
     event.preventDefault();
-    fetch('http://localhost:3000/resources_db/resources/:id', {
+    fetch('http://localhost:3000/resources_db/resources/' + rowKeys[0], {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(rowKeys[id])
     })
     .then(response =>  {
       console.log("App: dR: MID: t.s.rA.len: ", this.state.resourcesArr.length);
