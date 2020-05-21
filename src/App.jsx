@@ -35,7 +35,6 @@ class App extends React.Component {
     }
   }
 
-  // loadAllResources
   loadAllResources = () => {
     fetch('http://localhost:3000/resources_db/resources', {
       method: 'GET',
@@ -53,10 +52,10 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  // addResource
+  // CRUD
+
   addResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
     event.preventDefault();
-
     const resourceObj = { // naming QQQ
       abbrev: abbrev,
       contributor: contributor,
@@ -64,8 +63,7 @@ class App extends React.Component {
       level: level,
       link: link,
       topic: topic
-    };
-    
+    };   
     fetch('http://localhost:3000/resources_db/resources/', {
       method: 'POST',
       headers: {
@@ -82,7 +80,6 @@ class App extends React.Component {
       .catch(err => console.error("App: aR: catch: ", err));
   };
 
-  // deleteResource
   deleteResource = (rowKeys) => {
     this.setState( {
       resourcesArr: this.state.resourcesArr.filter( (elem) => { return elem.id !== rowKeys[0] } )
@@ -102,7 +99,6 @@ class App extends React.Component {
     .catch(err => console.error("App: dR: catch: ", err));
   };
 
-  // updateResource
   updateResource = (row, cellName, cellValue) => {
     fetch('http://localhost:3000/resources_db/resources/' + row.id, {
       method: 'PUT',
@@ -138,7 +134,7 @@ class App extends React.Component {
     if (!this.isReadytoRenderResources()) return null;
 
     // react-bootstrap-table OPTIONS
-    const bstOptions = { 
+    const rbtOptions = { 
       afterDeleteRow: this.deleteResource,
       sortIndicator: true
     };
@@ -151,9 +147,7 @@ class App extends React.Component {
       }
 
     return(
-
       <Container-fluid className="layout" id="container-all">
-
       <div className="container-fluid">
         <Col className="layout #header">
           <Row className="layout">
@@ -211,7 +205,7 @@ class App extends React.Component {
               data = { resourcesArr } 
               deleteRow
               hover 
-              options = { bstOptions }
+              options = { rbtOptions }
               selectRow = { selectRow }
               striped
               version = '4' 

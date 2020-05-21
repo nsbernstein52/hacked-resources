@@ -21,7 +21,6 @@ app.get('/dist/bundle.js', (req, res) => {
 
 // CRUD
 
-// addResource
 app.post('/resources_db/resources/', (req, res) => {
   pg.addResource(req.body)
     .then((results) => {
@@ -30,16 +29,14 @@ app.post('/resources_db/resources/', (req, res) => {
     .catch((err) => console.log(err));
 });
 
-// deleteResource
-app.delete('/resources_db/resources/:id', (req, res) => {
-  pg.deleteResource(req.params.id)
-    .then(() => {
+pg.deleteResource(req.params.id)
+.then(() => {
+    app.delete('/resources_db/resources/:id', (req, res) => {
       res.sendStatus(204);
     })
     .catch((err) => console.log(err));
 });
 
-// getAllResources
 app.get('/resources_db/resources', (req, res) => {
   pg.getAllResources()
     .then((results) => {
@@ -48,7 +45,6 @@ app.get('/resources_db/resources', (req, res) => {
     .catch((err) => console.log('app.js: gARs: err: ', err));
 });
 
-// getResource
 app.get('/resources_db/resources/:id', (req, res) => {
   pg.getResource(req.params.id)
     .then((results) => {
@@ -57,7 +53,6 @@ app.get('/resources_db/resources/:id', (req, res) => {
     .catch((err) => console.log(err));
 });
 
-// updateResource
 app.put('/resources_db/resources/:id', (req, res) => {
   pg.updateResource(req.body)
     .then((results) => {

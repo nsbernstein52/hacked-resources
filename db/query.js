@@ -15,7 +15,7 @@ if (!process.env.DATABASE_URL) {
 }
 
 // TEST POOL:  the pool will emit an error on behalf of any idle clients
-// it contains if a backend error or network partition happens
+//   if it contains if a backend error or network partition happens
 pool.on('error', (err, client) => {
   console.error('Unexpected error on idle client', err);
   process.exit(-1);
@@ -34,7 +34,6 @@ pool.connect((err, client, done) => {
 
 // CRUD
 
-// addResource
 const addResource = (resource) => {
   const values = [resource.abbrev, resource.contributor, resource.description, resource.level,
     resource.link, resource.topic];
@@ -45,7 +44,6 @@ const addResource = (resource) => {
     .catch((err) => { console.error('error from DB', err) });
 };
 
-// deleteResource
 const deleteResource = (id) => {
   const values = [id];
   return pool.query('DELETE FROM resources WHERE id = $1', values)
@@ -55,7 +53,6 @@ const deleteResource = (id) => {
     .catch((err) => { console.error('error from DB', err); });
 };
 
-// getAllResources
 const getAllResources = () => {
   return pool.query('SELECT * FROM resources')
     .then((res) => {
@@ -64,7 +61,6 @@ const getAllResources = () => {
     .catch((err) => { console.error('error from DB', err); });
 };
 
-// getResource
 const getResource = (id) => {
   const values = [id];
   return pool.query('SELECT * FROM resources where id = $1', values)
@@ -73,7 +69,6 @@ const getResource = (id) => {
     });
 };
 
-// updateResource
 const updateResource = (row) => {
   const values = [row.id, row.abbrev, row.contributor, row.description, row.level, row.link,
     row.topic];
