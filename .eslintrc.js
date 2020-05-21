@@ -6,6 +6,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'plugin:mocha/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -20,6 +21,7 @@ module.exports = {
   },
   plugins: [
     'react',
+    'mocha',
   ],
   rules: {
   },
