@@ -35,7 +35,7 @@ app.delete('/resources_db/resources/:id', (req, res) => {
       app.delete('/resources_db/resources/:id', (req, res) => {
         res.sendStatus(204);
       })
-    .catch((err) => console.log(err));
+        .catch((err) => console.log(err));
     });
 });
 

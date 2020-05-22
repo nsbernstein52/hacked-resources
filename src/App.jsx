@@ -13,7 +13,6 @@ import './App.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       resourcesArr: [],
       resourcesChanged: false
@@ -40,7 +39,8 @@ class App extends React.Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
-      }    })
+      }
+    })
       .then((results) => {
         return results.json();
       })
@@ -128,7 +128,6 @@ class App extends React.Component {
   }
 
   render() {
-
     const { resourcesArr, resourcesChanged } = this.state;
 
     if (!this.isReadytoRenderResources()) return null;
