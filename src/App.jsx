@@ -10,6 +10,18 @@ import AddResourceHandler from './comp/AddResourceHandler';
 
 import './App.css';
 
+const path = require('path');
+
+// const localAddress = 'http://localhost:3000';
+// const deployedAddress = 'https://tranquil-mesa-77742.herokuapp.com';
+
+// const host = isLocal ? localAddress : deployedAddress;
+// const pathname = path.join(__dirname, '../public/index.html');
+
+console.log(__dirname);
+const pathname = path.join(__dirname, '../public/index.html');
+console.log(pathname);
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -36,6 +48,7 @@ class App extends React.Component {
 
   loadAllResources = () => {
     fetch('http://localhost:3000/resources_db/resources', {
+    // fetch(`${host}/resources_db/resources`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
