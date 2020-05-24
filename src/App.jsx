@@ -10,18 +10,6 @@ import AddResourceHandler from './comp/AddResourceHandler';
 
 import './App.css';
 
-const path = require('path');
-
-// const localAddress = 'http://localhost:3000';
-// const deployedAddress = 'https://tranquil-mesa-77742.herokuapp.com';
-
-// const host = isLocal ? localAddress : deployedAddress;
-// const pathname = path.join(__dirname, '../public/index.html');
-
-console.log(__dirname);
-const pathname = path.join(__dirname, '../public/index.html');
-console.log(pathname);
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -45,7 +33,7 @@ class App extends React.Component {
   }
 
   loadAllResources = () => {
-    fetch('http://localhost:3000/resources_db/resources', {
+    fetch('/resources_db/resources', {
     // fetch(`${host}/resources_db/resources`, {
       method: 'GET',
       headers: {
@@ -74,9 +62,10 @@ class App extends React.Component {
       level: level,
       link: link,
       topic: topic
-    };   
-    fetch('http://localhost:3000/resources_db/resources/', {
-      method: 'POST',
+    };
+
+    fetch('/resources_db/resources/', {
+        method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
@@ -96,7 +85,7 @@ class App extends React.Component {
       resourcesArr: this.state.resourcesArr.filter( (elem) => { return elem.id !== rowKeys[0] } )
     });
     event.preventDefault();
-    fetch('http://localhost:3000/resources_db/resources/' + rowKeys[0], {
+    fetch('/resources_db/resources/' + rowKeys[0], {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -111,7 +100,7 @@ class App extends React.Component {
   };
 
   updateResource = (row, cellName, cellValue) => {
-    fetch('http://localhost:3000/resources_db/resources/' + row.id, {
+    fetch('/resources_db/resources/' + row.id, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
@@ -179,7 +168,7 @@ class App extends React.Component {
               </div>
           </Row>
           <br />
-          <Row>
+          <Row className='instructions'>
             <Col className='instr-caption' md={2}>
               Sort by column:
             </Col>
