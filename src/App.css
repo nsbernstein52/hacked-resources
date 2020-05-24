@@ -1,5 +1,5 @@
 #announcements {
-  color: red;
+  color: darkred;
   font-size: 2em;
   text-align: center;
 }
@@ -7,17 +7,21 @@
 .instructions {
   /* text-justify: left; */
   text-align: left;
+  padding-left: 0px;
+  margin-left: 0px;
 }
 
 .instr-caption {
   /* width: 10%; */
+  font-size: 0.7em;
   text-align: left;
   font-weight: bold;
-  color: red;
+  color: darkred;
 }
 
 .instr-body {
   /* width: 80%; */
+  font-size: 0.7em;
   text-align: left;
   color: black;
 }
@@ -33,4 +37,24 @@
 .subheader {
   text-align: center;
   font-size: 0.5em;
+}
+
+.ttl {
+  font-size: 0.7em;
+  font-weight: bold;
+  color: darkred;
+}
+
+.inputVal {
+  font-size: 0.7em;
+  width: auto;
+  max-width: 100%;
+}
+
+.btn{
+  color: white;
+  background-color: darkred;
+  font-size: 0.8em;
+  font-weight: bold;
+  border: none;
 }
