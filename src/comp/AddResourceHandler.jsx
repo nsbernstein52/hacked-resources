@@ -21,6 +21,7 @@ class AddResourceHandler extends React.Component {
   }
 
   handleChange = (e) => {
+    console.log({ [e.target.name]: e.target.value });
       this.setState({ [e.target.name]: e.target.value });
   }
 
@@ -28,32 +29,47 @@ class AddResourceHandler extends React.Component {
       return (
         <Container-fluid>
           <Form>
-            {/* <Form.Group as={Row} controlId='formHorizontalEmail'> */}
             <Form.Group as={Row} controlId='topic'>
-              <Form.Label column md={3} className='ttl'>
+              <Form.Label column md={2} className='form-caption'>
                 Topic
               </Form.Label>
-              <Col md={9} className='inputVal'>
-                <Form.Control size='sm' type='text' placeholder='topic' />
+              <Col md={10} className='inputVal'>
+                <Form.Control
+                  name='topic'
+                  className='form-val'
+                  size='sm'
+                  type='text'
+                  placeholder='topic' 
+                  onChange={this.handleChange}
+                />
               </Col>
             </Form.Group>
 
             {/* <Form.Group as={Row} controlId='formHorizontalPassword'> */}
             <Form.Group as={Row} controlId='abbrev'>
-              <Form.Label column sm={3} className='ttl'>
+              <Form.Label column sm={2} className='form-caption'>
                 Abbreviation
               </Form.Label>
-              <Col sm={9}>
-                <Form.Control className='input-val' size='sm' type='text' placeholder='abbreviation' />
+              <Col sm={10}>
+                <Form.Control
+                  name='abbrev'
+                  className='form-val'
+                  size='sm'
+                  type='text'
+                  placeholder='abbreviation' 
+                  onChange={this.handleChange}
+                />
               </Col>
             </Form.Group>
 
             <Form.Group as={Row} controlId='link'>
-              <Form.Label column sm={3} className='ttl'>
+              <Form.Label column sm={2} className='form-caption'>
                 Link
               </Form.Label>
-              <Col sm={9}>
+              <Col sm={10}>
                 <Form.Control
+                  name='link'
+                  className='form-val'
                   size='sm'
                   type='text'
                   placeholder='link'
@@ -63,11 +79,13 @@ class AddResourceHandler extends React.Component {
             </Form.Group>
 
             <Form.Group as={Row} controlId='level'>
-              <Form.Label column sm={3} className='ttl'>
+              <Form.Label column sm={2} className='form-caption'>
                 Level
               </Form.Label>
-              <Col sm={9}>
+              <Col sm={10}>
                 <Form.Control
+                  name='level'
+                  className='form-val'
                   size='sm'
                   type='text'
                   placeholder='level'
@@ -77,11 +95,13 @@ class AddResourceHandler extends React.Component {
             </Form.Group>
 
             <Form.Group as={Row} controlId='contributor'>
-              <Form.Label column sm={3} className='ttl'>
+              <Form.Label column sm={2} className='form-caption'>
                 Contributor
               </Form.Label>
-              <Col sm={9}>
+              <Col sm={10}>
                 <Form.Control
+                  name='contributor'
+                  className='form-val'
                   size='sm'
                   type='text'
                   placeholder='contributor'
@@ -91,11 +111,13 @@ class AddResourceHandler extends React.Component {
             </Form.Group>
 
             <Form.Group as={Row} controlId='description'>
-              <Form.Label column sm={3} className='ttl'>
+              <Form.Label column sm={2} className='form-caption'>
                 Description
               </Form.Label>
-              <Col sm={9}>
+              <Col sm={10}>
                 <Form.Control
+                  name='description'
+                  className='form-val'
                   as="textarea" rows="3" 
                   size='sm'
                   type='text'
