@@ -4,16 +4,14 @@
   text-align: center;
 }
 
-.instructions {
-  /* text-justify: left; */
-  text-align: left;
-  padding-left: 0px;
-  margin-left: 0px;
+#update-resource {
+  width: 100%;
 }
 
 .instr-caption {
   /* width: 10%; */
-  font-size: 0.7em;
+  padding-left: 0px;
+  font-size: 0.85em;
   text-align: left;
   font-weight: bold;
   color: darkred;
@@ -21,7 +19,7 @@
 
 .instr-body {
   /* width: 80%; */
-  font-size: 0.7em;
+  font-size: 0.85em;
   text-align: left;
   color: black;
 }
@@ -39,22 +37,21 @@
   font-size: 0.5em;
 }
 
-.ttl {
-  font-size: 0.7em;
+.form-caption {
+  font-size: 1em;
   font-weight: bold;
   color: darkred;
 }
 
-.inputVal {
-  font-size: 0.7em;
-  width: auto;
-  max-width: 100%;
+.form-val {
+  font-size: 1em;
+  width: 100%;
 }
 
 .btn{
   color: white;
   background-color: darkred;
-  font-size: 0.8em;
+  font-size: 0.85em;
   font-weight: bold;
   border: none;
 }
