@@ -29,7 +29,7 @@ class AddResource extends React.Component {
       return (
         // <Container-fluid className='add-resource-container'>
           <Form className='add-form'>
-            <Form.Group as={Row} controlId='topic' className='fg'>
+            <Form.Group as={Row} controlId='topic'>
               <Form.Label column md={2} className='form-caption'>
                 Topic
               </Form.Label>
@@ -45,7 +45,7 @@ class AddResource extends React.Component {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId='abbrev' className='fg'>
+            <Form.Group as={Row} controlId='abbrev'>
               <Form.Label column sm={2} className='form-caption'>
                 Abbreviation
               </Form.Label>
@@ -61,7 +61,7 @@ class AddResource extends React.Component {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId='link' className='fg'>
+            <Form.Group as={Row} controlId='link'>
               <Form.Label column sm={2} className='form-caption'>
                 Link
               </Form.Label>
@@ -77,7 +77,7 @@ class AddResource extends React.Component {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId='level' className='fg'>
+            <Form.Group as={Row} controlId='level'>
               <Form.Label column sm={2} className='form-caption'>
                 Level
               </Form.Label>
@@ -93,7 +93,7 @@ class AddResource extends React.Component {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId='contributor' className='fg'>
+            <Form.Group as={Row} controlId='contributor'>
               <Form.Label column sm={2} className='form-caption'>
                 Contributor
               </Form.Label>
@@ -109,7 +109,7 @@ class AddResource extends React.Component {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId='description' className='fg'>
+            <Form.Group as={Row} controlId='description'>
               <Form.Label column sm={2} className='form-caption'>
                 Description
               </Form.Label>
