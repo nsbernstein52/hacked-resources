@@ -41,7 +41,7 @@ const addResource = (resource) => {
     .then((res) => {
       return res.rows;
     })
-    .catch((err) => { console.error('error from DB', err) });
+    .catch((err) => { console.error('error from DB', err); });
 };
 
 const deleteResource = (id) => {
