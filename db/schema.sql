@@ -15,4 +15,6 @@ CREATE TABLE resources (
 
 /*
 COPY resources (abbrev, contributor, description, level, link, topic) FROM '/Users/nsb52/mvp/hr_data.20200514.a.csv' DELIMITER ',' CSV HEADER;
+\COPY resources (abbrev, contributor, description, level, link, topic) FROM '/Users/nsb52/mvp/hr_data.20200514.a.csv' DELIMITER ',' CSV HEADER;
+ALTER SEQUENCE resources_id_seq RESTART 1; 
 */
