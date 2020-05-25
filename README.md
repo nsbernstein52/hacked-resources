@@ -33,6 +33,7 @@ git checkout -b herokutemp
 npm run webpack-build
 git add -f ./dist/bundle.js
 git commit . -m "HerokuBuild"
+git push -f heroku herokutemp:master
 git push heroku herokutemp:master
 git checkout master
 git branch -D herokutemp
