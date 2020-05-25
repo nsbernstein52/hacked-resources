@@ -103,7 +103,7 @@ class AddResource extends React.Component {
                   className='form-val'
                   size='sm'
                   type='text'
-                  placeholder='first_name last_name, affiliation'
+                  placeholder='name, affiliation (e.g., BLD08)'
                   onChange={this.handleChange}
                 />
               </Col>
