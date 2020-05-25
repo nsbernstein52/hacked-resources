@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-console.log("wc: ", path.resolve(__dirname, 'dist'))
+console.log('wc: ', path.resolve(__dirname, 'dist'));
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
@@ -18,30 +18,25 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-react', '@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-class-properties']
-          }
-        }
+            plugins: ['@babel/plugin-proposal-class-properties'],
+          },
+        },
       },
       {
         test: /\.(scss|css)$/,
-        loader: ['style-loader', 'css-loader']
+        loader: ['style-loader', 'css-loader'],
       },
       {
         test: /\.data$/,
         loader: 'file-loader',
-        type: 'javascript/auto'
-      }
+        type: 'javascript/auto',
+      },
     ],
   },
   node: {
-    fs: 'empty'
+    fs: 'empty',
   },
   resolve: {
-    extensions: ['.js', '.jsx']
-  }
+    extensions: ['.js', '.jsx'],
+  },
 };
-
-
-
-
-
