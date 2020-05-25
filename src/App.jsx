@@ -34,7 +34,6 @@ class App extends React.Component {
 
   loadAllResources = () => {
     fetch('/resources_db/resources', {
-    // fetch(`${host}/resources_db/resources`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -232,7 +231,6 @@ class App extends React.Component {
             </Row>
         </div>
       </Container-fluid>
-
     )
   };  
 }
