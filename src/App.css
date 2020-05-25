@@ -1,15 +1,16 @@
-#announcements {
+.page-header {
+  padding-bottom: 15px;
   color: darkred;
   font-size: 2em;
   text-align: center;
 }
 
-#update-resource {
-  width: 100%;
+.subheader {
+  text-align: center;
+  font-size: 0.5em;
 }
 
 .instr-caption {
-  /* width: 10%; */
   padding-left: 0px;
   font-size: 0.85em;
   text-align: left;
@@ -18,40 +19,24 @@
 }
 
 .instr-body {
-  /* width: 80%; */
   font-size: 0.85em;
   text-align: left;
   color: black;
 }
 
-.bst {
+.bootstrap-table-row {
+  padding-top: 15px;
+  padding-bottom: 90px;  
   font-size: x-small;
 }
 
-.add-resource-form {
-  /* padding-left: 2%; */
-}
-
-.subheader {
-  text-align: center;
-  font-size: 0.5em;
-}
-
-.form-caption {
-  font-size: 1em;
-  font-weight: bold;
-  color: darkred;
-}
-
-.form-val {
-  font-size: 1em;
+.add-resource-row {
+  margin-left: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
   width: 100%;
 }
 
-.btn{
-  color: white;
-  background-color: darkred;
-  font-size: 0.85em;
-  font-weight: bold;
-  border: none;
+.add-resource-call {
+  width: 100%;
 }
