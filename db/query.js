@@ -24,10 +24,10 @@ pool.on('error', (err, client) => {
 // TEST CLIENT:  callback - checkout a client
 pool.connect((err, client, done) => {
   if (err) throw err;
-  client.query('SELECT * FROM resources WHERE id = $1', [1], (err, res) => {
+  client.query('SELECT * FROM resources WHERE id = $1', [1], (err2, res) => {
     done();
-    if (err) {
-      console.log('q: p.c: err: ', err.stack);
+    if (err2) {
+      console.log('q: p.c: err: ', err2.stack);
     }
   });
 });
