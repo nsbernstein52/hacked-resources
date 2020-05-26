@@ -79,23 +79,43 @@ class App extends React.Component {
       .catch(err => console.error('App: aR: catch: ', err));
   };
 
+  // deleteResource = (rowKeys) => {
+  //   this.setState( {
+  //     resourcesArr: this.state.resourcesArr.filter( (elem) => { return elem.id !== rowKeys[0] } )
+  //   });
+  //   event.preventDefault();
+  //   fetch('/resources_db/resources/' + rowKeys[0], {
+  //     method: 'DELETE',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //   })
+  //   .then(response =>  {
+  //     this.setState( {
+  //       resourcesChanged: true
+  //     });
+  //   })
+  //   .catch(err => console.error('App: dR: catch: ', err));
+  // };
+
   deleteResource = (rowKeys) => {
     this.setState( {
       resourcesArr: this.state.resourcesArr.filter( (elem) => { return elem.id !== rowKeys[0] } )
+    }, () => {
+      event.preventDefault();
+      fetch('/resources_db/resources/' + rowKeys[0], {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+      .then(response =>  {
+        this.setState( {
+          resourcesChanged: true
+        });
+      })
+      .catch(err => console.error('App: dR: catch: ', err));  
     });
-    event.preventDefault();
-    fetch('/resources_db/resources/' + rowKeys[0], {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
-    .then(response =>  {
-      this.setState( {
-        resourcesChanged: true
-      });
-    })
-    .catch(err => console.error('App: dR: catch: ', err));
   };
 
   updateResource = (row, cellName, cellValue) => {
