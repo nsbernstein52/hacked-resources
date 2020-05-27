@@ -1,30 +1,8 @@
-All licenses in this repository are copyrighted by their respective authors.
+Copyright © 2004-2013 by Internet Systems Consortium, Inc. (“ISC”)
+Copyright © 1995-2003 by Internet Software Consortium
 
-Everything else is released under CC0.
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 
-------------------------------------------------------------------------------
+THE SOFTWARE IS PROVIDED “AS IS” AND ISC DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL ISC BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-No Copyright
-
-The person who associated a work with this deed has dedicated the work to the
-public domain by waiving all of his or her rights to the work worldwide under
-copyright law, including all related and neighboring rights,
-to the extent allowed by law.
-
-You can copy, modify, distribute and perform the work, even for commercial
-purposes, all without asking permission. See Other Information below.
-
-Other Information:
-
-    * In no way are the patent or trademark rights of any person affected
-    by CC0, nor are the rights that other persons may have in the work or in
-    how the work is used, such as publicity or privacy rights.
-
-    * Unless expressly stated otherwise, the person who associated a work with
-    this deed makes no warranties about the work, and disclaims liability for
-    all uses of the work, to the fullest extent permitted by applicable law.
-
-    * When using or citing the work, you should not imply endorsement
-    by the author or the affirmer.
-
-[creativecommons](http://creativecommons.org/publicdomain/zero/1.0/legalcode)
+[Internet Software Consortium](http://isc.org/licenses/)
