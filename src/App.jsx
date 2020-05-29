@@ -157,7 +157,7 @@ class App extends React.Component {
       sortIndicator: true
     };
     const cellEdit = { 
-      mode: 'dbclick',
+      mode: 'click',
       afterSaveCell: this.updateResource
     }
     const selectRow = {
