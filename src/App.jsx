@@ -190,7 +190,7 @@ class App extends React.Component {
                 Edit cell: 
               </Col>
               <Col className='instr-body' md={10}>
-                Double-click in cell (for &quot;link&quot;, click to right side of link), change text, press ENTER (or ESC to cancel)
+                Click in cell (for &quot;link&quot;, click to right side of link), change text, press ENTER (or ESC to cancel)
               </Col>
             </Row>
             <Row>
