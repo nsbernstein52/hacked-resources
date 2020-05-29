@@ -14,20 +14,17 @@ if (!process.env.DATABASE_URL) {
   });
 }
 
-// TEST POOL:  the pool will emit an error on behalf of any idle clients
-//   if it contains if a backend error or network partition happens
 pool.on('error', (err, client) => {
-  console.error('Unexpected error on idle client', err);
+  console.error('Unexpected postgres pool error on idle client', err); // eslint-disable-line
   process.exit(-1);
 });
 
-// TEST CLIENT:  callback - checkout a client
-pool.connect((err, client, done) => {
-  if (err) throw err;
-  client.query('SELECT * FROM resources WHERE id = $1', [1], (err2, res) => {
+pool.connect((connectionErr, client, done) => {
+  if (connectionErr) throw connectionErr;
+  client.query('SELECT * FROM resources WHERE id = $1', [1], (queryErr, res) => {
     done();
-    if (err2) {
-      console.log('q: p.c: err: ', err2.stack);
+    if (queryErr) {
+      console.error('Failed to get resources from postgres pool: ', queryErr); // eslint-disable-line
     }
   });
 });
@@ -41,7 +38,7 @@ const addResource = (resource) => {
     .then((res) => {
       return res.rows;
     })
-    .catch((err) => { console.error('error from DB', err); });
+    .catch((err) => { console.error('error from DB', err); }); // eslint-disable-line
 };
 
 const deleteResource = (id) => {
@@ -58,7 +55,7 @@ const getAllResources = () => {
     .then((res) => {
       return res.rows;
     })
-    .catch((err) => { console.error('error from DB', err); });
+    .catch((err) => { console.error('error from DB', err); }); // eslint-disable-line
 };
 
 const getResource = (id) => {
