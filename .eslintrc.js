@@ -4,9 +4,9 @@ module.exports = {
     es6: true,
   },
   extends: [
-    'plugin:react/recommended',
     'airbnb',
     'plugin:mocha/recommended',
+    'plugin:react/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -20,17 +20,17 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'react',
-    'mocha',
     'chai-friendly',
+    'mocha',
+    'react',
   ],
   rules: {
-    'no-unused-expressions': 0,
+    'arrow-body-style': 0,
     'chai-friendly/no-unused-expressions': 2,
     'max-len': 1,
     'mocha/no-mocha-arrows': 0,
     'no-console': 1,
-    'arrow-body-style': 0,
+    'no-unused-expressions': 0,
     'no-unused-vars': 0,
   }
 };
