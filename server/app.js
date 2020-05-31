@@ -11,54 +11,54 @@ app.use(express.static(pathname));
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.sendFile(pathname);
+app.get('/', (request, response) => {
+  response.sendFile(pathname);
 });
 
-app.get('/dist/bundle.js', (req, res) => {
-  res.sendFile(path.join(__dirname, '/../dist/bundle.js'));
+app.get('/dist/bundle.js', (request, response) => {
+  response.sendFile(path.join(__dirname, '/../dist/bundle.js'));
 });
 
 // CRUD
 
-app.post('/resources_db/resources/', (req, res) => {
-  pg.addResource(req.body)
+app.post('/resources_db/resources/', (request, response) => {
+  pg.addResource(request.body)
     .then((results) => {
-      res.sendStatus(201);
+      response.sendStatus(201);
     })
-    .catch((err) => console.log(err));
+    .catch((error) => console.error(error));
 });
 
-app.delete('/resources_db/resources/:id', (req, res) => {
-  pg.deleteResource(req.params.id)
+app.delete('/resources_db/resources/:id', (request, response) => {
+  pg.deleteResource(request.params.id)
     .then(() => {
-      res.sendStatus(204);
+      response.sendStatus(204);
     })
-    .catch((err) => console.log(err));
+    .catch((error) => console.error(error));
 });
 
-app.get('/resources_db/resources', (req, res) => {
+app.get('/resources_db/resources', (request, response) => {
   pg.getAllResources()
     .then((results) => {
-      res.send({ data: results });
+      response.send({ data: results });
     })
-    .catch((err) => console.log('app.js: gARs: err: ', err));
+    .catch((error) => console.log('app.js: gARs: error: ', error));
 });
 
-app.get('/resources_db/resources/:id', (req, res) => {
-  pg.getResource(req.params.id)
+app.get('/resources_db/resources/:id', (request, response) => {
+  pg.getResource(request.params.id)
     .then((results) => {
-      res.send(results);
+      response.send(results);
     })
-    .catch((err) => console.log(err));
+    .catch((error) => console.error(error));
 });
 
-app.put('/resources_db/resources/:id', (req, res) => {
-  pg.updateResource(req.body)
+app.put('/resources_db/resources/:id', (request, response) => {
+  pg.updateResource(request.body)
     .then((results) => {
-      res.sendStatus(201);
+      response.sendStatus(201);
     })
-    .catch((err) => console.log(err));
+    .catch((error) => console.error(error));
 });
 
 module.exports = app;

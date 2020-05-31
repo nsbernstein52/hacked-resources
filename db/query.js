@@ -14,14 +14,14 @@ if (!process.env.DATABASE_URL) {
   });
 }
 
-pool.on('error', (err, client) => {
-  console.error('Unexpected postgres pool error on idle client', err); // eslint-disable-line
+pool.on('error', (poolError, client) => {
+  console.error('Unexpected postgres pool error on idle client', poolError); // eslint-disable-line
   process.exit(-1);
 });
 
 pool.connect((connectionErr, client, done) => {
   if (connectionErr) throw connectionErr;
-  client.query('SELECT * FROM resources WHERE id = $1', [1], (queryErr, res) => {
+  client.query('SELECT * FROM resources WHERE id = $1', [1], (queryErr, response) => {
     done();
     if (queryErr) {
       console.error('Failed to get resources from postgres pool: ', queryErr); // eslint-disable-line
@@ -35,10 +35,10 @@ const addResource = (resource) => {
   const values = [resource.abbrev, resource.contributor, resource.description, resource.level,
     resource.link, resource.topic];
   return pool.query('INSERT INTO resources (abbrev, contributor, description, level, link, topic) VALUES ($1, $2, $3, $4, $5, $6)', values)
-    .then((res) => {
-      return res.rows;
+    .then((resource) => {
+      return resource.rows;
     })
-    .catch((err) => { console.error('error from DB', err); }); // eslint-disable-line
+    .catch((error) => { console.error('error from DB', error); }); // eslint-disable-line
 };
 
 const deleteResource = (id) => {
@@ -47,22 +47,22 @@ const deleteResource = (id) => {
     .then(() => {
       return true;
     })
-    .catch((err) => { console.error('error from DB', err); });
+    .catch((error) => { console.error('error from DB', error); });
 };
 
 const getAllResources = () => {
   return pool.query('SELECT * FROM resources')
-    .then((res) => {
-      return res.rows;
+    .then((resources) => {
+      return resources.rows;
     })
-    .catch((err) => { console.error('error from DB', err); }); // eslint-disable-line
+    .catch((error) => { console.error('error from DB', error); }); // eslint-disable-line
 };
 
 const getResource = (id) => {
   const values = [id];
   return pool.query('SELECT * FROM resources where id = $1', values)
-    .then((res) => {
-      return res.rows;
+    .then((resource) => {
+      return resource.rows;
     });
 };
 
@@ -73,7 +73,7 @@ const updateResource = (row) => {
     .then(() => {
       return true;
     })
-    .catch((err) => { console.error('error from DB', err); });
+    .catch((error) => { console.error('error from DB', error); }); // eslint-disable-line
 };
 
 module.exports = {

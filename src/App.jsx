@@ -32,22 +32,22 @@ class App extends React.Component {
     }
   }
 
-  loadAllResources = () => {
+  loadAllResources = () => { // eslint-disable-line
     fetch('/resources_db/resources', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       }
     })
-      .then((results) => {
-        return results.json();
+      .then((resources) => {
+        return resources.json();
       })
-      .then(( res ) => {
+      .then((resourcesJSON) => {
         this.setState({
-          resourcesArr:  res.data
+          resourcesArr:  resourcesJSON.data
         });
       })
-      .catch(err => console.error(err));
+      .catch(error => console.error(error));
   }
 
   // CRUD
@@ -64,19 +64,19 @@ class App extends React.Component {
     };
 
     fetch('/resources_db/resources/', {
-        method: 'POST',
+      method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(resourceObj)
     })
-      .then(response =>  {
-    this.setState( {
-          resourcesChanged: true
-        });
-      })
-      .catch(err => console.error('App: aR: catch: ', err));
+    .then(response =>  {
+      this.setState( {
+        resourcesChanged: true
+      });
+    })
+    .catch(error => console.error('App: aR: catch: ', error));
   };
 
   // deleteResource = (rowKeys) => {
@@ -95,7 +95,7 @@ class App extends React.Component {
   //       resourcesChanged: true
   //     });
   //   })
-  //   .catch(err => console.error('App: dR: catch: ', err));
+  //   .catch(error => console.error('App: dR: catch: ', error));
   // };
 
   deleteResource = (rowKeys) => {
@@ -114,7 +114,7 @@ class App extends React.Component {
           resourcesChanged: true
         });
       })
-      .catch(err => console.error('App: dR: catch: ', err));  
+      .catch(error => console.error('App: dR: catch: ', error));  
     });
   };
 
@@ -127,12 +127,12 @@ class App extends React.Component {
       },
       body: JSON.stringify(row)
     })
-      .then(response =>  {
-        this.setState( {
-          resourcesChanged: true
-        });
-      })
-      .catch(err => console.error('App: uR: catch: ', err));
+    .then(response =>  {
+      this.setState( {
+        resourcesChanged: true
+      });
+    })
+    .catch(error => console.error('App: uR: catch: ', error));
   };
 
   topicFormatter = (cell, row) => {
