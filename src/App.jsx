@@ -7,8 +7,9 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 import AddResource from './comp/AddResource';
-
 import './App.css';
+
+// const crud = require('./services/crud.jsx');
 
 class App extends React.Component {
   constructor(props) {
@@ -152,13 +153,15 @@ class App extends React.Component {
     if (!this.isReadytoRenderResources()) return null;
 
     // react-bootstrap-table OPTIONS
-    const rbtOptions = { 
+    const rbtOptions = {
       afterDeleteRow: this.deleteResource,
+      // afterDeleteRow: crud.deleteResource,
       sortIndicator: true
     };
     const cellEdit = { 
       mode: 'click',
       afterSaveCell: this.updateResource
+      // afterSaveCell: crud.updateResource
     }
     const selectRow = {
        mode: 'radio'
@@ -247,6 +250,7 @@ class App extends React.Component {
             <Row className='add-resource-row'>
               <AddResource className='add-resource-call'
                 addResource={this.addResource}
+                // addResource={crud.addResource}
               />
             </Row>
         </div>
