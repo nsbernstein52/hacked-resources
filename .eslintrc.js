@@ -29,7 +29,7 @@ module.exports = {
     'chai-friendly/no-unused-expressions': 2,
     'mocha/no-mocha-arrows': 0,
     'no-console': 1,
-    'arrow-body-style': 1,
-    'no-unused-vars': 1,
+    'arrow-body-style': 0,
+    'no-unused-vars': 0,
   }
 };
