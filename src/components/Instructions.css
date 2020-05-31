@@ -1,0 +1,14 @@
+.instr-caption {
+  padding-left: 0px;
+  font-size: 0.85em;
+  text-align: left;
+  font-weight: bold;
+  color: darkred;
+}
+
+.instr-body {
+  font-size: 0.85em;
+  text-align: left;
+  color: black;
+}
+

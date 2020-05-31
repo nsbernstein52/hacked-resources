@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import '../App.css';
+import './Instructions.css';
 
 class Instructions extends React.Component {
   constructor(props) {
