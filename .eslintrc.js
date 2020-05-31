@@ -27,6 +27,7 @@ module.exports = {
   rules: {
     'no-unused-expressions': 0,
     'chai-friendly/no-unused-expressions': 2,
+    'max-len': 1,
     'mocha/no-mocha-arrows': 0,
     'no-console': 1,
     'arrow-body-style': 0,
