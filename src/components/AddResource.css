@@ -3,13 +3,13 @@
 }
 
 .form-caption {
-  font-size: 1em;
+  font-size: 0.85em;
   font-weight: bold;
   color: darkred;
 }
 
 .form-val {
-  font-size: 1em;
+  font-size: 0.85em;
   width: 100%;
 }
 
