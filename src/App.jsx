@@ -6,7 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
-import AddResource from './comp/AddResource';
+import AddResource from './components/AddResource';
+import Instructions from './components/Instructions';
 import './App.css';
 
 // const crud = require('./services/crud.jsx');
@@ -179,47 +180,7 @@ class App extends React.Component {
                 </Row>
               </Col>
             </Row>
-
-            <Row>
-              <Col className='instr-caption' md={2}>
-                Sort by column:
-              </Col>
-              <Col className='instr-body' md={10}>
-                Click on column header
-              </Col>
-            </Row>
-            <Row>            
-              <Col className='instr-caption' md={2}>
-                Edit cell: 
-              </Col>
-              <Col className='instr-body' md={10}>
-                Click in cell (for &quot;link&quot;, click to right side of link), change text, press ENTER (or ESC to cancel)
-              </Col>
-            </Row>
-            <Row>
-              <Col className='instr-caption' md={2}>
-                Delete row: 
-              </Col>
-              <Col className='instr-body' md={10}>
-                Click on radio button, click on DELETE
-              </Col>
-            </Row>
-            <Row>            
-              <Col className='instr-caption' md={2}>
-                Filter by column: 
-              </Col>
-              <Col className='instr-body' md={10}>
-                Enter text (not case sensitive) in box at bottom of column
-              </Col>
-            </Row>
-            <Row>            
-              <Col className='instr-caption' md={2}>
-                Add a resource: 
-              </Col>
-              <Col className='instr-body' md={10}>
-                Use <a href='#add-resource'>Add Resource</a> form at the bottom of the page
-              </Col>
-            </Row>
+            <Instructions/>
 
             <Row className='bootstrap-table-row'>
               <BootstrapTable 
