@@ -10,7 +10,7 @@ import AddResource from './components/AddResource';
 import Instructions from './components/Instructions';
 import './App.css';
 
-// const crud = require('./services/crud.jsx');
+const crud = require('./services/crud.jsx');
 
 class App extends React.Component {
   constructor(props) {
@@ -52,7 +52,15 @@ class App extends React.Component {
       .catch(error => console.error(error));
   }
 
-  // CRUD
+  // loadAllResources = () => { // eslint-disable-line
+  //   crud.getAllResources(() => {
+  //     this.setState({
+  //       resourcesChange: true,
+  //     })
+  //   })
+  // }
+
+  // // CRUD
 
   addResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
     event.preventDefault();
@@ -64,7 +72,6 @@ class App extends React.Component {
       link: link,
       topic: topic
     };
-
     fetch('/resources_db/resources/', {
       method: 'POST',
       headers: {
@@ -80,6 +87,21 @@ class App extends React.Component {
     })
     .catch(error => console.error('App: aR: catch: ', error));
   };
+
+  // addResource = (event, abbrev, contributor, description, level, link, topic) => {
+  //   event.preventDefault();
+  //   const resourceObj = {
+  //     abbrev, contributor, description, level, link, topic,
+  //   };
+  //   crud.addResource((resourceObj) => {
+  //   })
+  //   .then((response) => {
+  //     this.setState( {
+  //       resourcesChanged: true
+  //     });
+  //   })
+  //   .catch(error => console.error('App: aR: catch: ', error));
+  // };
 
   // deleteResource = (rowKeys) => {
   //   this.setState( {
@@ -137,6 +159,7 @@ class App extends React.Component {
     .catch(error => console.error('App: uR: catch: ', error));
   };
 
+  // for displaying link in rbt (react-bootstrap-table)
   topicFormatter = (cell, row) => {
     return <a href={row.link} target='_blank' title={row.link}>link</a>
   }
@@ -210,8 +233,8 @@ class App extends React.Component {
           <a name='add-resource'></a>
             <Row className='add-resource-row'>
               <AddResource className='add-resource-call'
-                addResource={this.addResource}
-                // addResource={crud.addResource}
+                addResource={ this.addResource }
+                // addResource={ crud.addResource }
               />
             </Row>
         </div>
