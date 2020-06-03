@@ -60,35 +60,9 @@ class App extends React.Component {
   //   })
   // }
 
-  // // CRUD
+  // CRUD
 
-  // addResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
-  //   event.preventDefault();
-  //   const resourceObj = { // naming QQQ
-  //     abbrev: abbrev,
-  //     contributor: contributor,
-  //     description: description,
-  //     level: level,
-  //     link: link,
-  //     topic: topic
-  //   };
-  //   fetch('/resources_db/resources/', {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(resourceObj)
-  //   })
-  //   .then(response =>  {
-  //     this.setState( {
-  //       resourcesChanged: true
-  //     });
-  //   })
-  //   .catch(error => console.error('App: aR: catch: ', error));
-  // };
-
-    addResource = (event, abbrev, contributor, description, level, link, topic) => {
+  addResource = (event, abbrev, contributor, description, level, link, topic) => {
     // addResource = (event, resourceObj) => {
     event.preventDefault();
     const resourceObj = {
@@ -103,24 +77,6 @@ class App extends React.Component {
     .catch(error => console.error('App: aR: catch: ', error));
   };
 
-  // deleteResource = (rowKeys) => {
-  //   this.setState( {
-  //     resourcesArr: this.state.resourcesArr.filter( (elem) => { return elem.id !== rowKeys[0] } )
-  //   });
-  //   event.preventDefault();
-  //   fetch('/resources_db/resources/' + rowKeys[0], {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //   })
-  //   .then(response =>  {
-  //     this.setState( {
-  //       resourcesChanged: true
-  //     });
-  //   })
-  //   .catch(error => console.error('App: dR: catch: ', error));
-  // };
 
   deleteResource = (rowKeys) => {
     this.setState( {
@@ -139,14 +95,6 @@ class App extends React.Component {
 
   updateResource = (row, cellName, cellValue) => {
     event.preventDefault();
-    // fetch('/resources_db/resources/' + row.id, {
-    //   method: 'PUT',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(row)
-    // })
     crud.updateResource(row, cellName, cellValue)
     .then(response =>  {
       this.setState( {
@@ -176,13 +124,11 @@ class App extends React.Component {
     // react-bootstrap-table OPTIONS
     const rbtOptions = {
       afterDeleteRow: this.deleteResource,
-      // afterDeleteRow: crud.deleteResource,
       sortIndicator: true
     };
     const cellEdit = { 
       mode: 'click',
       afterSaveCell: this.updateResource
-      // afterSaveCell: crud.updateResource
     }
     const selectRow = {
        mode: 'radio'
@@ -190,6 +136,7 @@ class App extends React.Component {
 
     return(
       <Container-fluid>
+        
         <div className='container-fluid'>
           <Col>
             <Row className='page-header'>
@@ -200,6 +147,7 @@ class App extends React.Component {
                 </Row>
               </Col>
             </Row>
+            
             <Instructions/>
 
             <Row className='bootstrap-table-row'>
@@ -224,8 +172,10 @@ class App extends React.Component {
                 <TableHeaderColumn dataField='description' dataSort width='46%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Description</TableHeaderColumn>
               </BootstrapTable>
             </Row>
+
           </Col>
         </div>
+
         <div>
           <a name='add-resource'></a>
             <Row className='add-resource-row'>
@@ -235,6 +185,7 @@ class App extends React.Component {
               />
             </Row>
         </div>
+
       </Container-fluid>
     )
   };  
