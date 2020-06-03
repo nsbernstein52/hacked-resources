@@ -23,6 +23,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.loadAllResources();
+    // this.getAllResources();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -31,6 +32,7 @@ class App extends React.Component {
     resourcesChanged: false
       });
       this.loadAllResources();
+      // this.getAllResources();
     }
   }
 
@@ -51,14 +53,6 @@ class App extends React.Component {
       })
       .catch(error => console.error(error));
   }
-
-  // loadAllResources = () => { // eslint-disable-line
-  //   crud.getAllResources(() => {
-  //     this.setState({
-  //       resourcesChange: true,
-  //     })
-  //   })
-  // }
 
   // CRUD
 
@@ -102,6 +96,18 @@ class App extends React.Component {
       });
     })
     .catch(error => console.error('App: uR: catch: ', error));
+  };
+
+  // getAllResources = (event) => { // eslint-disable-line
+  getAllResources = () => { // eslint-disable-line
+    // event.preventDefault();
+    crud.getAllResources()
+    .then((response) => {
+      this.setState( {
+        resourcesChange: true,
+      })
+    })
+    .catch(error => console.error('App: dR: catch: ', error));
   };
 
   // for displaying link in rbt (react-bootstrap-table)

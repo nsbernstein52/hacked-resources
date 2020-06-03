@@ -22,6 +22,7 @@ const deleteResource = (rowKeys) => {
     fetch(`${pathRowKeys0}`, {
       method: 'DELETE',
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
     })
@@ -29,14 +30,19 @@ const deleteResource = (rowKeys) => {
   );
 };
 
-// const getAllResources = () => {
-//   return (
-//     fetch(`${pathResources}`)
-//       .then((resources) => {
-//         return resources.json();
-//       })
-//   );
-// };
+const getAllResources = () => {
+  return (
+    fetch(`${pathResources}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .catch((error) => console.error('crud: dR: catch: ', error)) // eslint-disable-line  
+  );
+};
+
 
 const updateResource = (row, cellName, cellValue) => {
   const pathRowId = path.join(pathResources, row.id.toString());
@@ -56,6 +62,6 @@ const updateResource = (row, cellName, cellValue) => {
 module.exports = {
   addResource,
   deleteResource,
-  // getAllResources,
+  getAllResources,
   updateResource,
 };
