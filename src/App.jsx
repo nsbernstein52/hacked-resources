@@ -138,14 +138,16 @@ class App extends React.Component {
   };
 
   updateResource = (row, cellName, cellValue) => {
-    fetch('/resources_db/resources/' + row.id, {
-      method: 'PUT',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(row)
-    })
+    event.preventDefault();
+    // fetch('/resources_db/resources/' + row.id, {
+    //   method: 'PUT',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(row)
+    // })
+    crud.updateResource(row, cellName, cellValue)
     .then(response =>  {
       this.setState( {
         resourcesChanged: true
