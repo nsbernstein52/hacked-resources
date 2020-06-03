@@ -54,6 +54,10 @@ class App extends React.Component {
       .catch(error => console.error(error));
   }
 
+  // loadAllResources = () => { // eslint-disable-line
+  //   this.getAllResources();
+  // }
+
   // CRUD
 
   addResource = (event, abbrev, contributor, description, level, link, topic) => {
