@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Find and contribute to Hack Reactor's Software Engineering Immersive (SEI) resources",
   "author": "Neil Bernstein",
-  "license": "ISC",  
+  "license": "ISC",
   "main": "./src/App.jsx",
   "scripts": {
     "start": "node ./server/start.js",
