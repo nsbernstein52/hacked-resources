@@ -62,46 +62,46 @@ class App extends React.Component {
 
   // // CRUD
 
-  addResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
-    event.preventDefault();
-    const resourceObj = { // naming QQQ
-      abbrev: abbrev,
-      contributor: contributor,
-      description: description,
-      level: level,
-      link: link,
-      topic: topic
-    };
-    fetch('/resources_db/resources/', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(resourceObj)
-    })
-    .then(response =>  {
-      this.setState( {
-        resourcesChanged: true
-      });
-    })
-    .catch(error => console.error('App: aR: catch: ', error));
-  };
-
-  // addResource = (event, abbrev, contributor, description, level, link, topic) => {
+  // addResource = (event, abbrev, contributor, description, level, link, topic, callback) => {
   //   event.preventDefault();
-  //   const resourceObj = {
-  //     abbrev, contributor, description, level, link, topic,
+  //   const resourceObj = { // naming QQQ
+  //     abbrev: abbrev,
+  //     contributor: contributor,
+  //     description: description,
+  //     level: level,
+  //     link: link,
+  //     topic: topic
   //   };
-  //   crud.addResource((resourceObj) => {
+  //   fetch('/resources_db/resources/', {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(resourceObj)
   //   })
-  //   .then((response) => {
+  //   .then(response =>  {
   //     this.setState( {
   //       resourcesChanged: true
   //     });
   //   })
   //   .catch(error => console.error('App: aR: catch: ', error));
   // };
+
+    addResource = (event, abbrev, contributor, description, level, link, topic) => {
+    // addResource = (event, resourceObj) => {
+    event.preventDefault();
+    const resourceObj = {
+      abbrev, contributor, description, level, link, topic,
+    };
+    crud.addResource(resourceObj)
+    .then((response) => {
+      this.setState( {
+        resourcesChanged: true
+      });
+    })
+    .catch(error => console.error('App: aR: catch: ', error));
+  };
 
   // deleteResource = (rowKeys) => {
   //   this.setState( {
@@ -127,12 +127,7 @@ class App extends React.Component {
       resourcesArr: this.state.resourcesArr.filter( (elem) => { return elem.id !== rowKeys[0] } )
     }, () => {
       event.preventDefault();
-      fetch('/resources_db/resources/' + rowKeys[0], {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      })
+      crud.deleteResource(rowKeys)
       .then(response =>  {
         this.setState( {
           resourcesChanged: true

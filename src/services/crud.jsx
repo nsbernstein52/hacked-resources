@@ -4,18 +4,18 @@ const pathResources = '/resources_db/resources/';
 
 // crud functions
 
-const addResource = (resourceObj, callback) => {
-  fetch(`${pathResources}`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json', // QQQ
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(resourceObj),
-  })
-    .then((response) => response.json())
-    .then((data) => callback(data))
-    .catch((error) => console.error('crud: aR: catch: ', error)); // eslint-disable-line
+const addResource = (resourceObj) => {
+  return (
+    fetch(`${pathResources}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json', // QQQ
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(resourceObj),
+    })
+      .catch((error) => console.error('crud: aR: catch: ', error)) // eslint-disable-line
+  );
 };
 
 // deleteResource = (rowKeys) => {
@@ -37,17 +37,19 @@ const addResource = (resourceObj, callback) => {
 //   .catch(error => console.error('crud: dR: catch: ', error));
 // };
 
-const deleteResource = (rowKeys, callback) => {
-  const pathRowKeys0 = path.join(pathResources, rowKeys[0]);
-  fetch(`${pathRowKeys0}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => callback(data))
-    .catch((error) => console.error('crud: dR: catch: ', error)); // eslint-disable-line
+const deleteResource = (rowKeys) => {
+  const pathRowKeys0 = path.join(pathResources, rowKeys[0].toString());
+  return (
+    fetch(`${pathRowKeys0}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      // .then((response) => response.json())
+      // .then((data) => callback(data))
+      .catch((error) => console.error('crud: dR: catch: ', error)) // eslint-disable-line  
+  );
 };
 
 const getAllResources = (callback) => {
