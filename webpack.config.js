@@ -31,6 +31,14 @@ module.exports = {
         loader: 'file-loader',
         type: 'javascript/auto',
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
   node: {
