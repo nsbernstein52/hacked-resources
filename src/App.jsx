@@ -3,11 +3,13 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 import AddResource from './components/AddResource';
 import Instructions from './components/Instructions';
+// import hrlogo from './public/favicon.ico'; 
+import hrlogo from './public/hacked.png'; 
 import './App.css';
 
 const crud = require('./services/crud.jsx');
@@ -151,7 +153,8 @@ class App extends React.Component {
           <Col>
             <Row className='page-header'>
               <Col>
-                <b>HACKED RESOURCES</b>
+                <b>HACKED RESOURCES</b> &nbsp;
+                <img style={{height:'auto',width:'40px'}} src={ hrlogo }/>
                 <Row className='subheader'>
                   Find and contribute to Hack Reactor's Software Engineering Immersive (SEI) resources
                 </Row>
