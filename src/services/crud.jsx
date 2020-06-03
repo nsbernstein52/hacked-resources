@@ -62,18 +62,21 @@ const getAllResources = (callback) => {
     .catch((error) => console.error('crud: gAR: catch: ', error)); // eslint-disable-line
 };
 
-const updateResource = (row, cellName, cellValue, callback) => {
-  const pathRowId = path.join(pathResources, row.id);
-  fetch(`${pathRowId}`, {
-    method: 'PUT',
-    headers: {
-      Accept: 'application/json', // QQQ
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => callback(data))
-    .catch((error) => console.error('crud: uR: catch: ', error)); // eslint-disable-line
+const updateResource = (row, cellName, cellValue) => {
+  const pathRowId = path.join(pathResources, row.id.toString());
+  return (
+    fetch(`${pathRowId}`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json', // QQQ
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(row),
+    })
+      // .then((response) => response.json())
+      // .then((data) => callback(data))
+      .catch((error) => console.error('crud: uR: catch: ', error)) // eslint-disable-line  
+  );
 };
 
 module.exports = {
