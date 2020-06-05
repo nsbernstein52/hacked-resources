@@ -8,18 +8,16 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 
-describe('SERVER API: route to root', () => {
-  describe('root:  status, type', () => {
+describe('SERVER API:', () => {
+  describe('route to root:  status, type', () => {
     it('should respond with: 200, "html" ', async () => {
       const response = await chai.request(expressApp).get('/');
       expect(response).to.have.status(200);
       expect(response).to.be.html;
     });
   });
-});
 
-// resource_db elements
-describe('SERVER/DB:API: resoures_db', () => {
+  // resource_db elements
   // getAllResources
   describe('resources_db/resources/: status, type, body type, data type, level', () => {
     it('should respond with:  200, json, "object", "array", "All" ', async () => {
