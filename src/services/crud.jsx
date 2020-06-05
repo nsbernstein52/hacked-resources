@@ -30,7 +30,7 @@ const deleteResource = (rowKeys) => {
   );
 };
 
-const getAllResources = () => {
+const getAllResources = (callback) => {
   return (
     fetch(`${pathResources}`, {
       method: 'GET',
@@ -39,10 +39,11 @@ const getAllResources = () => {
         'Content-Type': 'application/json',
       },
     })
+      .then((result) => result.json())
+      .then((data) => callback(data))
       .catch((error) => console.error('crud: dR: catch: ', error)) // eslint-disable-line  
   );
 };
-
 
 const updateResource = (row, cellName, cellValue) => {
   const pathRowId = path.join(pathResources, row.id.toString());

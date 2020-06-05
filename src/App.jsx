@@ -31,7 +31,7 @@ class App extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.state.resourcesChanged ) {
       this.setState( {
-    resourcesChanged: false
+        resourcesChanged: false
       });
       this.loadAllResources();
       // this.getAllResources();
@@ -57,7 +57,14 @@ class App extends React.Component {
   }
 
   // loadAllResources = () => { // eslint-disable-line
-  //   this.getAllResources();
+  //   // if (this.prevState.resourcesArr !== this.state.resourcesArr) {
+  //     crud.getAllResources( (result) => {
+  //       this.setState( {
+          
+  //         resourcesChanged: true,
+  //       });
+  //     })
+  //   // }
   // }
 
   // CRUD
@@ -154,7 +161,7 @@ class App extends React.Component {
             <Row className='page-header'>
               <Col>
                 <b>HACKED RESOURCES</b> &nbsp;
-                <img style={{height:'auto',width:'40px'}} src={ hrlogo }/>
+                {/* <img style={{height:'auto',width:'40px'}} src={ hrlogo }/> */}
                 <Row className='subheader'>
                   Find and contribute to Hack Reactor's Software Engineering Immersive (SEI) resources
                 </Row>
