@@ -16,7 +16,7 @@ npm install
 npm run webpack-dev
 npm run nodemon
 ```
-- To open in a browser, enter 
+- To open in a local browser, enter 
 [url](http://localhost:3000) 
 
 ## Testing:
