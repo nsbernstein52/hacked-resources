@@ -8,8 +8,6 @@ import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 import AddResource from './components/AddResource';
 import Instructions from './components/Instructions';
-// import hrlogo from './public/favicon.ico'; 
-import hrlogo from './public/hacked.png'; 
 import './App.css';
 
 const crud = require('./services/crud.jsx');
@@ -25,20 +23,18 @@ class App extends React.Component {
 
   componentDidMount() {
     this.loadAllResources();
-    // this.getAllResources();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     if (this.state.resourcesChanged ) {
       this.setState( {
         resourcesChanged: false
       });
       this.loadAllResources();
-      // this.getAllResources();
     }
   }
 
-  loadAllResources = () => { // eslint-disable-line
+  loadAllResources = () => {
     fetch('/resources_db/resources', {
       method: 'GET',
       headers: {
@@ -56,21 +52,9 @@ class App extends React.Component {
       .catch(error => console.error(error));
   }
 
-  // loadAllResources = () => { // eslint-disable-line
-  //   // if (this.prevState.resourcesArr !== this.state.resourcesArr) {
-  //     crud.getAllResources( (result) => {
-  //       this.setState( {
-          
-  //         resourcesChanged: true,
-  //       });
-  //     })
-  //   // }
-  // }
-
   // CRUD
 
   addResource = (event, abbrev, contributor, description, level, link, topic) => {
-    // addResource = (event, resourceObj) => {
     event.preventDefault();
     const resourceObj = {
       abbrev, contributor, description, level, link, topic,
@@ -111,9 +95,7 @@ class App extends React.Component {
     .catch(error => console.error('App: uR: catch: ', error));
   };
 
-  // getAllResources = (event) => { // eslint-disable-line
-  getAllResources = () => { // eslint-disable-line
-    // event.preventDefault();
+  getAllResources = () => {
     crud.getAllResources()
     .then((response) => {
       this.setState( {
@@ -159,9 +141,8 @@ class App extends React.Component {
         <div className='container-fluid'>
           <Col>
             <Row className='page-header'>
-              <Col>
-                <b>HACKED RESOURCES</b> &nbsp;
-                {/* <img style={{height:'auto',width:'40px'}} src={ hrlogo }/> */}
+              <Col >
+                <b>HACKED RESOURCES</b>
                 <Row className='subheader'>
                   Find and contribute to Hack Reactor's Software Engineering Immersive (SEI) resources
                 </Row>
@@ -201,7 +182,6 @@ class App extends React.Component {
             <Row className='add-resource-row'>
               <AddResource className='add-resource-call'
                 addResource={ this.addResource }
-                // addResource={ crud.addResource }
               />
             </Row>
         </div>
