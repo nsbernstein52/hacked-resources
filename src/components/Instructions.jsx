@@ -59,7 +59,11 @@ class Instructions extends React.Component {
             Add a resource:
           </Col>
           <Col className="instr-body" md={10}>
-            Use <a href="./#add-resource">Add Resource</a> form at the bottom of the page
+            Use
+            {' '}
+            <a href="./#add-resource">Add Resource</a>
+            {' '}
+            form at the bottom of the page
           </Col>
         </Row>
       </div>
