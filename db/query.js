@@ -14,17 +14,17 @@ if (!process.env.DATABASE_URL) {
   });
 }
 
-pool.on('error', (poolError, client) => {
-  console.error('Unexpected postgres pool error on idle client', poolError); // eslint-disable-line
+pool.on('error', (poolError) => {
+  console.error('Unexpected postgres pool error on idle client', poolError);
   process.exit(-1);
 });
 
-pool.connect((connectionErr, client, done) => {
-  if (connectionErr) throw connectionErr;
-  client.query('SELECT * FROM resources WHERE id = $1', [1], (queryErr, response) => {
+pool.connect((connectionError, client, done) => {
+  if (connectionError) throw connectionError;
+  client.query('SELECT * FROM resources WHERE id = $1', [1], (queryError, response) => {
     done();
-    if (queryErr) {
-      console.error('Failed to get resources from postgres pool: ', queryErr); // eslint-disable-line
+    if (queryError) {
+      console.error('Failed to get resources from postgres pool: ', queryError);
     }
   });
 });
@@ -35,10 +35,10 @@ const addResource = (resource) => {
   const values = [resource.abbrev, resource.contributor, resource.description, resource.level,
     resource.link, resource.topic];
   return pool.query('INSERT INTO resources (abbrev, contributor, description, level, link, topic) VALUES ($1, $2, $3, $4, $5, $6)', values)
-    .then((resource) => {
-      return resource.rows;
+    .then((addedResource) => {
+      return addedResource.rows;
     })
-    .catch((error) => { console.error('error from DB', error); }); // eslint-disable-line
+    .catch((error) => { console.error('error from DB', error); });
 };
 
 const deleteResource = (id) => {
@@ -55,7 +55,7 @@ const getAllResources = () => {
     .then((resources) => {
       return resources.rows;
     })
-    .catch((error) => { console.error('error from DB', error); }); // eslint-disable-line
+    .catch((error) => { console.error('error from DB', error); });
 };
 
 const getResource = (id) => {
@@ -73,7 +73,7 @@ const updateResource = (row) => {
     .then(() => {
       return true;
     })
-    .catch((error) => { console.error('error from DB', error); }); // eslint-disable-line
+    .catch((error) => { console.error('error from DB', error); });
 };
 
 module.exports = {
