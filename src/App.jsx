@@ -1,7 +1,5 @@
 import React from 'react';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import 'react-bootstrap/Container';
+import { Container, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
@@ -60,7 +58,7 @@ class App extends React.Component {
       abbrev, contributor, description, level, link, topic,
     };
     crud.addResource(resourceObj)
-    .then((response) => {
+    .then(() => {
       this.setState( {
         resourcesChanged: true
       });
@@ -75,7 +73,7 @@ class App extends React.Component {
     }, () => {
       event.preventDefault();
       crud.deleteResource(rowKeys)
-      .then(response =>  {
+      .then(() => {
         this.setState( {
           resourcesChanged: true
         });
@@ -87,7 +85,7 @@ class App extends React.Component {
   updateResource = (row, cellName, cellValue) => {
     event.preventDefault();
     crud.updateResource(row, cellName, cellValue)
-    .then(response =>  {
+    .then(() => {
       this.setState( {
         resourcesChanged: true
       });
@@ -97,7 +95,7 @@ class App extends React.Component {
 
   getAllResources = () => {
     crud.getAllResources()
-    .then((response) => {
+    .then(() => {
       this.setState( {
         resourcesChange: true,
       })
@@ -106,7 +104,7 @@ class App extends React.Component {
   };
 
   // for displaying link in rbt (react-bootstrap-table)
-  topicFormatter = (cell, row) => {
+  linkFormatter = (cell, row) => { // cell argument required by rbt built-in function
     return <a href={row.link} target='_blank' title={row.link}>link</a>
   }
 
@@ -118,7 +116,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { resourcesArr, resourcesChanged } = this.state;
+    const { resourcesArr } = this.state;
 
     if (!this.isReadytoRenderResources()) return null;
 
@@ -167,7 +165,7 @@ class App extends React.Component {
                 <TableHeaderColumn isKey dataField='id' dataSort width='6%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='topic' dataSort width='15%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Topic</TableHeaderColumn>
                 <TableHeaderColumn dataField='abbrev' dataSort width='8%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Abbrev</TableHeaderColumn>
-                <TableHeaderColumn dataField='link' dataSort dataFormat={ this.topicFormatter} width='6%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Link</TableHeaderColumn>
+                <TableHeaderColumn dataField='link' dataSort dataFormat={ this.linkFormatter} width='6%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Link</TableHeaderColumn>
                 <TableHeaderColumn dataField='level' dataSort width='8%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Level</TableHeaderColumn>
                 <TableHeaderColumn dataField='contributor' dataSort width='10%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Contributor</TableHeaderColumn>
                 <TableHeaderColumn dataField='description' dataSort width='46%' tdStyle={{ whiteSpace: 'normal' }}>&#x2195; Description</TableHeaderColumn>
