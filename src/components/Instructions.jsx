@@ -17,10 +17,7 @@ class Instructions extends React.Component {
   render() {
     const { dummy } = this.state;
 
-    // double quotes?
-
     return (
-      // <Container-fluid className='add-resource-container'>
       <div>
         <Row>
           <Col className="instr-caption" md={2}>
@@ -67,7 +64,6 @@ class Instructions extends React.Component {
           </Col>
         </Row>
       </div>
-      // </Container-fluid>
     );
   }
 }
