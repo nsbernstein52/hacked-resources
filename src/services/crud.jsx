@@ -12,7 +12,7 @@ const addResource = (resourceObj) => {
       },
       body: JSON.stringify(resourceObj),
     })
-      .catch((error) => console.error('crud: aR: catch: ', error)) // eslint-disable-line
+      .catch((error) => console.error('crud: aR: catch: ', error))
   );
 };
 
@@ -26,7 +26,7 @@ const deleteResource = (rowKeys) => {
         'Content-Type': 'application/json',
       },
     })
-      .catch((error) => console.error('crud: dR: catch: ', error)) // eslint-disable-line  
+      .catch((error) => console.error('crud: dR: catch: ', error))
   );
 };
 
@@ -41,7 +41,7 @@ const getAllResources = (callback) => {
     })
       .then((result) => result.json())
       .then((data) => callback(data))
-      .catch((error) => console.error('crud: dR: catch: ', error)) // eslint-disable-line  
+      .catch((error) => console.error('crud: dR: catch: ', error))
   );
 };
 
@@ -56,7 +56,7 @@ const updateResource = (row, cellName, cellValue) => {
       },
       body: JSON.stringify(row),
     })
-      .catch((error) => console.error('crud: uR: catch: ', error)) // eslint-disable-line  
+      .catch((error) => console.error('crud: uR: catch: ', error))
   );
 };
 
