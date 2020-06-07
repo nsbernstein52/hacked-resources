@@ -21,13 +21,11 @@ class AddResource extends React.Component {
   }
 
   handleChange = (e) => {
-    // console.log({ [e.target.name]: e.target.value });
     this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
     return (
-      // <Container-fluid className='add-resource-container'>
         <Form className='add-form'>
           <Form.Group as={Row} controlId='topic'>
             <Form.Label column md={2} className='form-caption'>
@@ -139,7 +137,6 @@ class AddResource extends React.Component {
             </Col>
           </Form.Group>
         </Form>
-      // </Container-fluid>
     )
   }
 }
