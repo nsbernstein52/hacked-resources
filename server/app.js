@@ -23,7 +23,7 @@ app.get('/dist/bundle.js', (request, response) => {
 
 app.post('/resources_db/resources/', (request, response) => {
   pg.addResource(request.body)
-    .then((results) => {
+    .then(() => {
       response.sendStatus(201);
     })
     .catch((error) => console.error(error));
@@ -55,7 +55,7 @@ app.get('/resources_db/resources/:id', (request, response) => {
 
 app.put('/resources_db/resources/:id', (request, response) => {
   pg.updateResource(request.body)
-    .then((results) => {
+    .then(() => {
       response.sendStatus(201);
     })
     .catch((error) => console.error(error));
