@@ -32,7 +32,7 @@
     "react-bootstrap": "^1.0.0",
     "react-bootstrap-table": "^4.3.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^5.0.1"
   },
   "browserslist": {
     "production": [
@@ -55,7 +55,7 @@
     "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "eslint": "^6.8.0",
+    "eslint": "^9.39.1",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-chai-friendly": "^0.6.0",
     "eslint-plugin-import": "^2.20.2",
@@ -65,7 +65,7 @@
     "eslint-plugin-react-hooks": "^2.5.1",
     "file-loader": "^6.0.0",
     "json-loader": "^0.5.7",
-    "mocha": "^7.1.2",
+    "mocha": "^11.7.5",
     "nodemon": "^2.0.3",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
